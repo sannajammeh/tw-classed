@@ -1,9 +1,10 @@
 {
   "name": "tw-classed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
   "main": "dist/index.js",
+  "sideEffects": false,
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
@@ -16,6 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "@radix-ui/react-polymorphic": "^0.0.14"
+  },
+  "peerDependencies": {
+    "react": ">=16.3.0"
   },
   "devDependencies": {
     "@jest/core": "^28.1.0",
