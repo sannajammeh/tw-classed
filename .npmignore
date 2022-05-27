@@ -1,0 +1,10 @@
+src
+node_modules
+coverage
+.nyc_output
+.vscode
+pnpm-lock.yaml
+tailwind.config.cjs
+
+vite.config.ts
+tsconfig.buildinfo
