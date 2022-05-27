@@ -1,7 +1,7 @@
 {
   "name": "tw-classed",
   "version": "0.0.1",
-  "description": "",
+  "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind based components",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
