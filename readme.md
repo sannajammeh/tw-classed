@@ -52,6 +52,38 @@ const Grid = classed(
 export default Grid;
 ```
 
+##### Using Variants
+
+Insert an object as an argument to `classed` to define variants and defaultVariants for the component.
+Later use the key i.e color prop to set the variant.
+
+```tsx
+// Button.tsx
+import classed from "tw-classed";
+
+const Button = classed("button", "p-4 rounded-md", {
+  variants: {
+    color: {
+      blue: "bg-blue-500 text-white",
+      primary: "bg-indigo-500 text-white",
+    },
+  },
+  defaultVariants: {
+    color: "blue",
+  },
+});
+
+const MyApp = () => {
+  return (
+    <>
+      <Button color="primary">Im the primary color</Button>
+      <Button color="blue">Im the blue color</Button>
+      <Button>Im the default color (blue)</Button>
+    </>
+  );
+};
+```
+
 ##### Using the `as` prop
 
 This allows for TypeScript intellisense to infer props based on the `as` prop.
