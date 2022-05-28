@@ -1,6 +1,6 @@
 {
   "name": "tw-classed",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
   "main": "dist/index.js",
@@ -15,6 +15,11 @@
   "keywords": [],
   "author": "Sanna Jammeh",
   "license": "MIT",
+  "homepage": "https://github.com/sannajammeh/tw-classed",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sannajammeh/tw-classed"
+  },
   "dependencies": {
     "@radix-ui/react-polymorphic": "^0.0.14"
   },
