@@ -54,7 +54,7 @@ export default Grid;
 
 ##### Using the `as` prop
 
-This allows for TypeScript intellisense to
+This allows for TypeScript intellisense to infer props based on the `as` prop.
 
 ```tsx
 import classed from "tw-classed";
