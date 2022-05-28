@@ -5,3 +5,21 @@ export type TwModifyer =
   | `${Breakpoints}:${Modifyer}:`;
 
 export type ClassNames = string;
+
+export type Variants = Record<string, Record<string, string>>;
+
+export type VariantConfig<V extends Variants> = {
+  variants?: V;
+  className?: ClassNames;
+  defaultVariants?: Partial<{
+    [K in keyof V]: keyof V[K];
+  }>;
+};
+
+export type ClassNamesAndVariant<V extends Variants> =
+  | string
+  | VariantConfig<V>;
+
+export type VariantProps<V extends Variants> = Partial<
+  Record<keyof V, keyof V[keyof V]>
+>;

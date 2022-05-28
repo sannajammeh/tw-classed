@@ -46,3 +46,71 @@ describe("Classed", () => {
     expect(screen.getByTestId("anchor")).toBeInstanceOf(HTMLAnchorElement);
   });
 });
+
+describe("Classed with Variants", () => {
+  it("Should render dom element with classed classNames and class", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+        },
+      },
+    });
+
+    render(<Button color="blue" className="test" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
+  });
+
+  it("Should not render any variant if no variant is passed", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+        },
+      },
+    });
+
+    render(<Button className="test" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).not.toHaveClass("bg-blue-100");
+  });
+
+  it("Should render dom element with correct default variant", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+        },
+      },
+
+      defaultVariants: {
+        color: "blue",
+      },
+    });
+
+    render(<Button data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
+  });
+
+  it("Should prefer props over defaultVariants", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+
+      defaultVariants: {
+        color: "red",
+      },
+    });
+
+    render(<Button color="blue" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
+    expect(screen.getByTestId("btn")).not.toHaveClass("bg-red-100");
+  });
+});
