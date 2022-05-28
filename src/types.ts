@@ -6,7 +6,8 @@ export type TwModifyer =
 
 export type ClassNames = string;
 
-export type Variants = Record<string, Record<string, string>>;
+export type Variant = Record<string, string>;
+export type Variants = Record<string, Variant>;
 
 export type VariantConfig<V extends Variants> = {
   variants?: V;
