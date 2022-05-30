@@ -24,5 +24,11 @@
     "url": "https://github.com/sannajammeh/tw-classed/issues"
   },
   "homepage": "https://github.com/sannajammeh/tw-classed#readme",
-  "packageManager": "pnpm@7.0.0"
+  "packageManager": "pnpm@7.0.0",
+  "dependencies": {
+    "turbo": "^1.2.14"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  }
 }
