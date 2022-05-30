@@ -3,7 +3,8 @@
   "version": "0.1.2",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc --watch",
