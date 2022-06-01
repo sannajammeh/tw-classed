@@ -13,7 +13,7 @@ import type {
 
 function classed<
   T extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-  V extends Variants
+  V extends Variants = never
 >(elementType: T, ...classNames: ClassNamesAndVariant<V>[]) {
   const { className, variants, defaultVariants } = composeParser(classNames);
 
@@ -27,7 +27,7 @@ function classed<
       const variantClassNames = useMemo(() => {
         return Object.keys(variants)
           .reduce((acc, value) => {
-            const vInProps = props[value] || defaultVariants?.[value]; // Prefer props over defaultVariants
+            const vInProps: string = props[value] || defaultVariants?.[value]; // Prefer props over defaultVariants
             if (!vInProps) return acc; // Skip if no variant in props
             // TODO - Check wrapped comp for variant existance
             if (props[value] && !(elementType as any).__CLASSED_COMPONENT__) {
@@ -53,7 +53,7 @@ function classed<
         />
       );
     }
-  ) as Polymorphic.ForwardRefComponent<T, VariantProps<V>>;
+  ) as Polymorphic.ForwardRefComponent<T, {}>; // Add variant types
 
   ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
 
