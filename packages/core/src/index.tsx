@@ -25,15 +25,19 @@ function classed<
 
       // Map props variant to className
       const variantClassNames = useMemo(() => {
-        return Object.keys(variants).reduce((acc, value) => {
-          const vInProps = props[value] || defaultVariants?.[value]; // Prefer props over defaultVariants
-          if (!vInProps) return acc; // Skip if no variant in props
-          if (props[value]) {
-            delete props[value];
-          }
-          const className = variants[value][vInProps as string]; // Get className from variant
-          return acc.concat(" " + className); // Add className to acc
-        }, "");
+        return Object.keys(variants)
+          .reduce((acc, value) => {
+            const vInProps = props[value] || defaultVariants?.[value]; // Prefer props over defaultVariants
+            if (!vInProps) return acc; // Skip if no variant in props
+            // TODO - Check wrapped comp for variant existance
+            if (props[value] && !(elementType as any).__CLASSED_COMPONENT__) {
+              delete props[value];
+            }
+            const className = variants[value][vInProps as string]; // Get className from variant
+            if (!className) return acc; // Skip if no className
+            return acc.concat(acc.length ? " " + className : className); // Add className to acc
+          }, "")
+          .trim();
       }, [variants]);
 
       return (
@@ -51,7 +55,7 @@ function classed<
     }
   ) as Polymorphic.ForwardRefComponent<T, VariantProps<V>>;
 
-  ClassedComponent.displayName = `TwComponent(${elementType})`;
+  ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
 
   (ClassedComponent as any).__CLASSED_COMPONENT__ = true;
 
