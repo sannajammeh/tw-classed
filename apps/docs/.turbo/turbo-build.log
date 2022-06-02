@@ -1,0 +1,34 @@
+docs:build: cache hit, replaying output [2m498a62652943f87c[0m
+[33mdocs:build: [0m
+[33mdocs:build: [0m> docs@ build C:\htdocs\dev\projects\tw-classed\apps\docs
+[33mdocs:build: [0m> next build
+[33mdocs:build: [0m
+[33mdocs:build: [0minfo  - Checking validity of types...
+[33mdocs:build: [0minfo  - Creating an optimized production build...
+[33mdocs:build: [0minfo  - Compiled successfully
+[33mdocs:build: [0minfo  - Collecting page data...
+[33mdocs:build: [0minfo  - Generating static pages (0/4)
+[33mdocs:build: [0minfo  - Generating static pages (1/4)
+[33mdocs:build: [0minfo  - Generating static pages (2/4)
+[33mdocs:build: [0minfo  - Generating static pages (3/4)
+[33mdocs:build: [0minfo  - Generating static pages (4/4)
+[33mdocs:build: [0minfo  - Finalizing page optimization...
+[33mdocs:build: [0m
+[33mdocs:build: [0mPage                                       Size     First Load JS
+[33mdocs:build: [0m┌ ○ /                                      3.5 kB         88.8 kB
+[33mdocs:build: [0m├   /_app                                  0 B            85.3 kB
+[33mdocs:build: [0m├ ○ /404                                   195 B          85.5 kB
+[33mdocs:build: [0m├ λ /api/hello                             0 B            85.3 kB
+[33mdocs:build: [0m└ ● /docs/[slug] (1826 ms)                 3.92 kB        89.2 kB
+[33mdocs:build: [0m    └ /docs/installation (1826 ms)
+[33mdocs:build: [0m+ First Load JS shared by all              85.3 kB
+[33mdocs:build: [0m  ├ chunks/framework-58732a32099dd011.js   45 kB
+[33mdocs:build: [0m  ├ chunks/main-5577a751d5f7332c.js        32.7 kB
+[33mdocs:build: [0m  ├ chunks/pages/_app-81e613637b044e7e.js  6.8 kB
+[33mdocs:build: [0m  ├ chunks/webpack-69bfa6990bb9e155.js     769 B
+[33mdocs:build: [0m  └ css/aee27d2c1c8c1fbc.css               5.13 kB
+[33mdocs:build: [0m
+[33mdocs:build: [0mλ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+[33mdocs:build: [0m○  (Static)  automatically rendered as static HTML (uses no initial props)
+[33mdocs:build: [0m●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+[33mdocs:build: [0m
