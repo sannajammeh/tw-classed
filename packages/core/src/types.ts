@@ -21,6 +21,9 @@ export type ClassNamesAndVariant<V extends Variants> =
   | string
   | VariantConfig<V>;
 
-export type VariantProps<V extends Variants> = Partial<
-  Record<keyof V, keyof V[keyof V]>
->;
+export type VariantProps<V extends Variants | undefined = undefined> =
+  V extends Variants
+    ? Partial<{
+        [K in keyof V]: keyof V[K] | undefined;
+      }>
+    : {};
