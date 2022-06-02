@@ -12,7 +12,9 @@ export const composeParser = <T extends Variants>(
 ) => {
   let stringClassNames = [];
   let variantObj = {} as T;
-  let defaultVariants = {} as Partial<VariantConfig<T>["defaultVariants"]>;
+  let defaultVariants = {} as Partial<
+    Required<VariantConfig<T>>["defaultVariants"]
+  >;
   for (const className of classNames) {
     if (typeof className === "string") {
       stringClassNames.push(className);
@@ -20,17 +22,15 @@ export const composeParser = <T extends Variants>(
     }
 
     if (className.variants) {
-      variantObj = {
-        ...variantObj,
-        ...className.variants,
-      };
+      Object.assign(variantObj, className.variants);
     }
 
     if (className.defaultVariants) {
-      defaultVariants = {
-        ...defaultVariants,
-        ...className.defaultVariants,
-      };
+      Object.assign(defaultVariants, className.defaultVariants);
+    }
+
+    if (className.className) {
+      stringClassNames.push(className.className);
     }
   }
 
