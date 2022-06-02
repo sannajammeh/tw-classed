@@ -15,8 +15,8 @@ const Text = classed("p", "leading-normal", {
     },
 
     color: {
-      primary: "text-indigo-500",
-      secondary: "text-gray-500",
+      primary: "text-radix-blue9",
+      secondary: "text-radix-slate11",
       black: "text-black",
       white: "text-white",
     },

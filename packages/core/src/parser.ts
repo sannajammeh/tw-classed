@@ -28,6 +28,10 @@ export const composeParser = <T extends Variants>(
     if (className.defaultVariants) {
       Object.assign(defaultVariants, className.defaultVariants);
     }
+
+    if (className.className) {
+      stringClassNames.push(className.className);
+    }
   }
 
   return {
