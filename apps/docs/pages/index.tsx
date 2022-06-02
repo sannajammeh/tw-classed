@@ -12,7 +12,7 @@ import {
 
 const Home: NextPage = () => {
   return (
-    <main className="container mx-auto px-5">
+    <main className="container mx-auto px-5 mb-24">
       <section className="py-24">
         <h1 className="text-center text-5xl font-bold mb-4">
           Make your Tailwind components <br /> re-usable
@@ -33,7 +33,8 @@ const Home: NextPage = () => {
             as="a"
             radius="pill"
             size="md"
-            href="https/github.com/sannajammeh/tw-styled"
+            target="_blank"
+            href="https://github.com/sannajammeh/tw-styled"
           >
             Github <FiExternalLink />
           </Button>
@@ -44,7 +45,7 @@ const Home: NextPage = () => {
           </pre>
         </div>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto py-24">
         <FeatureCard>
           <FeatureTitle>
             <FeatureCardIcon>
