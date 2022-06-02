@@ -13,7 +13,7 @@ import type {
 
 function classed<
   T extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
-  V extends Variants = never
+  V extends Variants = {}
 >(elementType: T, ...classNames: ClassNamesAndVariant<V>[]) {
   const { className, variants, defaultVariants } = composeParser(classNames);
 
@@ -38,7 +38,7 @@ function classed<
             return acc.concat(acc.length ? " " + className : className); // Add className to acc
           }, "")
           .trim();
-      }, [variants]);
+      }, [variants, props]);
 
       return (
         <Component
@@ -53,7 +53,7 @@ function classed<
         />
       );
     }
-  ) as Polymorphic.ForwardRefComponent<T, {}>; // Add variant types
+  ) as Polymorphic.ForwardRefComponent<T, VariantProps<V>>; // Add variant types
 
   ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
 

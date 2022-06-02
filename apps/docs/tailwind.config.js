@@ -7,5 +7,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("./utils/radix-colors-tailwind.cjs")({
+      colors: ["blue", "slate", "cyan"],
+    }),
+    require("@tailwindcss/typography"),
+  ],
 };

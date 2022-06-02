@@ -26,7 +26,7 @@
   "homepage": "https://github.com/sannajammeh/tw-classed#readme",
   "packageManager": "pnpm@7.0.0",
   "dependencies": {
-    "turbo": "^1.2.14"
+    "turbo": "^1.2.15"
   },
   "devDependencies": {
     "typescript": "^4.7.2"

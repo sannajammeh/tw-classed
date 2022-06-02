@@ -1,7 +1,44 @@
 ---
 title: "Installation"
-description: "Installing classed for your react tailwind project"
+description: "How to install tw-classed and get up and running."
 publishedAt: "01/06/2022"
 ---
 
 # Installation
+
+How to install tw-classed and get up and running.
+
+## Install it
+
+```bash
+# With npm
+npm install tw-classed
+
+# With yarn
+yarn add tw-classed
+
+# With pnpm
+pnpm install tw-classed
+```
+
+## Import it
+
+<>import `classed` from `tw-classed`</>;
+
+```tsx
+import classed from "tw-classed";
+```
+
+## Use it
+
+Use the `classed` function to create a component and style it with Tailwind
+
+```tsx
+import classed from "tw-classed";
+
+const Button = classed(
+  "button",
+  "bg-blue-500 text-white font-bold py-2 px-4 rounded-md",
+  "hover:bg-blue-700"
+);
+```
