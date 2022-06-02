@@ -1,3 +1,5 @@
+![tw-classed](https://raw.githubusercontent.com/sannajammeh/tw-classed/master/tw-classed.jpg)
+
 ![npm](https://img.shields.io/npm/v/tw-classed?logoColor=%23000000&style=for-the-badge) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/tw-classed?label=GZIP%20Size&logoColor=%23000000&style=for-the-badge) ![NPM](https://img.shields.io/npm/l/tw-classed?style=for-the-badge)
 
 # tw-classed
