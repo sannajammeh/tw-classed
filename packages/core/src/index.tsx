@@ -26,14 +26,24 @@ function classed<
       // Map props variant to className
       const variantClassNames = useMemo(() => {
         return Object.keys(variants)
-          .reduce((acc, value) => {
-            const vInProps: string = props[value] || defaultVariants?.[value]; // Prefer props over defaultVariants
-            if (!vInProps) return acc; // Skip if no variant in props
-            // TODO - Check wrapped comp for variant existance
-            if (props[value] && !(elementType as any).__CLASSED_COMPONENT__) {
-              delete props[value];
+          .reduce((acc, variantKey) => {
+            let variantSelector!: string;
+            if (props[variantKey]) {
+              variantSelector = props[variantKey];
+            } else if (typeof props[variantKey] === "boolean") {
+              variantSelector = props[variantKey].toString();
+            } else {
+              variantSelector = defaultVariants[variantKey] as string;
             }
-            const className = variants[value][vInProps as string]; // Get className from variant
+
+            if (!variantSelector) return acc; // Skip if no variant in props
+
+            // TODO - Check wrapped comp for variant existance
+            if (!(elementType as any).__CLASSED_COMPONENT__) {
+              delete props[variantKey];
+            }
+
+            const className = variants[variantKey][variantSelector as string]; // Get className from variant
             if (!className) return acc; // Skip if no className
             return acc.concat(acc.length ? " " + className : className); // Add className to acc
           }, "")
