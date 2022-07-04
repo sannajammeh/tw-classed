@@ -8,7 +8,8 @@ import type {
   Breakpoints,
   Variants,
   ClassNamesAndVariant,
-  VariantProps,
+  InferVariantProps,
+  ClassedComponent,
 } from "./types.js";
 
 function classed<
@@ -63,9 +64,10 @@ function classed<
         />
       );
     }
-  ) as Polymorphic.ForwardRefComponent<T, VariantProps<V>>; // Add variant types
+  ) as unknown as ClassedComponent<T, V>; // Add variant types
 
   ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
+  ClassedComponent.variants = variants;
 
   (ClassedComponent as any).__CLASSED_COMPONENT__ = true;
 
