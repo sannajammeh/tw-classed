@@ -133,6 +133,7 @@ const Home: NextPage<Props> = ({ oldSyntaxMDX, newSyntaxMDX }) => {
         </section>
       </main>
     </>
+
   );
 };
 

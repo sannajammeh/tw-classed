@@ -3,3 +3,9 @@ node_modules
 dist
 
 coverage
+
+.turbo
+
+build/**
+dist/**
+.next/**
