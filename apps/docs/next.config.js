@@ -6,7 +6,7 @@ module.exports = {
     return [
       {
         source: "/docs",
-        destination: "/docs/installation",
+        destination: "/docs/introduction",
       },
     ];
   },
