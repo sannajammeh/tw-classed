@@ -1,15 +1,13 @@
-import type * as Polymorphic from "@radix-ui/react-polymorphic";
 import { forwardRef, useMemo } from "react";
 import { composeParser } from "./parser.js";
 import type {
   ClassNames,
   TwModifyer,
-  Modifyer,
-  Breakpoints,
   Variants,
   ClassNamesAndVariant,
   InferVariantProps,
   ClassedComponent,
+  VariantProps,
 } from "./types.js";
 
 function classed<
@@ -76,4 +74,10 @@ function classed<
 
 export default classed;
 
-export type { ClassNames, TwModifyer, Modifyer, Breakpoints };
+export type {
+  ClassNames,
+  TwModifyer,
+  InferVariantProps,
+  ClassedComponent,
+  VariantProps,
+};
