@@ -27,6 +27,10 @@ export const pages: DocsPages = {
       slug: "variants",
       title: "Variants",
     },
+    {
+      slug: "vscode-setup",
+      title: "VS Code Setup",
+    },
   ],
 };
 
