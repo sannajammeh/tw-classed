@@ -1,6 +1,6 @@
 {
   "name": "tw-classed",
-  "version": "0.2.1",
+  "version": "0.4.1",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
   "main": "./dist/index.js",
@@ -9,10 +9,11 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "prepublishOnly": "npm run build",
     "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "Sanna Jammeh",
@@ -29,23 +30,23 @@
     "react": ">=16.3.0"
   },
   "devDependencies": {
-    "@jest/core": "^28.1.0",
+    "@jest/core": "^28.1.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
-    "@testing-library/user-event": "^14.2.0",
-    "@types/jest": "^27.5.1",
-    "@types/react": "^18.0.9",
+    "@testing-library/user-event": "^14.2.1",
+    "@types/jest": "^28.1.4",
+    "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
-    "@types/testing-library__jest-dom": "^5.14.3",
+    "@types/testing-library__jest-dom": "^5.14.5",
     "@vitejs/plugin-react": "^1.3.2",
-    "@vitest/ui": "^0.12.9",
+    "@vitest/ui": "^0.17.0",
     "c8": "^7.11.3",
-    "jsdom": "^19.0.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "ts-node": "^10.8.0",
-    "typescript": "^4.7.2",
-    "vite": "^2.9.9",
-    "vitest": "^0.12.9"
+    "jsdom": "^20.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.13",
+    "vitest": "^0.17.0"
   }
 }

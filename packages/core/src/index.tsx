@@ -1,13 +1,12 @@
-import type * as Polymorphic from "@radix-ui/react-polymorphic";
 import { forwardRef, useMemo } from "react";
 import { composeParser } from "./parser.js";
 import type {
   ClassNames,
   TwModifyer,
-  Modifyer,
-  Breakpoints,
   Variants,
   ClassNamesAndVariant,
+  InferVariantProps,
+  ClassedComponent,
   VariantProps,
 } from "./types.js";
 
@@ -26,14 +25,24 @@ function classed<
       // Map props variant to className
       const variantClassNames = useMemo(() => {
         return Object.keys(variants)
-          .reduce((acc, value) => {
-            const vInProps: string = props[value] || defaultVariants?.[value]; // Prefer props over defaultVariants
-            if (!vInProps) return acc; // Skip if no variant in props
-            // TODO - Check wrapped comp for variant existance
-            if (props[value] && !(elementType as any).__CLASSED_COMPONENT__) {
-              delete props[value];
+          .reduce((acc, variantKey) => {
+            let variantSelector!: string;
+            if (props[variantKey]) {
+              variantSelector = props[variantKey];
+            } else if (typeof props[variantKey] === "boolean") {
+              variantSelector = props[variantKey].toString();
+            } else {
+              variantSelector = defaultVariants[variantKey] as string;
             }
-            const className = variants[value][vInProps as string]; // Get className from variant
+
+            if (!variantSelector) return acc; // Skip if no variant in props
+
+            // TODO - Check wrapped comp for variant existance
+            if (!(elementType as any).__CLASSED_COMPONENT__) {
+              delete props[variantKey];
+            }
+
+            const className = variants[variantKey][variantSelector as string]; // Get className from variant
             if (!className) return acc; // Skip if no className
             return acc.concat(acc.length ? " " + className : className); // Add className to acc
           }, "")
@@ -53,9 +62,10 @@ function classed<
         />
       );
     }
-  ) as Polymorphic.ForwardRefComponent<T, VariantProps<V>>; // Add variant types
+  ) as unknown as ClassedComponent<T, V>; // Add variant types
 
   ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
+  ClassedComponent.variants = variants;
 
   (ClassedComponent as any).__CLASSED_COMPONENT__ = true;
 
@@ -64,4 +74,10 @@ function classed<
 
 export default classed;
 
-export type { ClassNames, TwModifyer, Modifyer, Breakpoints };
+export type {
+  ClassNames,
+  TwModifyer,
+  InferVariantProps,
+  ClassedComponent,
+  VariantProps,
+};
