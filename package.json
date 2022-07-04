@@ -11,7 +11,9 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "publish": "cd packages/core"
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "publish": "cd packages/core && npm publish"
   },
   "repository": {
     "type": "git",

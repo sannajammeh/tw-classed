@@ -7,6 +7,14 @@
     "lint": {
       "outputs": []
     },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**", "dist/**", ".next/**"]
+    },
+    "test:coverage": {
+      "dependsOn": ["^test"],
+      "outputs": ["coverage/**"]
+    },
     "dev": {
       "cache": false
     }
