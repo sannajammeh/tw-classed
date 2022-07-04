@@ -1,0 +1,32 @@
+.gradientBg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: -1;
+  background: inherit;
+  --dot-color: var(--blue11);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: -19px -19px;
+  pointer-events: none;
+}
+
+:global(.light) .gradientBg {
+  --dot-color: var(--blue11);
+}
+
+.fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    var(--slate1) 60%
+  );
+}

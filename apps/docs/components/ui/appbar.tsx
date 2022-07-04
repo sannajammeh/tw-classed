@@ -1,7 +1,7 @@
 import classed from "tw-classed";
 
 export const AppBar = classed("header", {
-  className: "sticky top-0 z-50 backdrop-blur-md",
+  className: "top-0 z-50",
   variants: {
     size: {
       md: "h-12",
