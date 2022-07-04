@@ -1,17 +1,14 @@
 .gradientBg {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
   opacity: 0.1;
 
-  background-image: radial-gradient(
-      at 5% 61%,
-      rgb(77, 191, 252) 0,
-      transparent 54%
-    ),
-    radial-gradient(at 41% 49%, rgb(78, 82, 87) 0, transparent 45%),
-    radial-gradient(at 92% 46%, rgb(192, 113, 248) 0, transparent 54%);
+  background: inherit;
+  background-image: radial-gradient(white 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px -19px;
 }

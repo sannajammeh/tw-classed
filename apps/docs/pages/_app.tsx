@@ -4,6 +4,8 @@ import { ThemeProvider } from "next-themes";
 import Header from "components/header";
 import { useRouter } from "next/router";
 import classes from "styles/Home.module.css";
+import GradientBg from "components/ui/gradient-bg";
+import AtomDarkPrism from "components/ui/prism-theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -12,9 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   return (
     <ThemeProvider attribute="class">
-      <span className={classes.gradientBg}></span>
+      <GradientBg />
       {!hideHeader && <Header />}
       <Component {...pageProps} />
+      <AtomDarkPrism />
     </ThemeProvider>
   );
 }

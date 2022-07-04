@@ -29,7 +29,9 @@ export const getAllFrontmatter = async (fromPath: string) => {
 
       return {
         ...(data as Frontmatter),
-        publishedAt: stringToDate(data.publishedAt).toISOString(),
+        publishedAt: data.publishedAt
+          ? stringToDate(data.publishedAt).toISOString()
+          : null,
         slug: path.basename(filePath).replace(".mdx", ""), // file name without extension
         wordCount: content.split(/\s+/g).length,
         readingTime: readingTime(content),
@@ -40,7 +42,15 @@ export const getAllFrontmatter = async (fromPath: string) => {
   );
 };
 
-export const getMdxBySlug = async (basePath: string, slug: string) => {
+export interface MDXResponse {
+  frontmatter: Frontmatter;
+  code: string;
+}
+
+export const getMdxBySlug = async (
+  basePath: string,
+  slug: string
+): Promise<MDXResponse> => {
   const source = await fs.readFile(
     path.join(DATA_PATH, basePath, `${slug}.mdx`),
     "utf8"
@@ -64,7 +74,9 @@ export const getMdxBySlug = async (basePath: string, slug: string) => {
   return {
     frontmatter: {
       ...(frontmatter as Frontmatter),
-      publishedAt: stringToDate(frontmatter.publishedAt).toISOString(),
+      publishedAt: frontmatter.publishedAt
+        ? stringToDate(frontmatter.publishedAt).toISOString()
+        : null,
       slug,
       wordCount: code.split(/\s+/g).length,
       readingTime: readingTime(code),
