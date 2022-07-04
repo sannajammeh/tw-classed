@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { describe } from "vitest";
 import classed from "../src";
+import { VariantProps } from "../src/types";
 
 import { render, screen, userEvent } from "./test.utils";
 
