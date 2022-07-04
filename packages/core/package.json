@@ -1,6 +1,6 @@
 {
   "name": "tw-classed",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
   "main": "./dist/index.js",
@@ -9,9 +9,10 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "Sanna Jammeh",
