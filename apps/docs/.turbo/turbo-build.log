@@ -1,34 +1,38 @@
-docs:build: cache hit, replaying output [2m26949ded909e6aaa[0m
-[32mdocs:build: [0m
-[32mdocs:build: [0m> docs@ build /Users/sannajammeh/code/personal/tw-classed/apps/docs
-[32mdocs:build: [0m> next build
-[32mdocs:build: [0m
-[32mdocs:build: [0minfo  - Checking validity of types...
-[32mdocs:build: [0minfo  - Creating an optimized production build...
-[32mdocs:build: [0minfo  - Compiled successfully
-[32mdocs:build: [0minfo  - Collecting page data...
-[32mdocs:build: [0minfo  - Generating static pages (0/4)
-[32mdocs:build: [0minfo  - Generating static pages (1/4)
-[32mdocs:build: [0minfo  - Generating static pages (2/4)
-[32mdocs:build: [0minfo  - Generating static pages (3/4)
-[32mdocs:build: [0minfo  - Generating static pages (4/4)
-[32mdocs:build: [0minfo  - Finalizing page optimization...
-[32mdocs:build: [0m
-[32mdocs:build: [0mPage                                       Size     First Load JS
-[32mdocs:build: [0m┌ ○ /                                      3.5 kB         91.2 kB
-[32mdocs:build: [0m├   /_app                                  0 B            87.7 kB
-[32mdocs:build: [0m├ ○ /404                                   195 B          87.9 kB
-[32mdocs:build: [0m├ λ /api/hello                             0 B            87.7 kB
-[32mdocs:build: [0m└ ● /docs/[slug] (717 ms)                  46.6 kB         134 kB
-[32mdocs:build: [0m    └ /docs/installation (717 ms)
-[32mdocs:build: [0m+ First Load JS shared by all              87.7 kB
-[32mdocs:build: [0m  ├ chunks/framework-58732a32099dd011.js   45 kB
-[32mdocs:build: [0m  ├ chunks/main-5577a751d5f7332c.js        32.7 kB
-[32mdocs:build: [0m  ├ chunks/pages/_app-042b4cabb7e7143a.js  9.18 kB
-[32mdocs:build: [0m  ├ chunks/webpack-69bfa6990bb9e155.js     769 B
-[32mdocs:build: [0m  └ css/ab923a6da5d993bb.css               5.12 kB
-[32mdocs:build: [0m
-[32mdocs:build: [0mλ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
-[32mdocs:build: [0m○  (Static)  automatically rendered as static HTML (uses no initial props)
-[32mdocs:build: [0m●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
-[32mdocs:build: [0m
+[33mdocs:build[0m: cache hit, replaying output [2m8d918965441f404b[0m
+[33mdocs:build: [0m
+[33mdocs:build: [0m> docs@ build /Users/sannajammeh/code/personal/tw-classed/apps/docs
+[33mdocs:build: [0m> next build
+[33mdocs:build: [0m
+[33mdocs:build: [0mwarn  - SWC minify release candidate enabled. https://nextjs.org/docs/messages/swc-minify-enabled
+[33mdocs:build: [0minfo  - Linting and checking validity of types...
+[33mdocs:build: [0minfo  - Creating an optimized production build...
+[33mdocs:build: [0minfo  - Compiled successfully
+[33mdocs:build: [0minfo  - Collecting page data...
+[33mdocs:build: [0minfo  - Generating static pages (0/7)
+[33mdocs:build: [0minfo  - Generating static pages (1/7)
+[33mdocs:build: [0minfo  - Generating static pages (3/7)
+[33mdocs:build: [0minfo  - Generating static pages (5/7)
+[33mdocs:build: [0minfo  - Generating static pages (7/7)
+[33mdocs:build: [0minfo  - Finalizing page optimization...
+[33mdocs:build: [0m
+[33mdocs:build: [0mPage                                       Size     First Load JS
+[33mdocs:build: [0m┌ ● / (809 ms)                             3.78 kB        99.7 kB
+[33mdocs:build: [0m├   /_app                                  0 B            92.7 kB
+[33mdocs:build: [0m├ ○ /404                                   186 B          92.9 kB
+[33mdocs:build: [0m├ λ /api/hello                             0 B            92.7 kB
+[33mdocs:build: [0m└ ● /docs/[slug] (3392 ms)                 1.81 kB        97.8 kB
+[33mdocs:build: [0m    ├ /docs/variants (937 ms)
+[33mdocs:build: [0m    ├ /docs/typescript (912 ms)
+[33mdocs:build: [0m    ├ /docs/installation (778 ms)
+[33mdocs:build: [0m    └ /docs/introduction (765 ms)
+[33mdocs:build: [0m+ First Load JS shared by all              92.7 kB
+[33mdocs:build: [0m  ├ chunks/framework-50a04215ee863884.js   45.7 kB
+[33mdocs:build: [0m  ├ chunks/main-751eea20a9078249.js        35.2 kB
+[33mdocs:build: [0m  ├ chunks/pages/_app-ffd5590e8d152310.js  11 kB
+[33mdocs:build: [0m  ├ chunks/webpack-71e149bd9a6f2c0d.js     824 B
+[33mdocs:build: [0m  └ css/205b188f3b63cb59.css               5.31 kB
+[33mdocs:build: [0m
+[33mdocs:build: [0mλ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+[33mdocs:build: [0m○  (Static)  automatically rendered as static HTML (uses no initial props)
+[33mdocs:build: [0m●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+[33mdocs:build: [0m
