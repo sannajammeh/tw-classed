@@ -8,6 +8,7 @@ export type ClassNames = string;
 
 export type Variant = Record<string, string>;
 export type Variants = Record<string, Variant>;
+export type BooleanVariant = Record<"true", string>;
 
 export type VariantConfig<V extends Variants> = {
   variants?: V;
@@ -24,6 +25,8 @@ export type ClassNamesAndVariant<V extends Variants> =
 export type VariantProps<V extends Variants | undefined = undefined> =
   V extends Variants
     ? Partial<{
-        [K in keyof V]: keyof V[K] | undefined;
+        [K in keyof V]: V[K] extends BooleanVariant
+          ? boolean
+          : keyof V[K] | undefined;
       }>
     : {};
