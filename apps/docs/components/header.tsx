@@ -7,7 +7,7 @@ import { AppBar } from "./ui";
 
 const Header = () => {
   return (
-    <AppBar size="lg">
+    <AppBar size="lg" className="bg-transparent">
       <div className="flex items-center justify-between h-full px-4 md:px-6">
         <Link href="/">
           <a className="flex rounded-full border p-1">
@@ -22,11 +22,11 @@ const Header = () => {
                   <A>Docs</A>
                 </Link>
               </NavLink>
-              <NavLink>
+              {/* <NavLink>
                 <Link href="/blog" passHref>
                   <A>Blog</A>
                 </Link>
-              </NavLink>
+              </NavLink> */}
               <NavLink>
                 <A href="https://github.com/sannajammeh/tw-classed">Github</A>
               </NavLink>

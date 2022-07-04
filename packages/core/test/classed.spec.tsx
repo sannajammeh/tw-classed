@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { describe } from "vitest";
 import classed from "../src";
+import { VariantProps } from "../src/types";
 
 import { render, screen, userEvent } from "./test.utils";
 
@@ -112,5 +113,23 @@ describe("Classed with Variants", () => {
 
     expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
     expect(screen.getByTestId("btn")).not.toHaveClass("bg-red-100");
+  });
+
+  it("Should accept boolean variant", () => {
+    const Button = classed("button", {
+      variants: {
+        bordered: {
+          true: "border-2 border-gray-500",
+        },
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+    });
+
+    render(<Button color="red" bordered data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("border-2 border-gray-500");
   });
 });

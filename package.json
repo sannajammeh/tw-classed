@@ -11,7 +11,9 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "publish": "cd packages/core"
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "publish": "cd packages/core && npm publish"
   },
   "repository": {
     "type": "git",
@@ -26,9 +28,9 @@
   "homepage": "https://github.com/sannajammeh/tw-classed#readme",
   "packageManager": "pnpm@7.0.0",
   "dependencies": {
-    "turbo": "^1.2.15"
+    "turbo": "^1.3.1"
   },
   "devDependencies": {
-    "typescript": "^4.7.2"
+    "typescript": "^4.7.4"
   }
 }
