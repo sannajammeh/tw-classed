@@ -133,4 +133,4 @@ This library uses pnpm as package manager, Vitest for testing, tsc as compiler a
 **Upcoming**
 
 - [ ] compoundVariants support
-- [ ] TS Support for `as={ComponentFn}` prop (currently only `keyof JSX.InstrinsicElements`)
+- [x] TS Support for `as={ComponentFn}` prop (currently only `keyof JSX.InstrinsicElements`)
