@@ -2,9 +2,8 @@ import "@testing-library/jest-dom";
 import React from "react";
 import { describe } from "vitest";
 import classed from "../src";
-import { VariantProps } from "../src/types";
 
-import { render, screen, userEvent } from "./test.utils";
+import { render, screen } from "./test.utils";
 
 describe("Classed", () => {
   it("Should render dom element", () => {

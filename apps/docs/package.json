@@ -10,13 +10,14 @@
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-icons": "^1.1.1",
-    "@radix-ui/react-slot": "^0.1.2",
+    "@radix-ui/react-slot": "^1.0.1",
     "@stefanprobst/rehype-extract-toc": "^2.2.0",
     "@tailwindcss/typography": "^0.5.8",
+    "@tw-classed/react": "workspace:*",
     "fast-glob": "^3.2.12",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.0.1",
-    "next": "12.2.0",
+    "next": "latest",
     "next-seo": "^5.14.1",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
@@ -26,22 +27,21 @@
     "rehype-prism-plus": "^1.5.0",
     "rehype-slug": "^5.1.0",
     "sass": "^1.56.1",
-    "sharp": "^0.30.7",
+    "sharp": "^0.31.2",
     "tw-classed": "0.4.1",
-    "unixify": "^1.0.0",
-    "@tw-classed/react": "workspace:*"
+    "unixify": "^1.0.0"
   },
   "devDependencies": {
-    "@types/node": "18.0.1",
-    "@types/react": "18.0.14",
-    "@types/sharp": "^0.30.5",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/sharp": "^0.31.0",
     "@types/unixify": "^1.0.0",
     "autoprefixer": "^10.4.13",
-    "eslint": "8.19.0",
-    "eslint-config-next": "12.2.0",
+    "eslint": "8.27.0",
+    "eslint-config-next": "13.0.3",
     "postcss": "^8.4.19",
     "radix-colors-for-tailwind": "^2.0.0",
     "tailwindcss": "^3.2.4",
-    "typescript": "4.7.4"
+    "typescript": "4.8.4"
   }
 }

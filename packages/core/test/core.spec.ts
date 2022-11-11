@@ -1,5 +1,5 @@
 import { it } from "vitest";
-import classed from "../src/core/classed";
+import classed from "../src/classed";
 
 it("Should work", () => {
   // test

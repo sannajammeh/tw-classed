@@ -1,15 +1,68 @@
-tw-classed:test: cache hit, replaying output [2m6cb464fa33a00f89[0m
-[35mtw-classed:test: [0m
-[35mtw-classed:test: [0m> tw-classed@0.1.2 test /Users/sannajammeh/code/personal/tw-classed/packages/core
-[35mtw-classed:test: [0m> vitest run
-[35mtw-classed:test: [0m
-[35mtw-classed:test: [0m
-[35mtw-classed:test: [0m RUN  v0.17.0 /Users/sannajammeh/code/personal/tw-classed/packages/core
-[35mtw-classed:test: [0m
-[35mtw-classed:test: [0m ✓ test/parser.spec.ts  (2 tests) 19ms
-[35mtw-classed:test: [0m ✓ test/classed.spec.tsx  (10 tests) 29ms
-[35mtw-classed:test: [0m
-[35mtw-classed:test: [0mTest Files  2 passed (2)
-[35mtw-classed:test: [0m     Tests  12 passed (12)
-[35mtw-classed:test: [0m      Time  1.84s (in thread 48ms, 3835.67%)
-[35mtw-classed:test: [0m
+
+> @tw-classed/core@1.0.0.alpha-1 test /Users/sannajammeh/code/personal/tw-classed/packages/core
+> vitest run
+
+
+ RUN  v0.17.1 /Users/sannajammeh/code/personal/tw-classed/packages/core
+
+ ❯ test/parser.spec.ts  (2 tests | 2 failed) 6ms
+   ❯ test/parser.spec.ts > Classed Parser > Should parse a single empty className
+     → expected { className: '', variants: {}, …(1) } to be '' // Object.is equality
+   ❯ test/parser.spec.ts > Classed Parser > Should parse a single className
+     → expected { className: 'test test 2', …(2) } to be 'test test 2' // Object.is equality
+stdout | test/core.spec.ts > Should work
+{ res1: [32m'bg-blue bg-red'[39m, res2: [32m'text-xl bg-red'[39m }
+
+ ✓ test/core.spec.ts  (1 test) 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/parser.spec.ts > Classed Parser > Should parse a single empty className
+ ❯ test/parser.spec.ts:8:19
+AssertionError: expected { className: '', variants: {}, …(1) } to be '' // Object.is equality
+      6|     const result = parseClassNames([]);
+      7| 
+      8|     expect(result).toBe("");
+       |                   ^
+      9|   });
+     10| 
+
+  - Expected  - 1
+  + Received  + 5
+  
+  - "
+  + "Object {
+  +   "className": "",
+  +   "defaultVariants": Object {},
+  +   "variants": Object {},
+  + }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  test/parser.spec.ts > Classed Parser > Should parse a single className
+AssertionError: expected { className: 'test test 2', …(2) } to be 'test test 2' // Object.is equality
+ ❯ test/parser.spec.ts:14:19
+     12|     const result = parseClassNames(["test", "test 2"]);
+     13| 
+     14|     expect(result).toBe("test test 2");
+       |                   ^
+     15|   });
+     16| });
+
+  - Expected  - 1
+  + Received  + 5
+  
+  - test test 2"
+  + "Object {
+  +   "className": "test test 2",
+  +   "defaultVariants": Object {},
+  +   "variants": Object {},
+  + }
+
+Test Files  1 failed | 1 passed (2)
+     Tests  2 failed | 1 passed (3)
+      Time  665ms (in thread 9ms, 7388.37%)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ ELIFECYCLE  Test failed. See above for more details.
