@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import Header from "components/header";
 import { useRouter } from "next/router";
-import classes from "styles/Home.module.css";
 import GradientBg from "components/ui/gradient-bg";
 import AtomDarkPrism from "components/ui/prism-theme";
 

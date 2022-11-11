@@ -1,20 +1,15 @@
+"use client";
 import { forwardRef, useMemo } from "react";
-import { composeParser } from "./parser.js";
-import type {
-  ClassNames,
-  TwModifyer,
-  Variants,
-  ClassNamesAndVariant,
-  InferVariantProps,
-  ClassedComponent,
-  VariantProps,
-} from "./types.js";
+import { parseClassNames, getVariantSelector } from "@tw-classed/core/parser";
+import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";
+
+import type { AnyComponent, ClassedComponent } from "./types.js";
 
 function classed<
-  T extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  T extends keyof JSX.IntrinsicElements | AnyComponent,
   V extends Variants = {}
 >(elementType: T, ...classNames: ClassNamesAndVariant<V>[]) {
-  const { className, variants, defaultVariants } = composeParser(classNames);
+  const { className, variants, defaultVariants } = parseClassNames(classNames);
 
   const ClassedComponent = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
@@ -26,14 +21,9 @@ function classed<
       const variantClassNames = useMemo(() => {
         return Object.keys(variants)
           .reduce((acc, variantKey) => {
-            let variantSelector!: string;
-            if (props[variantKey]) {
-              variantSelector = props[variantKey];
-            } else if (typeof props[variantKey] === "boolean") {
-              variantSelector = props[variantKey].toString();
-            } else {
-              variantSelector = defaultVariants[variantKey] as string;
-            }
+            const variantSelector = getVariantSelector(variantKey, props, {
+              defaultVariants,
+            });
 
             if (!variantSelector) return acc; // Skip if no variant in props
 
@@ -73,11 +63,3 @@ function classed<
 }
 
 export default classed;
-
-export type {
-  ClassNames,
-  TwModifyer,
-  InferVariantProps,
-  ClassedComponent,
-  VariantProps,
-};
