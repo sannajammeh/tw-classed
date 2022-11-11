@@ -2,14 +2,34 @@
 > docs@ build /Users/sannajammeh/code/personal/tw-classed/apps/docs
 > next build
 
-warn  - SWC minify release candidate enabled. https://nextjs.org/docs/messages/swc-minify-enabled
 info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/8)
+info  - Generating static pages (2/8)
+info  - Generating static pages (4/8)
+info  - Generating static pages (6/8)
+info  - Generating static pages (8/8)
+info  - Finalizing page optimization...
 
-Failed to compile.
+Route (pages)                              Size     First Load JS
+┌ ● / (884 ms)                             4.28 kB         103 kB
+├   /_app                                  0 B            94.6 kB
+├ ○ /404                                   214 B          94.9 kB
+└ ● /docs/[slug] (3925 ms)                 1.62 kB         100 kB
+    ├ /docs/typescript (855 ms)
+    ├ /docs/variants (853 ms)
+    ├ /docs/installation (850 ms)
+    ├ /docs/introduction (847 ms)
+    └ /docs/vscode-setup (520 ms)
++ First Load JS shared by all              100 kB
+  ├ chunks/framework-20996c291c2dfa29.js   45.7 kB
+  ├ chunks/main-961907806e8f4144.js        36.2 kB
+  ├ chunks/pages/_app-e8e755ef3127eb9e.js  11.6 kB
+  ├ chunks/webpack-7a6cea4e6a92562f.js     1.08 kB
+  └ css/56b9a5dca862f624.css               5.35 kB
 
-./components/ui/prism-theme.tsx
-5:12  Error: Unknown property 'jsx' found  react/no-unknown-property
-5:16  Error: Unknown property 'global' found  react/no-unknown-property
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
 
-info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
- ELIFECYCLE  Command failed with exit code 1.
