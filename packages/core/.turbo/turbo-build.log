@@ -1,5 +1,4 @@
-[35mtw-classed:build[0m: cache hit, replaying output [2m6735145b674a25a8[0m
-[35mtw-classed:build: [0m
-[35mtw-classed:build: [0m> tw-classed@0.4.1 build /Users/sannajammeh/code/personal/tw-classed/packages/core
-[35mtw-classed:build: [0m> tsc
-[35mtw-classed:build: [0m
+
+> @tw-classed/core@0.5.0 build /Users/sannajammeh/code/personal/tw-classed/packages/core
+> tsc
+

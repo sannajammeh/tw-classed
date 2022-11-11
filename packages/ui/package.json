@@ -7,10 +7,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tw-classed": "workspace:*"
+    "tw-classed": "0.4.1"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.57",
-    "@swc/core": "^1.2.208"
+    "@swc/core": "^1.3.14"
   }
 }
