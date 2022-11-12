@@ -16,11 +16,10 @@
   },
   "scripts": {
     "dev": "bunchee ./src/index.tsx --watch",
-    "build": "bunchee ./src/index.tsx",
-    "postbuild": "node ./.task/postbuild.js",
+    "build": "bunchee ./src/index.tsx && npm run rsc-compat",
+    "rsc-compat": "node ./.task/rsc-compat.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "prepublishOnly": "npm run build",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage"
   },
@@ -33,7 +32,7 @@
     "url": "https://github.com/sannajammeh/tw-classed"
   },
   "peerDependencies": {
-    "react": ">=16.3.0",
+    "react": ">=16.8.0",
     "@tw-classed/core": "1.0.0-alpha.1"
   },
   "devDependencies": {
