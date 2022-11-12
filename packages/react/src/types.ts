@@ -1,4 +1,4 @@
-import type * as Polymorphic from "./utility/polymorphic.js";
+import type * as Polymorphic from "./utility/polymorphic";
 import type { InferVariantProps, Variants } from "@tw-classed/core";
 export * from "@tw-classed/core";
 

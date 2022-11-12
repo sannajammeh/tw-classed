@@ -1,6 +1,6 @@
-import { ClassedProducer, ClassNamesAndVariant, Variants } from "./types.js";
-import { mapPropsToVariantClass, parseClassNames } from "./parser.js";
-import { mergeClass } from "./utility/classNames.js";
+import { ClassedProducer, ClassNamesAndVariant, Variants } from "./types";
+import { mapPropsToVariantClass, parseClassNames } from "./parser";
+import { mergeClass } from "./utility/classNames";
 
 export default function classed<V extends Variants = {}>(
   ...classNames: Array<ClassNamesAndVariant<V> | ClassedProducer<V>>

@@ -1,0 +1,79 @@
+Arguments: 
+  /usr/local/bin/node /Users/sannajammeh/.yarn/bin/yarn.js build
+
+PATH: 
+  /Users/sannajammeh/Library/pnpm:/Users/sannajammeh/Downloads/google-cloud-sdk/bin:/Users/sannajammeh/.yarn/bin:/Users/sannajammeh/.config/yarn/global/node_modules/.bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Users/sannajammeh/Library/pnpm:/Users/sannajammeh/Downloads/google-cloud-sdk/bin:/Users/sannajammeh/.yarn/bin:/Users/sannajammeh/.config/yarn/global/node_modules/.bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/sannajammeh/.cargo/bin:/Users/sannajammeh/.dotnet/tools:/Users/sannajammeh/.dotnet/tools
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.18.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  SyntaxError: /Users/sannajammeh/code/personal/tw-classed/packages/core/package.json: Unexpected token / in JSON at position 177
+      at JSON.parse (<anonymous>)
+      at /Users/sannajammeh/.yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/Users/sannajammeh/.yarn/lib/cli.js:310:30)
+      at /Users/sannajammeh/.yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "@tw-classed/core",
+    "version": "1.0.0-alpha.1",
+    "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
+    // "main": "./dist/index.js",
+    // "types": "./dist/index.d.ts",
+    "type": "module",
+    "sideEffects": false,
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs",
+        "types": "./dist/index.d.ts"
+      },
+      "./parser": {
+        "import": "./dist/parser.js",
+        "require": "./dist/parser.cjs",
+        "types": "./dist/parser.d.ts"
+      }
+    },
+    "scripts": {
+      "dev": "tsc --watch",
+      "build": "rimraf ./dist && bunchee",
+      "test": "vitest run",
+      "test:watch": "vitest",
+      "prepublishOnly": "npm run build",
+      "test:ui": "vitest --ui",
+      "test:coverage": "vitest run --coverage"
+    },
+    "keywords": [],
+    "author": "Sanna Jammeh",
+    "license": "MIT",
+    "homepage": "https://github.com/sannajammeh/tw-classed",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sannajammeh/tw-classed"
+    },
+    "devDependencies": {
+      "@jest/core": "^29.3.1",
+      "@types/jest": "^29.2.2",
+      "@vitest/ui": "^0.25.1",
+      "bunchee": "^2.1.6",
+      "c8": "^7.12.0",
+      "ts-node": "^10.9.1",
+      "typescript": "^4.8.4",
+      "vite": "^3.2.3",
+      "vitest": "^0.25.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

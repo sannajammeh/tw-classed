@@ -1,5 +1,3 @@
-import type * as Polymorphic from "@radix-ui/react-polymorphic";
-
 export type ClassNames = string;
 
 export type Variant = Record<string, string>;

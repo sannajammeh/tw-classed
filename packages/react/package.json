@@ -2,13 +2,22 @@
   "name": "@tw-classed/react",
   "version": "1.0.0-alpha.1",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind React components",
-  "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc",
+    "dev": "bunchee ./src/index.tsx --watch",
+    "build": "bunchee ./src/index.tsx",
+    "postbuild": "node ./.task/postbuild.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build",
@@ -24,7 +33,8 @@
     "url": "https://github.com/sannajammeh/tw-classed"
   },
   "peerDependencies": {
-    "react": ">=16.3.0"
+    "react": ">=16.3.0",
+    "@tw-classed/core": "1.0.0-alpha.1"
   },
   "devDependencies": {
     "@jest/core": "^29.3.1",
@@ -38,13 +48,16 @@
     "@types/testing-library__jest-dom": "^5.14.5",
     "@vitejs/plugin-react": "^2.2.0",
     "@vitest/ui": "^0.25.1",
+    "bunchee": "^2.1.6",
     "c8": "^7.12.0",
     "jsdom": "^20.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "ts-node": "^10.9.1",
+    "tsup": "^6.4.0",
     "typescript": "^4.8.4",
     "vite": "^3.2.3",
+    "vite-plugin-dts": "^1.7.0",
     "vitest": "^0.25.1"
   }
 }

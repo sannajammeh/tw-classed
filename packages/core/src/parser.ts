@@ -3,8 +3,8 @@ import {
   InferVariantProps,
   VariantConfig,
   Variants,
-} from "./types.js";
-import { joinClasses, mergeClass } from "./utility/classNames.js";
+} from "./types";
+import { joinClasses, mergeClass } from "./utility/classNames";
 
 export const parseClassNames = <TVariants extends Variants>(
   classNames: Array<ClassNamesAndVariant<TVariants>>
