@@ -11,3 +11,5 @@ dist/**
 .next/**
 
 .DS_Store
+
+.tmp_publish/**
