@@ -1,6 +1,25 @@
 import type * as Polymorphic from "./utility/polymorphic";
-import type { InferVariantProps, Variants } from "@tw-classed/core";
-export * from "@tw-classed/core";
+import type {
+  InferVariantProps,
+  Variants,
+  BooleanVariant,
+  ClassNames,
+  ClassNamesAndVariant,
+  ClassedProducer,
+  Variant,
+  VariantConfig,
+} from "@tw-classed/core";
+
+export {
+  InferVariantProps,
+  Variants,
+  BooleanVariant,
+  ClassNames,
+  ClassNamesAndVariant,
+  ClassedProducer,
+  Variant,
+  VariantConfig,
+};
 
 export type ClassedComponent<
   T extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
