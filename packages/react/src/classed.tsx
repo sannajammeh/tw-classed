@@ -4,6 +4,7 @@ import { parseClassNames, getVariantSelector } from "@tw-classed/core/parser";
 import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";
 
 import type { AnyComponent, ClassedComponent } from "./types.js";
+import { ClassedFunctionType } from "./classed-component.js";
 
 function classed<
   T extends keyof JSX.IntrinsicElements | AnyComponent,
@@ -62,4 +63,4 @@ function classed<
   return ClassedComponent;
 }
 
-export default classed;
+export default classed as ClassedFunctionType;
