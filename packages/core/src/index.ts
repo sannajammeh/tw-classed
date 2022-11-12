@@ -1,2 +1,3 @@
-export * from "./classed.js";
-export * from "./types.js";
+export { default } from "./classed";
+export * from "./types";
+export * from "./parser";

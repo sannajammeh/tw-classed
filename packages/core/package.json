@@ -3,20 +3,22 @@
   "version": "1.0.0-alpha.1",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js"
-    },
-    "./parser": {
-      "import": "./dist/parser.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc",
+    "dev": "vite build --watch",
+    "build": "rimraf ./dist && vite build",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build",
@@ -35,10 +37,12 @@
     "@jest/core": "^29.3.1",
     "@types/jest": "^29.2.2",
     "@vitest/ui": "^0.25.1",
+    "bunchee": "^2.1.6",
     "c8": "^7.12.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.3",
+    "vite-plugin-dts": "^1.7.0",
     "vitest": "^0.25.1"
   }
 }

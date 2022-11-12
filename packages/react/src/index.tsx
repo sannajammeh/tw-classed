@@ -1,10 +1,15 @@
 "use client";
 import { forwardRef, useMemo } from "react";
-import { parseClassNames, getVariantSelector } from "@tw-classed/core/parser";
+import { parseClassNames, getVariantSelector } from "@tw-classed/core";
 import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";
 
-import type { AnyComponent, ClassedComponent } from "./types.js";
-import { ClassedFunctionType } from "./classed-component.js";
+import type {
+  AnyComponent,
+  ClassedComponent,
+  ClassedFunctionType,
+} from "./types";
+
+export * from "./types";
 
 function classed<
   T extends keyof JSX.IntrinsicElements | AnyComponent,
