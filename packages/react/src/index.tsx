@@ -5,7 +5,7 @@ import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";
 
 import type {
   AnyComponent,
-  ClassedComponent,
+  ClassedComponentType,
   ClassedFunctionType,
 } from "./types";
 
@@ -58,10 +58,10 @@ function classed<
         />
       );
     }
-  ) as unknown as ClassedComponent<T, V>; // Add variant types
+  ) as unknown as ClassedComponentType<T, V>; // Add variant types
 
   ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
-  ClassedComponent.variants = variants;
+  ClassedComponent._def = { variants, defaultVariants };
 
   (ClassedComponent as any).__CLASSED_COMPONENT__ = true;
 
