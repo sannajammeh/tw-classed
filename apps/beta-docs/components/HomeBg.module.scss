@@ -1,0 +1,324 @@
+.container {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.outer {
+  transform: scale(1.01);
+  opacity: 0.9;
+  background: #010101;
+  perspective: 1000px;
+  filter: blur(1px);
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    mix-blend-mode: saturation;
+  }
+  &::before {
+    animation: grain 8s steps(10) infinite;
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/paper-pattern.png");
+    content: "";
+    height: 300%;
+    left: -50%;
+    opacity: 0.75;
+    position: fixed;
+    top: -100%;
+    width: 300%;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+}
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, 5%);
+  }
+  30% {
+    transform: translate(7%, -25%);
+  }
+  40% {
+    transform: translate(-5%, 25%);
+  }
+  50% {
+    transform: translate(-15%, 10%);
+  }
+  60% {
+    transform: translate(15%, 0%);
+  }
+  70% {
+    transform: translate(0%, 15%);
+  }
+  80% {
+    transform: translate(3%, 35%);
+  }
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+.wrapper {
+  transform-style: preserve-3d;
+  transform: rotateX(60deg);
+  transform-origin: center top;
+  opacity: 0.5;
+  height: 100vh;
+  width: 100vw;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    mix-blend-mode: darken;
+    z-index: 1;
+    background: linear-gradient(180deg, var(--slate1), rgba(255, 0, 0, 0)),
+      linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    mix-blend-mode: darken;
+    background: linear-gradient(
+      180deg,
+      var(--slate1) 20%,
+      rgba(0, 0, 0, 0) 120%
+    );
+  }
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center bottom;
+    mix-blend-mode: lighten;
+  }
+  .line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    &::after {
+      content: "";
+      position: absolute;
+      height: 20px;
+      width: 2px;
+      background: white;
+      border-radius: 100%;
+      filter: blur(1px);
+      animation: move 6s infinite;
+    }
+  }
+  @keyframes move {
+    0% {
+      transform: translate(-50%, 100vh);
+    }
+
+    25% {
+      transform: translate(-50%, 0);
+    }
+  }
+  .verticalLine {
+    height: 100%;
+    width: 2px;
+    &:nth-child(1) {
+      transform: translateX(5vw);
+      &::after {
+        animation-delay: 3s;
+      }
+    }
+    &:nth-child(2) {
+      transform: translateX(10vw);
+      &::after {
+        animation-delay: 5.3s;
+      }
+    }
+    &:nth-child(3) {
+      transform: translateX(15vw);
+      &::after {
+        animation-delay: 0s;
+      }
+    }
+    &:nth-child(4) {
+      transform: translateX(20vw);
+      &::after {
+        animation-delay: 1.23s;
+      }
+    }
+    &:nth-child(5) {
+      transform: translateX(25vw);
+      &::after {
+        animation-delay: 2.3s;
+      }
+    }
+    &:nth-child(6) {
+      transform: translateX(30vw);
+      &::after {
+        animation-delay: 0.73s;
+      }
+    }
+    &:nth-child(7) {
+      transform: translateX(35vw);
+      &::after {
+        animation-delay: 3s;
+      }
+    }
+    &:nth-child(8) {
+      transform: translateX(40vw);
+      &::after {
+        animation-delay: 2.13s;
+      }
+    }
+    &:nth-child(9) {
+      transform: translateX(45vw);
+      &::after {
+        animation-delay: 1.3s;
+      }
+    }
+    &:nth-child(10) {
+      transform: translateX(50vw);
+      &::after {
+        animation-delay: 1.2s;
+      }
+    }
+    &:nth-child(11) {
+      transform: translateX(55vw);
+      &::after {
+        animation-delay: 0.42s;
+      }
+    }
+    &:nth-child(12) {
+      transform: translateX(60vw);
+      &::after {
+        animation-delay: 5.2s;
+      }
+    }
+    &:nth-child(13) {
+      transform: translateX(65vw);
+      &::after {
+        animation-delay: 2.7s;
+      }
+    }
+    &:nth-child(14) {
+      transform: translateX(70vw);
+      &::after {
+        animation-delay: 4.1s;
+      }
+    }
+    &:nth-child(15) {
+      transform: translateX(75vw);
+      &::after {
+        animation-delay: 5.2s;
+      }
+    }
+    &:nth-child(16) {
+      transform: translateX(80vw);
+      &::after {
+        animation-delay: 2.3s;
+      }
+    }
+    &:nth-child(17) {
+      transform: translateX(85vw);
+      &::after {
+        animation-delay: 1.2s;
+      }
+    }
+    &:nth-child(18) {
+      transform: translateX(90vw);
+      &::after {
+        animation-delay: 3.72s;
+      }
+    }
+    &:nth-child(19) {
+      transform: translateX(95vw);
+      &::after {
+        animation-delay: 0.82s;
+      }
+    }
+  }
+  .horizontalLine {
+    width: 100%;
+    height: 1px;
+    background: rgba(229, 159, 228, 1);
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+    &:nth-child(2) {
+      animation-delay: -2s;
+    }
+    &:nth-child(3) {
+      animation-delay: -4s;
+    }
+    &:nth-child(4) {
+      animation-delay: -6s;
+    }
+    &:nth-child(5) {
+      animation-delay: -8s;
+    }
+    &:nth-child(6) {
+      animation-delay: -10s;
+    }
+    &:nth-child(7) {
+      animation-delay: -12s;
+    }
+    &:nth-child(8) {
+      animation-delay: -14s;
+    }
+    &:nth-child(9) {
+      animation-delay: -16s;
+    }
+  }
+  .bg1 {
+    transform: rotate(-0.33deg);
+  }
+  .bg2 {
+    transform: rotate(0.33deg);
+  }
+  .bg1 .line,
+  .bg3 .line {
+    @apply bg-radix-blue9;
+  }
+  .bg2 .line,
+  .bg4 .line {
+    @apply bg-radix-violet9;
+  }
+  .bg3 .line,
+  .bg4 .line {
+    animation-timing-function: linear;
+    animation-name: moveHorizontal;
+    animation-duration: 18s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+  }
+}
+@keyframes moveHorizontal {
+  0% {
+    transform: translateY(100vh);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

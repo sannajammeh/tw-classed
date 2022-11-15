@@ -132,4 +132,13 @@ describe("Classed with Variants", () => {
 
     expect(screen.getByTestId("btn")).toHaveClass("border-2 border-gray-500");
   });
+
+  it("Should merge class of other classed component", () => {
+    const Button = classed("button", "bg-blue-100");
+    const Anchor = classed(Button, "bg-red-100");
+
+    render(<Anchor data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100 bg-red-100");
+  });
 });
