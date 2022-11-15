@@ -2,9 +2,9 @@ node_modules
 
 dist
 
-coverage
-
 .turbo
+
+coverage
 
 build/**
 dist/**
@@ -13,3 +13,5 @@ dist/**
 .DS_Store
 
 .tmp_publish/**
+
+coverage/tmp/**

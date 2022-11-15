@@ -5,12 +5,29 @@ describe("Classed Parser", () => {
   it("Should parse a single empty className", () => {
     const result = parseClassNames([]);
 
-    expect(result).toBe("");
+    expect(result.className).toBe("");
   });
 
   it("Should parse a single className", () => {
     const result = parseClassNames(["test", "test 2"]);
 
-    expect(result).toBe("test test 2");
+    expect(result.className).toBe("test test 2");
+  });
+
+  it("Should merge default variants", () => {
+    const result = parseClassNames([
+      {
+        defaultVariants: {
+          size: "large",
+        },
+      },
+      {
+        defaultVariants: {
+          size: "small",
+        },
+      },
+    ]);
+
+    expect(result.defaultVariants.size).toBe("small");
   });
 });

@@ -8,9 +8,6 @@ A Stitches & Styled-Components inspired library to create reusable Tailwind base
 
 ## Installation
 
-| :zap: This is an ESM only package, use with a bundler that supports it or pre-compile! |
-| -------------------------------------------------------------------------------------- |
-
 ```bash
 npm i tw-classed
 ```

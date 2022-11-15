@@ -113,4 +113,4 @@ async function runTask(package) {
   console.log(Kleur.yellow(`Package ${packageName} published`));
 }
 
-// start();
+start();

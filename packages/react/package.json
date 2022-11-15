@@ -1,6 +1,6 @@
 {
   "name": "@tw-classed/react",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind React components",
   "sideEffects": false,
   "main": "dist/index.cjs",
@@ -32,8 +32,8 @@
     "url": "https://github.com/sannajammeh/tw-classed"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "@tw-classed/core": "1.0.0-alpha.1"
+    "@tw-classed/core": "1.0.0-alpha.1",
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "@jest/core": "^29.3.1",
@@ -46,6 +46,7 @@
     "@types/react-dom": "^18.0.8",
     "@types/testing-library__jest-dom": "^5.14.5",
     "@vitejs/plugin-react": "^2.2.0",
+    "@vitest/coverage-c8": "^0.25.1",
     "@vitest/ui": "^0.25.1",
     "bunchee": "^2.1.6",
     "c8": "^7.12.0",
