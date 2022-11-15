@@ -20,7 +20,7 @@ const Home: NextPage<{}> = ({}) => {
         description="Make your Tailwind components re-usable with the power of great DX, Variants and automatic Typescript intellisense"
       />
       <GradientBg />
-      <div className="container mx-auto px-5 relative">
+      <div className="container mx-auto px-5 relative min-h-screen">
         <section className="py-24">
           <h1 className="text-center text-5xl font-bold mb-4">
             Make your Tailwind components <br /> re-usable
@@ -49,7 +49,7 @@ const Home: NextPage<{}> = ({}) => {
           </div>
           <div className="prose prose-slate dark:prose-invert mx-auto">
             <pre className="rounded-xl bg-radix-slate2 text-radix-slate11">
-              <code>npm install @tw-classed/react</code>
+              <code>npm install @tw-classed/react@alpha</code>
             </pre>
           </div>
         </section>
