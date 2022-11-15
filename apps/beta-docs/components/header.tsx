@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import { TbBrandTailwind } from "react-icons/tb";
 import classed from "tw-classed";
-import ThemeToggle from "./theme-toggle";
 import { AppBar } from "./ui";
 
 const Header = () => {
@@ -32,7 +31,6 @@ const Header = () => {
               </NavLink>
             </ul>
           </nav>
-          <ThemeToggle />
         </div>
       </div>
     </AppBar>
