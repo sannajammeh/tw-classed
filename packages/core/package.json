@@ -1,6 +1,6 @@
 {
   "name": "@tw-classed/core",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "type": "module",
   "sideEffects": false,

@@ -11,10 +11,10 @@ const Logger = console;
  */
 
 const args = arg({
-  "--package": String,
+  "--packages": String,
 });
 
-const packages = args["--package"]?.split(",");
+const packages = args["--packages"]?.split(",");
 Logger.log(Kleur.blue(`Starting turbo build for ${packages.join(", ")}`));
 
 shell.exec(
