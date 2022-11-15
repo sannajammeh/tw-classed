@@ -103,18 +103,7 @@ const Home: NextPage<{}> = ({}) => {
             </Text>
           </FeatureCard>
         </section>
-        {/* <section className="py-24">
-          <div className="prose max-w-none dark:prose-invert">
-            <div className="lg:flex gap-8">
-              <section className="w-full">
-                <h1>Turn your components from this:</h1>
-              </section>
-              <section className="w-full">
-                <h1>To this:</h1>
-              </section>
-            </div>
-          </div>
-        </section> */}
+        <div className="my-12 block"></div>
       </div>
     </>
   );
