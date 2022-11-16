@@ -3,7 +3,22 @@
 @tailwind utilities;
 @tailwind variants;
 
-.dark body {
+/* Override Nextra defaults */
+article.nextra-body-typesetting-article {
+  line-height: 1.75;
+}
+article.nextra-body-typesetting-article p {
+  line-height: 1.75 !important;
+}
+
+article.nextra-body-typesetting-article h1,
+article.nextra-body-typesetting-article h2,
+article.nextra-body-typesetting-article h3,
+article.nextra-body-typesetting-article h4 {
+  line-height: 1.25 !important;
+}
+
+/* .dark body {
   background-color: #010101 !important;
 }
 
@@ -22,21 +37,6 @@ html[class~="dark"] .nextra-nav-container-blur {
   }
 }
 
-/* Override Nextra defaults */
-article.nextra-body-typesetting-article {
-  line-height: 1.75;
-}
-article.nextra-body-typesetting-article p {
-  line-height: 1.75 !important;
-}
-
-article.nextra-body-typesetting-article h1,
-article.nextra-body-typesetting-article h2,
-article.nextra-body-typesetting-article h3,
-article.nextra-body-typesetting-article h4 {
-  line-height: 1.25 !important;
-}
-
 html[class~="dark"] .dark\:nx-bg-neutral-900 {
   background-color: #010101 !important;
-}
+} */
