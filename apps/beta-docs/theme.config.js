@@ -5,7 +5,8 @@ import { TbBrandTailwind } from "react-icons/tb";
  * @type {import('nextra-theme-docs').DocsThemeConfig}
  */
 export default {
-  docsRepositoryBase: "https://github.com/sannajammeh/tw-classed/tree/master", // base URL for the docs repository
+  docsRepositoryBase:
+    "https://github.com/sannajammeh/tw-classed/tree/master/apps/beta-docs", // base URL for the docs repository
   titleSuffix: " - TwClassed",
   darkMode: true,
   project: {
