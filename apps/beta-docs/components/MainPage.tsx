@@ -19,7 +19,7 @@ const Home: NextPage<{}> = ({}) => {
         title="TW-Classed | Tailwind with the DX of CSS in JS"
         description="Make your Tailwind components re-usable with the power of great DX, Variants and automatic Typescript intellisense"
       />
-      <GradientBg />
+      {/* <GradientBg /> */}
       <div className="container mx-auto px-5 relative min-h-screen">
         <section className="py-24">
           <h1 className="text-center text-5xl font-bold mb-4">
