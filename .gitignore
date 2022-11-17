@@ -15,3 +15,5 @@ dist/**
 .tmp_publish/**
 
 coverage/tmp/**
+
+.npmrc

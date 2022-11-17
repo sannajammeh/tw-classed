@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "arg": "^5.0.2",
+    "dotenv": "^16.0.3",
     "kleur": "^4.1.5",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
