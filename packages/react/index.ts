@@ -1,1 +1,1 @@
-export { default } from "./src/index";
+export { default as classed } from "./src/index";

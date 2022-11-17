@@ -15,8 +15,8 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "dev": "bunchee ./src/index.tsx --watch",
-    "build": "bunchee ./src/index.tsx && npm run rsc-compat",
+    "dev": "bunchee ./index.ts --watch",
+    "build": "bunchee ./index.ts && npm run rsc-compat",
     "rsc-compat": "node ./.task/rsc-compat.js",
     "test": "vitest run",
     "test:watch": "vitest",
