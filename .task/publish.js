@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const Kleur = require("kleur");
 const shell = require("shelljs");
+require("dotenv/config");
 const CURRENT_DIR = path.resolve(__dirname, "./");
 const Logger = console;
 
@@ -12,7 +13,10 @@ const Logger = console;
 
 const args = arg({
   "--packages": String,
+  "--tag": String,
 });
+
+const tag = args["--tag"] || "latest";
 
 const packages = args["--packages"]?.split(",");
 Logger.log(Kleur.blue(`Starting turbo build for ${packages.join(", ")}`));
@@ -39,7 +43,7 @@ const configs = {
 };
 
 async function start() {
-  shell.exec("npm adduser");
+  shell.exec(`npm config set _authToken ${process.env.NPM_TOKEN}`);
 
   Logger.log(Kleur.blue(`Starting publish task for ${packages.join(", ")}`));
 
@@ -104,7 +108,7 @@ async function runTask(package) {
 
   Logger.log(Kleur.yellow(`Publishing ${packageName}`));
   shell.cd(outPath);
-  shell.exec("npm publish --access public --tag alpha");
+  shell.exec(`npm publish --access public --tag ${tag} --dry-run`);
 
   if (result.stderr) throw new Error(result.stderr);
 

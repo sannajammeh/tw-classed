@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@changesets/cli': ^2.25.2
       arg: ^5.0.2
+      dotenv: ^16.0.3
       fs-extra: ^10.1.0
       kleur: ^4.1.5
       npm: ^9.1.1
@@ -20,6 +21,7 @@ importers:
       turbo: 1.6.3
     devDependencies:
       arg: 5.0.2
+      dotenv: 16.0.3
       kleur: 4.1.5
       rimraf: 3.0.2
       shelljs: 0.8.5
@@ -3450,6 +3452,11 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       webidl-conversions: 7.0.0
+    dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /electron-to-chromium/1.4.284:
