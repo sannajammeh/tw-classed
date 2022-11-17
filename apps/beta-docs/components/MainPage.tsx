@@ -32,12 +32,18 @@ const Home: NextPage<{}> = ({}) => {
 
           <div className="flex justify-center gap-6 mb-12">
             <Link href="/docs/introduction" passHref>
-              <Button as="a" size="md" radius="pill">
+              <Button
+                className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7"
+                as="a"
+                size="md"
+                radius="pill"
+              >
                 Documentation <FiArrowRight size="1.25rem" />
               </Button>
             </Link>
             <Button
               color="ghostSlate"
+              className="safari:border-2 safari:!outline-none safari:!border-radix-slate6 safari:hover:!border-radix-slate7"
               as="a"
               radius="pill"
               size="md"

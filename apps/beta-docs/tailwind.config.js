@@ -11,6 +11,13 @@ module.exports = {
       colors: {
         "nx-bg-dark": "#010101",
       },
+
+      screens: {
+        // Detect safari engine
+        safari: {
+          raw: "not all and (min-resolution:.001dpcm)",
+        },
+      },
     },
   },
   plugins: [
