@@ -1,3 +1,4 @@
+import { TW_VARS } from "./constants";
 import {
   ClassedProducer,
   ClassNamesAndVariant,
@@ -23,16 +24,19 @@ export const parseClassNames = <TVariants extends Variants>(
       continue;
     }
 
-    // If className is a function, it is a classed producer
+    // If className is a function, it is a classed producer. Check for Symbol
     if (typeof className === "function") {
-      const { _def } = className;
-      if (_def) {
+      if (Reflect.has(className, TW_VARS)) {
+        const record: VariantConfig<TVariants> = Reflect.get(
+          className,
+          TW_VARS
+        );
         // Merge variants
-        Object.assign(variantObj, _def.variants);
+        Object.assign(variantObj, record.variants);
         // Merge default variants
-        Object.assign(defaultVariants, _def.defaultVariants);
+        Object.assign(defaultVariants, record.defaultVariants);
         // Merge className
-        stringClassNames.push(_def.className);
+        stringClassNames.push(record.className);
       }
       continue;
     }
