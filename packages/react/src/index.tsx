@@ -1,6 +1,6 @@
 "use client";
 import { forwardRef, useMemo } from "react";
-import { parseClassNames, getVariantSelector } from "@tw-classed/core";
+import { parseClassNames, getVariantSelector, TW_VARS } from "@tw-classed/core";
 import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";
 
 import type {
@@ -8,6 +8,7 @@ import type {
   ClassedComponentType,
   ClassedFunctionType,
 } from "./types";
+import { COMPONENT_SYMBOL, isClassedComponent } from "./utility/unique";
 
 export * from "./types";
 
@@ -19,7 +20,7 @@ function classed<
 
   const ClassedComponent = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
-      const Component = (elementType as any).__CLASSED_COMPONENT__
+      const Component = isClassedComponent(elementType)
         ? elementType
         : as || elementType;
 
@@ -34,7 +35,7 @@ function classed<
             if (!variantSelector) return acc; // Skip if no variant in props
 
             // TODO - Check wrapped comp for variant existance
-            if (!(elementType as any).__CLASSED_COMPONENT__) {
+            if (!isClassedComponent(elementType)) {
               delete props[variantKey];
             }
 
@@ -53,7 +54,7 @@ function classed<
             (variantClassNames ? " " + variantClassNames : "")
           }
           {...props}
-          as={(elementType as any).__CLASSED_COMPONENT__ ? as : undefined}
+          as={isClassedComponent(elementType) ? as : undefined}
           ref={forwardedRef}
         />
       );
@@ -61,9 +62,14 @@ function classed<
   ) as unknown as ClassedComponentType<T, V>; // Add variant types
 
   ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
-  ClassedComponent._def = { variants, defaultVariants };
+  // Set variables to check if component is classed
+  Reflect.set(ClassedComponent, TW_VARS, {
+    className,
+    variants,
+    defaultVariants,
+  });
 
-  (ClassedComponent as any).__CLASSED_COMPONENT__ = true;
+  Reflect.set(ClassedComponent, COMPONENT_SYMBOL, true);
 
   return ClassedComponent;
 }

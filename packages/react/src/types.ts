@@ -1,11 +1,12 @@
 import type * as Polymorphic from "./utility/polymorphic";
 import type { InferVariantProps, Variants } from "@tw-classed/core";
+import * as Util from "./util";
 
 export { InferVariantProps, Variants };
 
 export type VariantProps<
   T extends ClassedComponentType<any, any, { variants: Variants }>
-> = InferVariantProps<T["_def"]["variants"]>;
+> = InferVariantProps<T[$$ClassedComponentVariants]["variants"]>;
 
 export type AnyComponent = React.ComponentType<any>;
 
@@ -14,7 +15,8 @@ export interface ClassedComponentType<
   Props extends {} = {},
   TComposedVariants extends {} = {}
 > extends Polymorphic.ForwardRefComponent<Type, Props> {
-  _def: TComposedVariants;
+  [$$ClassedComponentProps]: Props;
+  [$$ClassedComponentVariants]: TComposedVariants;
 }
 
 /** Unique symbol used to reference the props of a Classed Component. */
@@ -30,12 +32,6 @@ export type ClassedComponentProps<T extends any[]> =
     ? T[0][$$ClassedComponentProps]
     : T[0] extends { variants: { [name: string]: unknown } }
     ? InferVariantProps<T[0]["variants"]>
-    : T[0] extends {
-        _def: {
-          variants: { [name: string]: unknown };
-        };
-      }
-    ? InferVariantProps<T[0]["_def"]["variants"]>
     : {}) &
     (T extends [lead: any, ...tail: infer V] ? ClassedComponentProps<V> : {});
 
@@ -45,15 +41,6 @@ export type ClassedComponentVariants<T extends any[]> =
     ? T[0][$$ClassedComponentVariants]
     : T[0] extends { variants: { [name: string]: unknown } }
     ? Pick<T[0], "variants" | "defaultVariants">
-    : T[0] extends {
-        _def: {
-          variants: { [name: string]: unknown };
-        };
-      }
-    ? {
-        variants: T[0]["_def"]["variants"];
-        defaultVariants: T[0]["_def"]["defaultVariants"];
-      }
     : {}) &
     (T extends [lead: any, ...tail: infer V]
       ? ClassedComponentVariants<V>
@@ -64,19 +51,17 @@ export interface ClassedFunctionType {
     Type extends keyof JSX.IntrinsicElements | AnyComponent,
     Composers extends (
       | string
+      | Util.Function
       | {
-          [key: string]: unknown;
+          variants?: { [name: string]: unknown };
         }
-      | { _def: { variants: { [key: string]: unknown } } }
     )[]
   >(
     type: Type,
     ...composers: {
       [K in keyof Composers]: string extends Composers[K]
         ? Composers[K]
-        : Composers[K] extends string
-        ? Composers[K]
-        : Composers[K] extends { _def: { variants: Variants } }
+        : Composers[K] extends string | Util.Function
         ? Composers[K]
         : {
             variants: Variants;
