@@ -1,10 +1,15 @@
-import { ClassedProducer, ClassNamesAndVariant, Variants } from "./types";
+import {
+  ClassedProducer,
+  ClassNamesAndVariant,
+  Variants,
+  ClassedCoreFunctionType,
+} from "./types";
 import { mapPropsToVariantClass, parseClassNames } from "./parser";
 import { mergeClass } from "./utility/classNames";
 
-export function classed<V extends Variants = {}>(
+const classed = (<V extends Variants = {}>(
   ...classNames: Array<ClassNamesAndVariant<V> | ClassedProducer<V>>
-) {
+) => {
   // Parse classNames and variants
   const { className, variants, defaultVariants } = parseClassNames(classNames);
 
@@ -20,6 +25,12 @@ export function classed<V extends Variants = {}>(
 
   // Add variants to the classed producer
   producer.variants = variants;
+  producer._def = {
+    variants: variants,
+    defaultVariants: defaultVariants,
+  };
 
   return producer;
-}
+}) as ClassedCoreFunctionType;
+
+export { classed };
