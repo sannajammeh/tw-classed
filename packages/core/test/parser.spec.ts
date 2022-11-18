@@ -4,6 +4,7 @@ import {
   parseClassNames,
 } from "../src/parser";
 import { describe, expect, it } from "vitest";
+import { TW_VARS } from "../src/constants";
 
 describe("Classed Parser", () => {
   it("Should parse a single empty className", () => {
@@ -71,7 +72,8 @@ describe("Classed Parser", () => {
 
   it("Should merge function variants", () => {
     const fn = () => "test";
-    fn._def = {
+
+    Reflect.set(fn, TW_VARS, {
       className: "test",
       variants: {
         size: {
@@ -81,9 +83,9 @@ describe("Classed Parser", () => {
       defaultVariants: {
         size: "large",
       },
-    };
+    });
 
-    const result = parseClassNames([fn]);
+    const result = parseClassNames([fn as any]);
 
     expect(result.variants.size.large).toBe("large");
     expect(result.defaultVariants.size).toBe("large");

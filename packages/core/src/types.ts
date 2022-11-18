@@ -1,14 +1,12 @@
 import type * as Util from "./util";
 
-export type ClassNames = string;
-
 export type Variant = Record<string, string>;
 export type Variants = Record<string, Variant>;
 export type BooleanVariant = Record<"true", string>;
 
 export type VariantConfig<V extends Variants> = {
   variants?: V;
-  className?: ClassNames;
+  className?: string;
   defaultVariants?: Partial<{
     [K in keyof V]: keyof V[K];
   }>;
@@ -45,7 +43,8 @@ export interface ClassedType<
   Props extends {} = {},
   TComposedVariants extends {} = {}
 > extends ClassedCreator<Props> {
-  _def: TComposedVariants;
+  [$$ClassedProps]: Props;
+  [$$ClassedVariants]: TComposedVariants;
 }
 
 /** Unique symbol used to reference the props of a Classed Component. */
@@ -60,12 +59,6 @@ export type ClassedProps<T extends any[]> = ($$ClassedProps extends keyof T[0]
   ? T[0][$$ClassedProps]
   : T[0] extends { variants: { [name: string]: unknown } }
   ? InferVariantProps<T[0]["variants"]>
-  : T[0] extends {
-      _def: {
-        variants: { [name: string]: unknown };
-      };
-    }
-  ? InferVariantProps<T[0]["_def"]["variants"]>
   : {}) &
   (T extends [lead: any, ...tail: infer V] ? ClassedProps<V> : {});
 
@@ -75,15 +68,6 @@ export type ClassedVariants<T extends any[]> =
     ? T[0][$$ClassedVariants]
     : T[0] extends { variants: { [name: string]: unknown } }
     ? Pick<T[0], "variants" | "defaultVariants">
-    : T[0] extends {
-        _def: {
-          variants: { [name: string]: unknown };
-        };
-      }
-    ? {
-        variants: T[0]["_def"]["variants"];
-        defaultVariants: T[0]["_def"]["defaultVariants"];
-      }
     : {}) &
     (T extends [lead: any, ...tail: infer V] ? ClassedVariants<V> : {});
 
