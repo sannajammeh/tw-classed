@@ -21,7 +21,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "cd ../../ && turbo run build --filter=@tw-classed/react"
   },
   "keywords": [],
   "author": "Sanna Jammeh",
@@ -31,8 +32,10 @@
     "type": "git",
     "url": "https://github.com/sannajammeh/tw-classed"
   },
+  "dependencies": {
+    "@tw-classed/core": "workspace:*"
+  },
   "peerDependencies": {
-    "@tw-classed/core": "1.0.0-alpha.5",
     "react": ">=16.8.0"
   },
   "devDependencies": {
@@ -40,7 +43,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "@tw-classed/core": "workspace:*",
     "@types/jest": "^29.2.2",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
