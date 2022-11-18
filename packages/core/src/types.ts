@@ -1,3 +1,5 @@
+import type * as Util from "./util";
+
 export type ClassNames = string;
 
 export type Variant = Record<string, string>;
@@ -19,10 +21,10 @@ export type ClassNamesAndVariant<V extends Variants> =
 export type ClassedProducer<V extends Variants = {}> = ((
   variantProps: InferVariantProps<V>
 ) => any) & {
-  variants: V;
   _def: {
-    variants: V;
-    defaultVariants: unknown;
+    className?: string;
+    variants?: V;
+    defaultVariants?: unknown;
   };
 };
 
@@ -89,18 +91,16 @@ export interface ClassedCoreFunctionType {
   <
     Composers extends (
       | string
+      | Util.Function
       | {
-          [key: string]: unknown;
+          variants?: { [name: string]: unknown };
         }
-      | { _def: { variants: Variants } }
     )[]
   >(
     ...composers: {
       [K in keyof Composers]: string extends Composers[K]
         ? Composers[K]
-        : Composers[K] extends string
-        ? Composers[K]
-        : Composers[K] extends { _def: { variants: Variants } }
+        : Composers[K] extends string | Util.Function
         ? Composers[K]
         : {
             variants: Variants;
