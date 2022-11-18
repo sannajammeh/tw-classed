@@ -1,32 +1,180 @@
-import { it } from "vitest";
-import classed from "../src/classed";
+import { describe, expect, it } from "vitest";
+import { classed } from "../src/classed";
 
-it("Should work", () => {
-  // test
-  const test = classed("bg-blue", {
-    variants: {
-      size: {
-        small: "bg-red",
-        large: "bg-green",
+const classIncludes = (className: string, classes: string[]) => {
+  return classes.every((c) => className.includes(c));
+};
+
+describe("Core functionality", () => {
+  it("Should return a class string", () => {
+    expect(classed("foo", "bar")()).toBe("foo bar");
+  });
+
+  it("Should return a class string by configuration object", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
       },
-    },
+    });
+
+    expect(button({ size: "sm" })).toBe("bg-blue-100 text-sm");
   });
 
-  const test2 = classed("text-xl", test, {
-    variants: {
-      color: {
-        red: "text-red",
+  it("Should allow for multiple variants", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+        variant: {
+          primary: "text-white",
+          secondary: "text-black",
+        },
       },
-    },
+    });
+
+    expect(button({ size: "sm", variant: "primary" })).toBe(
+      "bg-blue-100 text-sm text-white"
+    );
   });
 
-  const res1 = test({
-    size: "small",
+  it("Should allow for boolean variants", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        disabled: {
+          true: "opacity-50",
+        },
+      },
+    });
+
+    expect(button({ disabled: true })).toBe("bg-blue-100 opacity-50");
   });
 
-  const res2 = test2({
-    size: "small",
+  it("Should apply default variants", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+      defaultVariants: {
+        size: "md",
+      },
+    });
+
+    expect(button()).toBe("bg-blue-100 text-md");
+  });
+});
+
+describe("Composition", () => {
+  it("Should allow for multiple variant objects", () => {
+    const button = classed(
+      "bg-blue-100",
+      {
+        variants: {
+          size: {
+            sm: "text-sm",
+            md: "text-md",
+          },
+        },
+      },
+      {
+        variants: {
+          variant: {
+            primary: "text-white",
+            secondary: "text-black",
+          },
+        },
+      }
+    );
+
+    expect(button({ size: "sm", variant: "primary" })).toBe(
+      "bg-blue-100 text-sm text-white"
+    );
   });
 
-  console.log({ res1, res2 });
+  it("Should merge two classed functions together", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    const button2 = classed(button, "bg-red-100");
+
+    expect(
+      classIncludes(button2({ size: "sm" }), [
+        "bg-blue-100",
+        "text-sm",
+        "bg-red-100",
+      ])
+    ).toBe(true);
+  });
+
+  it("Should merge two classed functions together with variants", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    const button2 = classed(button, {
+      variants: {
+        variant: {
+          primary: "text-white",
+          secondary: "text-black",
+        },
+      },
+    });
+
+    expect(
+      classIncludes(button2({ size: "sm", variant: "primary" }), [
+        "bg-blue-100",
+        "text-sm",
+        "text-white",
+      ])
+    ).toBe(true);
+  });
+
+  it("Should merge base classes with N classed functions or classNames", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    const button2 = classed({
+      variants: {
+        variant: {
+          primary: "text-white",
+          secondary: "text-black",
+        },
+      },
+    });
+
+    const button3 = classed("bg-red-100", button, button2);
+
+    expect(
+      classIncludes(button3({ size: "sm", variant: "primary" }), [
+        "bg-blue-100",
+        "text-sm",
+        "text-white",
+        "bg-red-100",
+      ])
+    ).toBe(true);
+  });
 });
