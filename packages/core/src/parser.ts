@@ -1,4 +1,5 @@
 import {
+  ClassedProducer,
   ClassNamesAndVariant,
   InferVariantProps,
   VariantConfig,
@@ -7,7 +8,9 @@ import {
 import { joinClasses, mergeClass } from "./utility/classNames";
 
 export const parseClassNames = <TVariants extends Variants>(
-  classNames: Array<ClassNamesAndVariant<TVariants>>
+  classNames: Array<
+    ClassNamesAndVariant<TVariants> | ClassedProducer<TVariants>
+  >
 ) => {
   let stringClassNames = [];
   let variantObj = {} as TVariants;
@@ -20,16 +23,30 @@ export const parseClassNames = <TVariants extends Variants>(
       continue;
     }
 
+    // If className is a function, it is a classed producer
+    if (typeof className === "function") {
+      const { _def } = className;
+      if (_def) {
+        // Merge variants
+        Object.assign(variantObj, _def.variants);
+        // Merge default variants
+        Object.assign(defaultVariants, _def.defaultVariants);
+        // Merge className
+        stringClassNames.push(_def.className);
+      }
+      continue;
+    }
+
     if (className.variants) {
       Object.assign(variantObj, className.variants);
     }
 
-    if (className.defaultVariants) {
-      Object.assign(defaultVariants, className.defaultVariants);
+    if (defaultVariants) {
+      Object.assign(defaultVariants, (className as any).defaultVariants);
     }
 
-    if (className.className) {
-      stringClassNames.push(className.className);
+    if ((className as VariantConfig<TVariants>).className) {
+      stringClassNames.push((className as any).className);
     }
   }
 

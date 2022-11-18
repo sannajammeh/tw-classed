@@ -24,8 +24,8 @@ const classed = (<V extends Variants = {}>(
   }) as ClassedProducer<V>;
 
   // Add variants to the classed producer
-  producer.variants = variants;
   producer._def = {
+    className,
     variants: variants,
     defaultVariants: defaultVariants,
   };
