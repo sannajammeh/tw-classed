@@ -13,7 +13,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo run test",
     "test:coverage": "turbo run test:coverage",
-    "publish:task": "node .task/publish"
+    "prerelease": "pnpm run build --filter=./packages/* && pnpm run test --filter=./packages/*",
+    "release": "changeset publish"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "turbo": "^1.6.3"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.7",
     "arg": "^5.0.2",
     "dotenv": "^16.0.3",
     "kleur": "^4.1.5",
