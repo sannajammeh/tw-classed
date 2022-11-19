@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useConfig } from "nextra-theme-docs";
 import { TbBrandTailwind } from "react-icons/tb";
 
 /**
@@ -7,7 +7,20 @@ import { TbBrandTailwind } from "react-icons/tb";
 export default {
   docsRepositoryBase:
     "https://github.com/sannajammeh/tw-classed/tree/master/apps/beta-docs", // base URL for the docs repository
-  titleSuffix: " - TwClassed",
+  getNextSeoProps: () => {
+    const { frontMatter } = useConfig();
+
+    let section = "TwClassed";
+
+    const defaultTitle = frontMatter.overrideTitle || section;
+
+    return {
+      description: frontMatter.description,
+      defaultTitle,
+      titleTemplate: `%s - ${section}`,
+    };
+  },
+
   darkMode: true,
   project: {
     link: "https://github.com/sannajammeh/tw-classed",

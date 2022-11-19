@@ -1,0 +1,125 @@
+# Usage with Radix UI
+
+Radix UI provides a set of primitives built to create reusable and accessible React components. Radix UI is built on top of React primitives, which means it can be used with any UI library.
+
+In this guide we will use Radix UI and `tw-classed` to create a custom progress bar component.
+
+## Installation
+
+```bash
+npm install @radix-ui/react-progress @tw-classed/react
+```
+
+## Usage
+
+First add the styles needed (from Radix UI website). We are going to be using SCSS Modules to scope the styles to the component. Then later bind these using `tw-classed`
+
+```scss
+// Progress.module.scss
+.root {
+  position: relative;
+  overflow: hidden;
+  border-radius: 99999px;
+  height: 25px;
+  @apply bg-gray-200; // Apply Tailwind classes
+
+  /* Fix overflow clipping in Safari */
+  /* https://gist.github.com/domske/b66047671c780a238b51c51ffde8d3a0 */
+  transform: translateZ(0);
+}
+
+.indicator {
+  @apply bg-blue-500; // Apply Tailwind classes
+  width: 100%;
+  height: 100%;
+  transition: transform 660ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+```
+
+Next we must bind the styles to the component. We can do this manually by creating a wrapper component over each primitive, but we can also do this using `tw-classed`.
+
+```jsx
+// Progress.jsx
+import * as ProgressPrimitive from "@radix-ui/react-progress";
+import classes from "./Progress.module.scss";
+
+import { classed } from "@tw-classed/react";
+
+const ClassedRoot = classed(ProgressPrimitive.Root, classes.root);
+const ClassedIndicator = classed(
+  ProgressPrimitive.Indicator,
+  classes.indicator
+);
+
+// exports
+export const Progress = ({ value = 0 }) => (
+  <ClassedRoot value={value}>
+    <ClassedIndicator
+      style={{
+        transform: `translateX(-${100 - value})`,
+      }}
+    />
+  </ClassedRoot>
+);
+```
+
+Now in your app:
+
+```jsx
+import { Progress } from "./Progress";
+
+export const App = () => <Progress value={50} />;
+```
+
+### Extending the component with variants
+
+We can extend the classed progress bar above with some variants. Lets make the indicator either blue or purple
+Make sure to remove the default `@apply` background color from the `Progress.module.scss` file. We will let `tw-classed` control the bg.
+
+```jsx
+// Progress.jsx
+
+// ...
+const ClassedIndicator = classed(
+  ProgressPrimitive.Indicator,
+  classes.indicator,
+  {
+    variants: {
+      color: {
+        blue: "!bg-blue-500",
+        purple: "!bg-purple-500",
+      },
+    },
+    defaultVariants: {
+      color: "blue",
+    },
+  }
+);
+
+// exports
+export const Progress = ({ value = 0, color }) => (
+  <ClassedRoot value={value}>
+    <ClassedIndicator
+      color={color}
+      style={{
+        transform: `translateX(-${100 - value})`,
+      }}
+    />
+  </ClassedRoot>
+);
+```
+
+Now in your app:
+
+```jsx
+import { Progress } from "./Progress";
+
+export const App = () => (
+  <>
+    <Progress value={50} />
+    <Progress value={50} color="purple" />
+  </>
+);
+```
+
+> `tw-classed` was designed with Tailwind in mind, but it can be used to toggle any class. It is not limited to Tailwind. As you can see in the example above, we just used `tw-classed` to toggle CSS Module classes.
