@@ -59,13 +59,7 @@ const Home: NextPage<{}> = ({}) => {
           </div>
         </section>
 
-        <section className="mb-24">
-          {/* <video
-            src="/showcase.mov"
-            muted
-            autoPlay
-            className="filter contrast-125 aspect-video rounded-lg"
-          /> */}
+        <section>
           <div
             style={{
               width: "100%",
@@ -96,8 +90,9 @@ const Home: NextPage<{}> = ({}) => {
             ^ Fully typesafe, with automatic intellisense and variant inference.
           </p>
         </section>
+        <Divider />
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto mb-24">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto ">
           <FeatureCard>
             <FeatureCardIcon>
               <UpdateIcon className="w-[1em] h-[1em]" />
@@ -139,6 +134,27 @@ const Home: NextPage<{}> = ({}) => {
             </Text>
           </FeatureCard>
         </section>
+        <Divider />
+        <section>
+          <h2 className="text-center text-4xl font-bold mb-4">Stats</h2>
+          <StatList>
+            <Stat>
+              Bundle size (core)
+              <StatValue>0.6kb</StatValue>
+            </Stat>
+            <Stat>
+              Bundle size (react)
+              <StatValue>0.97kb</StatValue>
+            </Stat>
+            <Stat>
+              Variants
+              <StatValue>
+                <span className="text-radix-cyan11">∞</span>
+              </StatValue>
+            </Stat>
+          </StatList>
+        </section>
+        <Divider />
 
         <div className="my-12 block"></div>
       </div>
@@ -171,3 +187,27 @@ const FeatureCardIcon = classed(
     },
   }
 );
+
+const Divider = classed("span", "block mx-auto w-11 h-[1px] bg-radix-slate6", {
+  variants: {
+    space: {
+      1: "my-4",
+      2: "my-8",
+      3: "my-12",
+      4: "my-16",
+      5: "my-20",
+      6: "my-40",
+    },
+  },
+  defaultVariants: {
+    space: 6,
+  },
+});
+
+const StatList = classed(
+  "ul",
+  "flex justify-around grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+);
+
+const Stat = classed("li", "flex flex-col text-lg text-radix-slate11");
+const StatValue = classed("span", "text-3xl font-bold text-radix-slate12");
