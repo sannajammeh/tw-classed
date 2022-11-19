@@ -32,7 +32,7 @@ const Home: NextPage<{}> = ({}) => {
           <div className="flex justify-center gap-6 mb-12">
             <Link href="/docs/introduction" passHref>
               <Button
-                className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7"
+                className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
                 as="a"
                 size="md"
                 radius="pill"
@@ -58,56 +58,88 @@ const Home: NextPage<{}> = ({}) => {
             </pre>
           </div>
         </section>
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto">
+
+        <section className="mb-24">
+          {/* <video
+            src="/showcase.mov"
+            muted
+            autoPlay
+            className="filter contrast-125 aspect-video rounded-lg"
+          /> */}
+          <div
+            style={{
+              width: "100%",
+              height: "0px",
+              position: "relative",
+              paddingBottom: "50.313%",
+            }}
+            className="filter contrast-125 drop-shadow-[0_0px_35px_rgba(54,158,255,0.2)]"
+          >
+            <iframe
+              src="https://streamable.com/e/svc2t9?autoplay=1&nocontrols=1&muted=1"
+              frameBorder="0"
+              width="100%"
+              height="100%"
+              allowFullScreen
+              allow="autoplay"
+              style={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                left: "0px",
+                top: "0px",
+                overflow: "hidden",
+              }}
+            ></iframe>
+          </div>
+          <p className="text-center text-radix-slate11 mt-2">
+            ^ Fully typesafe, with automatic intellisense and variant inference.
+          </p>
+        </section>
+
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto mb-24">
           <FeatureCard>
-            <FeatureTitle>
-              <FeatureCardIcon>
-                <UpdateIcon className="w-[1em] h-[1em]" />
-              </FeatureCardIcon>
-              Reusable
-            </FeatureTitle>
-            <Text className="mt-3" color="secondary">
+            <FeatureCardIcon>
+              <UpdateIcon className="w-[1em] h-[1em]" />
+            </FeatureCardIcon>
+            <FeatureTitle>Reusable</FeatureTitle>
+            <Text className="mt-1" color="secondary">
               Classed Tailwind lets you create reusable components in record
               time. No more `forwardRef` & Typescript interfaces
             </Text>
           </FeatureCard>
           <FeatureCard>
-            <FeatureTitle>
-              <FeatureCardIcon>
-                <LayersIcon className="w-[1em] h-[1em]" />
-              </FeatureCardIcon>
-              Extendable
-            </FeatureTitle>
-            <Text className="mt-3" color="secondary">
+            <FeatureCardIcon color="cyan">
+              <LayersIcon className="w-[1em] h-[1em]" />
+            </FeatureCardIcon>
+            <FeatureTitle>Extendable</FeatureTitle>
+            <Text className="mt-1" color="secondary">
               Write your components in a modular way. Wrap them in a classed
               method and extend them with more styles
             </Text>
           </FeatureCard>
           <FeatureCard>
-            <FeatureTitle>
-              <FeatureCardIcon>
-                <CodeIcon className="w-[1em] h-[1em]" />
-              </FeatureCardIcon>
-              Variants
-            </FeatureTitle>
-            <Text className="mt-3" color="secondary">
+            <FeatureCardIcon color="violet">
+              <CodeIcon className="w-[1em] h-[1em]" />
+            </FeatureCardIcon>
+            <FeatureTitle>Variants</FeatureTitle>
+            <Text className="mt-1" color="secondary">
               Add custom variants to have complete control over your
               component&apos;s look.
             </Text>
           </FeatureCard>
           <FeatureCard className="col-auto lg:col-[2] xl:col-auto">
-            <FeatureTitle>
-              <FeatureCardIcon>
-                <LightningBoltIcon className="w-[1em] h-[1em]" />
-              </FeatureCardIcon>
-              Tiny
-            </FeatureTitle>
-            <Text className="mt-3" color="secondary">
+            <FeatureCardIcon color="green">
+              <LightningBoltIcon className="w-[1em] h-[1em]" />
+            </FeatureCardIcon>
+            <FeatureTitle>Tiny</FeatureTitle>
+            <Text className="mt-1" color="secondary">
               Acheive excellent DX and performance with only{" "}
               <small className="text-radix-cyan11">~894b</small> of code!
             </Text>
           </FeatureCard>
         </section>
+
         <div className="my-12 block"></div>
       </div>
     </>
@@ -118,15 +150,24 @@ export default Home;
 
 const FeatureCard = classed(
   "article",
-  "bg-slate-100 bg-opacity-5 backdrop-filter backdrop-blur-lg rounded-xl shadow-lg p-3"
+  "bg-transparent bg-opacity-5 backdrop-filter backdrop-blur-lg rounded-xl p-3"
 );
 
 const FeatureTitle = classed(
   "h3",
-  "text-lg font-medium flex gap-2 items-center"
+  "text-xl font-medium flex gap-2 items-center mt-1"
 );
 
 const FeatureCardIcon = classed(
   "span",
-  "inline-flex items-center justify-center p-2 bg-radix-blue5 text-radix-blue10 rounded-full text-xl"
+  "inline-flex items-center justify-center p-4 bg-radix-blue5 text-radix-blue10 rounded-lg text-xl",
+  {
+    variants: {
+      color: {
+        green: "!bg-radix-green5 !text-radix-green10",
+        violet: "!bg-radix-violet5 !text-radix-violet10",
+        cyan: "!bg-radix-cyan5 !text-radix-cyan10",
+      },
+    },
+  }
 );

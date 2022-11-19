@@ -22,7 +22,7 @@ module.exports = {
   },
   plugins: [
     require("./utils/radix-colors-tailwind.cjs")({
-      colors: ["blue", "slate", "cyan", "violet"],
+      colors: ["blue", "slate", "cyan", "violet", "green"],
     }),
     require("@tailwindcss/typography"),
   ],
