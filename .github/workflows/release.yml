@@ -34,6 +34,6 @@ jobs:
           version: pnpm ci:version
           commit: "chore: update versions"
           title: "chore: update versions"
-          publish: pnpm ci:publish -r --access public --filter "./packages/**"
+          publish: pnpm ci:publish --access public --filter "./packages/**"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
