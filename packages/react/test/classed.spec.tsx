@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom";
+import { TW_VARS } from "@tw-classed/core";
 import React from "react";
 import { describe } from "vitest";
-import classed, { VariantProps } from "../src";
-import type * as Classed from "../src";
-
+import classed from "../src";
 import { render, screen } from "./test.utils";
 
 describe("Classed", () => {
@@ -133,7 +132,9 @@ describe("Classed with Variants", () => {
 
     expect(screen.getByTestId("btn")).toHaveClass("border-2 border-gray-500");
   });
+});
 
+describe("Composition", () => {
   it("Should merge class of other classed component", () => {
     const Button = classed("button", "bg-blue-100");
     const Anchor = classed(Button, "bg-red-100");
@@ -143,7 +144,7 @@ describe("Classed with Variants", () => {
     expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100 bg-red-100");
   });
 
-  it("Should give me props", () => {
+  it("Should merge class of other classed component with variants", () => {
     const Button = classed("button", {
       variants: {
         color: {
@@ -152,5 +153,27 @@ describe("Classed with Variants", () => {
         },
       },
     });
+    const Anchor = classed(Button, "bg-red-100");
+
+    render(<Anchor color="blue" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100 bg-red-100");
+  });
+
+  it("Should include variants of other classed component", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+    });
+
+    const Anchor = classed("a", Button);
+
+    render(<Anchor color="blue" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
   });
 });
