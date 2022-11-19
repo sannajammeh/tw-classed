@@ -18,25 +18,18 @@ article.nextra-body-typesetting-article h4 {
   line-height: 1.25 !important;
 }
 
-/* .dark body {
-  background-color: #010101 !important;
-}
-
-html[class~="dark"] .dark\:nx-bg-dark {
-  background-color: #010101 !important;
-}
-
-html[class~="dark"] .nextra-nav-container-blur {
-  background-color: #010101 !important;
-}
-@supports (
-  ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))
-) {
-  html[class~="dark"] .nextra-nav-container .nextra-nav-container-blur {
-    background-color: rgba(1, 1, 1, 0.7) !important;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
-html[class~="dark"] .dark\:nx-bg-neutral-900 {
-  background-color: #010101 !important;
-} */
+.fadeInUp {
+  animation-name: fadeInUp;
+  animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}

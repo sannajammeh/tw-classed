@@ -8,10 +8,21 @@ import {
   LayersIcon,
   LightningBoltIcon,
   CodeIcon,
+  ThickArrowUpIcon,
 } from "@radix-ui/react-icons";
 import { NextSeo } from "next-seo";
+import { Aos } from "utils/aos";
+import { useEffect } from "react";
 
 const Home: NextPage<{}> = ({}) => {
+  useEffect(() => {
+    const unobserve = Aos.observeAll(
+      document.querySelectorAll<HTMLElement>("[data-aos]")
+    );
+
+    return () => unobserve();
+  }, []);
+
   return (
     <>
       <NextSeo
@@ -20,7 +31,7 @@ const Home: NextPage<{}> = ({}) => {
       />
       {/* <GradientBg /> */}
       <div className="container mx-auto px-5 relative min-h-screen">
-        <section className="py-24">
+        <section className="py-24 fadeInUp">
           <h1 className="text-center text-5xl font-bold mb-4">
             Make your Tailwind components <br /> re-usable
           </h1>
@@ -59,7 +70,7 @@ const Home: NextPage<{}> = ({}) => {
           </div>
         </section>
 
-        <section>
+        <section className="fadeInUp">
           <div
             style={{
               width: "100%",
@@ -86,13 +97,21 @@ const Home: NextPage<{}> = ({}) => {
               }}
             ></iframe>
           </div>
-          <p className="text-center text-radix-slate11 mt-2">
-            ^ Fully typesafe, with automatic intellisense and variant inference.
+          <p className="text-center text-radix-slate11 mt-2 flex items-center space-x-2 justify-center">
+            <ThickArrowUpIcon />{" "}
+            <span>
+              Fully typesafe, with automatic intellisense and variant inference.
+            </span>
+            <ThickArrowUpIcon />
           </p>
         </section>
         <Divider />
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto ">
+        <section
+          data-aos-mount
+          data-aos="fadeInUp"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 features mx-auto "
+        >
           <FeatureCard>
             <FeatureCardIcon>
               <UpdateIcon className="w-[1em] h-[1em]" />
@@ -135,7 +154,7 @@ const Home: NextPage<{}> = ({}) => {
           </FeatureCard>
         </section>
         <Divider />
-        <section>
+        <section data-aos="fadeInUp" data-aos-mount>
           <h2 className="text-center text-4xl font-bold mb-4">Stats</h2>
           <StatList>
             <Stat>
@@ -204,7 +223,7 @@ const Divider = classed("span", "block mx-auto w-11 h-[1px] bg-radix-slate6", {
 
 const StatList = classed(
   "ul",
-  "flex justify-around grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+  "flex justify-around flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
 );
 
 const Stat = classed("li", "flex flex-col text-lg text-radix-slate11");
