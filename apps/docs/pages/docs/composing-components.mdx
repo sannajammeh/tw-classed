@@ -1,0 +1,124 @@
+# Composing Components
+
+Composing one Classed component into another.
+
+Classed Components can be composed via the `classed` function.
+
+## First argument composition
+
+The first argument of the `classed` function is the Classed component to be composed. All variants and classNames are inherited.
+
+```tsx
+import { classed } from "@tw-classed/react";
+
+const BaseButton = classed("button");
+
+const CheckoutButton = classed(
+  BaseButton,
+  "bg-blue-500 text-white font-bold py-2 px-4 rounded",
+  {
+    variants: {
+      size: {
+        sm: "text-sm",
+        lg: "text-lg",
+      },
+    },
+    defaultVariants: {
+      disabled: "opacity-50 cursor-not-allowed",
+    },
+  }
+);
+
+() => (
+  <>
+    <BaseButton>Base Button</BaseButton>
+    <CheckoutButton size="sm">Checkout Button</CheckoutButton>
+  </>
+);
+```
+
+## Any argument composition
+
+The `classed` function accepts any number of arguments and will compose them in order. All classNames and variants are inherited.
+
+```tsx
+import { classed } from "@tw-classed/react";
+
+const SizeButton = classed("button", {
+  variants: {
+    size: {
+      sm: "text-sm",
+      lg: "text-lg",
+    },
+  },
+  defaultVariants: {
+    size: "sm",
+  },
+});
+
+const ColorButton = classed("button", {
+  variants: {
+    color: {
+      red: "text-red-500",
+      blue: "text-blue-500",
+    },
+  },
+  defaultVariants: {
+    color: "red",
+  },
+});
+
+const Anchor = classed("a", "flex items-center", SizeButton, ColorButton);
+// Anchor will be rendered as an `a` element inheriting all classNames and variants from SizeButton and ColorButton
+
+() => (
+  <>
+    <Anchor size="lg" color="blue">
+      Anchor
+    </Anchor>
+  </>
+);
+```
+
+## Using the `as` prop
+
+The `as` prop can be used to change the underlying element of a Classed component. With full typesafety.
+
+```tsx
+import { classed } from "@tw-classed/react";
+
+const BaseButton = classed(
+  "button",
+  "bg-blue-500 text-white",
+  "hover:bg-blue400"
+);
+
+() => (
+  <BaseButton as="a" href="https://google.com">
+    Link Button
+  </BaseButton>
+);
+```
+
+## Composing non-classed components
+
+Classed components can be composed with non-classed components via the `as` prop or as the first argument to the `classed` function.
+
+```tsx
+import { Link } from "react-router-dom";
+import { classed } from "@tw-classed/react";
+
+const BaseButton = classed("button", "bg-blue-500 text-white");
+
+() => (
+  <BaseButton as={Link} to="/checkout">
+    Checkout
+  </BaseButton>
+);
+
+// First argument to classed
+
+const LinkButton = classed(Link, "bg-blue-500 text-white");
+
+() => <LinkButton to="/checkout">Checkout</LinkButton>;
+```
