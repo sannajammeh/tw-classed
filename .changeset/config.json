@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "your-name/your-repository" }
+    { "repo": "sannajammeh/tw-classed" }
   ],
 
   "commit": false,
