@@ -10,7 +10,6 @@ import {
   CodeIcon,
 } from "@radix-ui/react-icons";
 import { NextSeo } from "next-seo";
-import GradientBg from "./GradientBg";
 
 const Home: NextPage<{}> = ({}) => {
   return (
