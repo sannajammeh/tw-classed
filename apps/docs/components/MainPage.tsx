@@ -54,7 +54,7 @@ const Home: NextPage<{}> = ({}) => {
           </div>
           <div className="prose prose-slate dark:prose-invert mx-auto">
             <pre className="rounded-xl bg-radix-slate2 text-radix-slate11">
-              <code>npm install @tw-classed/react@alpha</code>
+              <code>npm install @tw-classed/react</code>
             </pre>
           </div>
         </section>
