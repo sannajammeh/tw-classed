@@ -17,3 +17,5 @@ dist/**
 coverage/tmp/**
 
 .npmrc
+
+.env 
