@@ -46,14 +46,14 @@ export type ButtonProps = React.ComponentProps<typeof Button>; // This of course
 On Typescript 4.9 and above you can use the satisfies keyword to define a variant object outside of the `classed` function. This is useful when creating shared variants.
 
 ```typescript
-import {Variants, classed} from "@tw-classed/react";
+import { Variants, classed } from "@tw-classed/react";
 
 const colorVariants = {
   color: {
     blue: "bg-blue-500",
     red: "bg-red-500",
   },
-} satisfies Classed.Variants;
+} satisfies Variants;
 
 // In Button.tsx
 const Button = classed("button", "px-2 py-1", {
