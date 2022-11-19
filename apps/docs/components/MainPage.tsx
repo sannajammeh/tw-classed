@@ -130,7 +130,7 @@ const Home: NextPage<{}> = ({}) => {
             <FeatureTitle>Tiny</FeatureTitle>
             <Text className="mt-1" color="secondary">
               Acheive excellent DX and performance with only{" "}
-              <small className="text-radix-cyan11">~894b</small> of code!
+              <small className="text-radix-cyan11">~975b</small> of code!
             </Text>
           </FeatureCard>
         </section>
@@ -139,12 +139,10 @@ const Home: NextPage<{}> = ({}) => {
           <h2 className="text-center text-4xl font-bold mb-4">Stats</h2>
           <StatList>
             <Stat>
-              Bundle size (core)
-              <StatValue>0.6kb</StatValue>
+              Bundle size ( core )<StatValue>0.6kb</StatValue>
             </Stat>
             <Stat>
-              Bundle size (react)
-              <StatValue>0.97kb</StatValue>
+              Bundle size ( react )<StatValue>0.97kb</StatValue>
             </Stat>
             <Stat>
               Variants
