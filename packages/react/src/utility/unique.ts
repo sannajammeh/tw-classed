@@ -1,6 +1,8 @@
 import { ClassedComponentType } from "../types";
 
-export const COMPONENT_SYMBOL: unique symbol = Symbol("classed-component");
+export const COMPONENT_SYMBOL: unique symbol = Symbol.for(
+  "tw-classed.component"
+);
 
 export const isClassedComponent = (
   value: unknown
