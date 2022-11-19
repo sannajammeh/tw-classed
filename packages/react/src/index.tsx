@@ -17,7 +17,6 @@ function classed<
   V extends Variants = {}
 >(elementType: T, ...classNames: ClassNamesAndVariant<V>[]) {
   const { className, variants, defaultVariants } = parseClassNames(classNames);
-
   const ClassedComponent = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
       const Component = isClassedComponent(elementType)
@@ -34,12 +33,10 @@ function classed<
 
             if (!variantSelector) return acc; // Skip if no variant in props
 
-            // TODO - Check wrapped comp for variant existance
-            if (!isClassedComponent(elementType)) {
-              delete props[variantKey];
-            }
+            delete props[variantKey];
 
             const className = variants[variantKey][variantSelector as string]; // Get className from variant
+
             if (!className) return acc; // Skip if no className
             return acc.concat(acc.length ? " " + className : className); // Add className to acc
           }, "")
