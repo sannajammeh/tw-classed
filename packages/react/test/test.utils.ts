@@ -15,5 +15,10 @@ const customRender = (ui: React.ReactElement, options = {}) =>
 
 export * from "@testing-library/react";
 export { default as userEvent } from "@testing-library/user-event";
+
+export const classesInclude = (className: string, ...classes: string[]) => {
+  return classes.every((c) => className.includes(c));
+};
+
 // override render export
 export { customRender as render };
