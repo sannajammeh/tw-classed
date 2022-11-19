@@ -8,10 +8,12 @@ import {
 } from "./types";
 import { joinClasses, mergeClass } from "./utility/classNames";
 
+/**
+ * Parses & merging variants from a given string or variant config
+ * @internal
+ */
 export const parseClassNames = <TVariants extends Variants>(
-  classNames: Array<
-    ClassNamesAndVariant<TVariants> | ClassedProducer<TVariants>
-  >
+  classNames: Array<ClassNamesAndVariant<TVariants> | any>
 ) => {
   let stringClassNames = [];
   let variantObj = {} as TVariants;
@@ -25,19 +27,14 @@ export const parseClassNames = <TVariants extends Variants>(
     }
 
     // If className is a function, it is a classed producer. Check for Symbol
-    if (typeof className === "function") {
-      if (Reflect.has(className, TW_VARS)) {
-        const record: VariantConfig<TVariants> = Reflect.get(
-          className,
-          TW_VARS
-        );
-        // Merge variants
-        Object.assign(variantObj, record.variants);
-        // Merge default variants
-        Object.assign(defaultVariants, record.defaultVariants);
-        // Merge className
-        stringClassNames.push(record.className);
-      }
+    if (Reflect.has(className, TW_VARS)) {
+      const record: VariantConfig<TVariants> = Reflect.get(className, TW_VARS);
+      // Merge variants
+      Object.assign(variantObj, record.variants);
+      // Merge default variants
+      Object.assign(defaultVariants, record.defaultVariants);
+      // Merge className
+      stringClassNames.push(record.className);
       continue;
     }
 
