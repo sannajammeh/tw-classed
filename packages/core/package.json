@@ -23,7 +23,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "cd ../../ && turbo run build --filter=@tw-classed/core"
+    "prepublishOnly": "cd ../../ && turbo run build test --filter=@tw-classed/core"
   },
   "keywords": [],
   "author": "Sanna Jammeh",
