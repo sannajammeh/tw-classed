@@ -1,0 +1,22 @@
+{
+  "name": "remark-reading-time",
+  "version": "2.0.1",
+  "description": "Adds estimated reading time to your markdown files",
+  "main": "index.js",
+  "type": "module",
+  "author": "Matt Jennings",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattjennings/remark-reading-time"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "remark": "^13.0.0"
+  },
+  "dependencies": {
+    "estree-util-is-identifier-name": "^2.0.0",
+    "estree-util-value-to-estree": "^1.3.0",
+    "reading-time": "^1.3.0",
+    "unist-util-visit": "^3.1.0"
+  }
+}

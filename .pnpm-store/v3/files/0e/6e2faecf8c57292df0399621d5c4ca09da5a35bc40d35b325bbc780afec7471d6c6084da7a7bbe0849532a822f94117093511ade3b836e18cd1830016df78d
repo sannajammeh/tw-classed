@@ -1,0 +1,22 @@
+tw-classed:test:coverage: cache hit, replaying output [2mf5a607d74dbbfcfe[0m
+[35mtw-classed:test:coverage: [0m
+[35mtw-classed:test:coverage: [0m> tw-classed@0.1.2 test:coverage /Users/sannajammeh/code/personal/tw-classed/packages/core
+[35mtw-classed:test:coverage: [0m> vitest run --coverage
+[35mtw-classed:test:coverage: [0m
+[35mtw-classed:test:coverage: [0m
+[35mtw-classed:test:coverage: [0m RUN  v0.17.0 /Users/sannajammeh/code/personal/tw-classed/packages/core
+[35mtw-classed:test:coverage: [0m
+[35mtw-classed:test:coverage: [0m ✓ test/parser.spec.ts  (2 tests) 19ms
+[35mtw-classed:test:coverage: [0m ✓ test/classed.spec.tsx  (10 tests) 33ms
+[35mtw-classed:test:coverage: [0m
+[35mtw-classed:test:coverage: [0mTest Files  2 passed (2)
+[35mtw-classed:test:coverage: [0m     Tests  12 passed (12)
+[35mtw-classed:test:coverage: [0m      Time  1.92s (in thread 52ms, 3699.22%)
+[35mtw-classed:test:coverage: [0m
+[35mtw-classed:test:coverage: [0m-----------|---------|----------|---------|---------|-------------------
+[35mtw-classed:test:coverage: [0mFile       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+[35mtw-classed:test:coverage: [0m-----------|---------|----------|---------|---------|-------------------
+[35mtw-classed:test:coverage: [0mAll files  |   96.63 |    82.75 |     100 |   96.63 |                   
+[35mtw-classed:test:coverage: [0m index.tsx |    97.4 |    78.94 |     100 |    97.4 | 23,34             
+[35mtw-classed:test:coverage: [0m parser.ts |   95.23 |       90 |     100 |   95.23 | 33-34             
+[35mtw-classed:test:coverage: [0m-----------|---------|----------|---------|---------|-------------------
