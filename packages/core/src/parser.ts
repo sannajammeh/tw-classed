@@ -1,12 +1,11 @@
 import { TW_VARS } from "./constants";
 import {
-  ClassedProducer,
   ClassNamesAndVariant,
   InferVariantProps,
   VariantConfig,
   Variants,
 } from "./types";
-import { joinClasses, mergeClass } from "./utility/classNames";
+import { cx, mergeClass } from "./utility/classNames";
 
 /**
  * Parses & merging variants from a given string or variant config
@@ -20,6 +19,7 @@ export const parseClassNames = <TVariants extends Variants>(
   let defaultVariants = {} as Partial<
     Required<VariantConfig<TVariants>>["defaultVariants"]
   >;
+  let compoundVariants = [] as Record<string, any>[];
   for (const className of classNames) {
     if (typeof className === "string") {
       stringClassNames.push(className);
@@ -33,6 +33,8 @@ export const parseClassNames = <TVariants extends Variants>(
       Object.assign(variantObj, record.variants);
       // Merge default variants
       Object.assign(defaultVariants, record.defaultVariants);
+      record.compoundVariants &&
+        compoundVariants.push(...record.compoundVariants);
       // Merge className
       record.className && stringClassNames.push(record.className);
       record.base && stringClassNames.push(record.base);
@@ -43,8 +45,12 @@ export const parseClassNames = <TVariants extends Variants>(
       Object.assign(variantObj, className.variants);
     }
 
-    if (defaultVariants) {
+    if (className.defaultVariants) {
       Object.assign(defaultVariants, (className as any).defaultVariants);
+    }
+
+    if (className.compoundVariants) {
+      compoundVariants.push(...className.compoundVariants);
     }
 
     if ((className as VariantConfig<TVariants>).className) {
@@ -56,9 +62,10 @@ export const parseClassNames = <TVariants extends Variants>(
   }
 
   return {
-    className: joinClasses(stringClassNames),
+    className: cx(stringClassNames),
     variants: variantObj,
     defaultVariants,
+    compoundVariants,
   };
 };
 
@@ -91,30 +98,65 @@ export const mapPropsToVariantClass = <
   {
     variants,
     defaultVariants,
+    compoundVariants,
   }: {
     variants: TVariants;
     defaultVariants: TRecord["defaultVariants"];
+    compoundVariants?: Record<string, any>[];
   },
-  props: Partial<InferVariantProps<TVariants>> = {}
+  props: Partial<InferVariantProps<TVariants>> = {},
+  shouldDeleteProps = false
 ) => {
-  let producedClassName: string = "";
-  for (const variantKey in variants) {
-    // Check own keys
-    if (!Object.prototype.hasOwnProperty.call(variants, variantKey)) continue;
-
+  const matchedKeys: string[] = [];
+  const producedClassName = Object.keys(variants).reduce((acc, variantKey) => {
     const variantSelector = getVariantSelector(variantKey, props, {
       defaultVariants,
     });
-
-    // Skip if no variant in props
-    if (!variantSelector) continue;
-
-    // Produce className from variants
+    if (!variantSelector) return acc;
+    shouldDeleteProps && matchedKeys.push(variantKey);
     const variantClassName = variants[variantKey][variantSelector];
-    if (!variantClassName) continue;
+    if (!variantClassName) return acc;
 
-    producedClassName = mergeClass(producedClassName, variantClassName);
-  }
+    return mergeClass(acc, variantClassName);
+  }, "");
 
-  return producedClassName;
+  const compoundedClassNames = getCompoundVariantClasses(
+    {
+      props,
+      defaultVariants,
+    },
+    compoundVariants
+  );
+
+  shouldDeleteProps && matchedKeys.forEach((key) => delete props[key]);
+
+  return mergeClass(producedClassName, compoundedClassNames?.join(" "));
 };
+
+export function getCompoundVariantClasses(
+  {
+    props,
+    defaultVariants,
+  }: {
+    defaultVariants: VariantConfig<any>["defaultVariants"];
+    props: Record<string, any>;
+  },
+  compoundVariants: VariantConfig<any>["compoundVariants"] = []
+) {
+  return compoundVariants?.reduce(
+    (
+      acc: string[],
+      { class: cvClass, className: cvClassName, ...compoundVariantOptions }
+    ) =>
+      Object.entries(compoundVariantOptions).every(
+        ([key, value]) =>
+          ({
+            ...defaultVariants,
+            ...props,
+          }[key] === value)
+      )
+        ? [...(acc as string[]), cvClass, cvClassName]
+        : acc,
+    [] as string[]
+  );
+}

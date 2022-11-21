@@ -1,4 +1,4 @@
-export const joinClasses = (classNames: string[]) => classNames.join(" ");
+export const cx = (classNames: string[]) => classNames.join(" ");
 
 export const mergeClass = (
   c1: string,

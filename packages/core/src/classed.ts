@@ -5,12 +5,13 @@ import { TW_VARS } from "./constants";
 
 const classed = (<V extends Variants = {}>(...classNames: Array<any>) => {
   // Parse classNames and variants
-  const { className, variants, defaultVariants } = parseClassNames(classNames);
+  const { className, variants, defaultVariants, compoundVariants } =
+    parseClassNames(classNames);
 
   const producer: ClassedProducer<V> = ((variantProps) => {
     // Map variant props to className
     const variantClassName = mapPropsToVariantClass(
-      { variants, defaultVariants },
+      { variants, defaultVariants, compoundVariants },
       variantProps
     );
 
@@ -22,6 +23,7 @@ const classed = (<V extends Variants = {}>(...classNames: Array<any>) => {
     className,
     variants,
     defaultVariants,
+    compoundVariants,
   });
 
   return producer;

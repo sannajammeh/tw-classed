@@ -14,6 +14,7 @@ export type VariantConfig<V extends Variants> = {
   defaultVariants?: Partial<{
     [K in keyof V]: keyof V[K];
   }>;
+  compoundVariants: Record<string, any>[];
 };
 
 export type ClassNamesAndVariant<V extends Variants> =
@@ -82,6 +83,7 @@ export interface ClassedCoreFunctionType {
       | string
       | Util.Function
       | {
+          base?: string;
           variants?: { [name: string]: unknown };
         }
     )[]
@@ -93,12 +95,22 @@ export interface ClassedCoreFunctionType {
         ? Composers[K]
         : {
             base?: string;
-            variants: Variants;
+            variants?: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
                   [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
                 }
               : never;
+            compoundVariants?: (("variants" extends keyof Composers[K]
+              ? {
+                  [Name in keyof Composers[K]["variants"]]?:
+                    | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Util.String;
+                }
+              : never) & {
+              className?: Util.String;
+              class?: Util.String;
+            })[];
           };
     }
   ): ClassedType<ClassedProps<Composers>, ClassedVariants<Composers>>;
