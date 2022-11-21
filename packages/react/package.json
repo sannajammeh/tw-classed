@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "bunchee ./index.ts --watch",
-    "build": "bunchee ./index.ts && npm run rsc-compat",
+    "build": "bunchee ./index.ts",
     "rsc-compat": "node ./.task/rsc-compat.js",
     "test": "vitest run",
     "test:watch": "vitest",
