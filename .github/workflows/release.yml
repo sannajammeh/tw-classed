@@ -31,7 +31,7 @@ jobs:
         uses: changesets/action@v1
         with:
           createGithubReleases: true
-          version: pnpm ci:version
+          # version: pnpm ci:version
           commit: "chore: update versions"
           title: "chore: update versions"
         env:
