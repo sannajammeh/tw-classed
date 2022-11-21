@@ -4,9 +4,13 @@ export type Variant = Record<string, string>;
 export type Variants = Record<string, Variant>;
 export type BooleanVariant = Record<"true", string>;
 
+/**
+ * @deprecated
+ */
 export type VariantConfig<V extends Variants> = {
   variants?: V;
   className?: string;
+  base?: string;
   defaultVariants?: Partial<{
     [K in keyof V]: keyof V[K];
   }>;
@@ -21,6 +25,7 @@ export type ClassedProducer<V extends Variants = {}> = ((
 ) => any) & {
   _def: {
     className?: string;
+    base?: string;
     variants?: V;
     defaultVariants?: unknown;
   };
@@ -87,6 +92,7 @@ export interface ClassedCoreFunctionType {
         : Composers[K] extends string | Util.Function
         ? Composers[K]
         : {
+            base?: string;
             variants: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {

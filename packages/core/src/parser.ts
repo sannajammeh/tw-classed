@@ -34,7 +34,8 @@ export const parseClassNames = <TVariants extends Variants>(
       // Merge default variants
       Object.assign(defaultVariants, record.defaultVariants);
       // Merge className
-      stringClassNames.push(record.className);
+      record.className && stringClassNames.push(record.className);
+      record.base && stringClassNames.push(record.base);
       continue;
     }
 
@@ -48,6 +49,9 @@ export const parseClassNames = <TVariants extends Variants>(
 
     if ((className as VariantConfig<TVariants>).className) {
       stringClassNames.push((className as any).className);
+    }
+    if ((className as VariantConfig<TVariants>).base) {
+      stringClassNames.push((className as any).base);
     }
   }
 

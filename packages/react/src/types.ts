@@ -64,6 +64,7 @@ export interface ClassedFunctionType {
         : Composers[K] extends string | Util.Function
         ? Composers[K]
         : {
+            base?: string;
             variants: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
