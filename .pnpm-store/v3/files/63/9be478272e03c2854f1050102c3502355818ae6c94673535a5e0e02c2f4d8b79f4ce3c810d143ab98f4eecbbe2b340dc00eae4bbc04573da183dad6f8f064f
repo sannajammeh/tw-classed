@@ -1,0 +1,44 @@
+import { jsx as _jsx } from "react/jsx-runtime";
+import { forwardRef, useMemo } from "react";
+import { composeParser } from "./parser.js";
+function classed(elementType, ...classNames) {
+    const { className, variants, defaultVariants } = composeParser(classNames);
+    const ClassedComponent = forwardRef(({ as, className: cName, ...props }, forwardedRef) => {
+        const Component = elementType.__CLASSED_COMPONENT__
+            ? elementType
+            : as || elementType;
+        const variantClassNames = useMemo(() => {
+            return Object.keys(variants)
+                .reduce((acc, variantKey) => {
+                let variantSelector;
+                if (props[variantKey]) {
+                    variantSelector = props[variantKey];
+                }
+                else if (typeof props[variantKey] === "boolean") {
+                    variantSelector = props[variantKey].toString();
+                }
+                else {
+                    variantSelector = defaultVariants[variantKey];
+                }
+                if (!variantSelector)
+                    return acc;
+                if (!elementType.__CLASSED_COMPONENT__) {
+                    delete props[variantKey];
+                }
+                const className = variants[variantKey][variantSelector];
+                if (!className)
+                    return acc;
+                return acc.concat(acc.length ? " " + className : className);
+            }, "")
+                .trim();
+        }, [variants, props]);
+        return (_jsx(Component, { className: className +
+                (cName ? " " + cName : "") +
+                (variantClassNames ? " " + variantClassNames : ""), ...props, as: elementType.__CLASSED_COMPONENT__ ? as : undefined, ref: forwardedRef }));
+    });
+    ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
+    ClassedComponent.variants = variants;
+    ClassedComponent.__CLASSED_COMPONENT__ = true;
+    return ClassedComponent;
+}
+export default classed;

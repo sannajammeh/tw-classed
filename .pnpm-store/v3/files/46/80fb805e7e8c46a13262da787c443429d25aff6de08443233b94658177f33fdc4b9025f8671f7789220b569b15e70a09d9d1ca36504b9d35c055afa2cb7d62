@@ -1,0 +1,25 @@
+/// <reference types="react" />
+import type * as Polymorphic from "@radix-ui/react-polymorphic";
+export declare type Breakpoints = "sm" | "md" | "lg" | "xl";
+export declare type Modifyer = `hover` | `active` | `focus` | `disabled` | `selected`;
+export declare type TwModifyer = `${Modifyer | Breakpoints}:` | `${Breakpoints}:${Modifyer}:`;
+export declare type ClassNames = string;
+export declare type Variant = Record<string, string>;
+export declare type Variants = Record<string, Variant>;
+export declare type BooleanVariant = Record<"true", string>;
+export declare type VariantConfig<V extends Variants> = {
+    variants?: V;
+    className?: ClassNames;
+    defaultVariants?: Partial<{
+        [K in keyof V]: keyof V[K];
+    }>;
+};
+export declare type ClassNamesAndVariant<V extends Variants> = string | VariantConfig<V>;
+export declare type InferVariantProps<V extends Variants | undefined = undefined> = V extends Variants ? Partial<{
+    [K in keyof V]: V[K] extends BooleanVariant ? boolean : keyof V[K] | undefined;
+}> : {};
+export declare type ClassedComponent<T extends keyof JSX.IntrinsicElements | React.ComponentType<any>, V extends Variants> = Polymorphic.ForwardRefComponent<T, InferVariantProps<V>> & {
+    variants: V;
+};
+export declare type VariantProps<T extends ClassedComponent<any, any>> = InferVariantProps<T["variants"]>;
+//# sourceMappingURL=types.d.ts.map

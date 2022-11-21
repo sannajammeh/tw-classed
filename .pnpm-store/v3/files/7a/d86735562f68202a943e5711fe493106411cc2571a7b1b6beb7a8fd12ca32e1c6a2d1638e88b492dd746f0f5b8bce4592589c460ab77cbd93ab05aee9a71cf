@@ -1,0 +1,8 @@
+import { ClassNames, ClassNamesAndVariant, Variants } from "./types.js";
+export declare const classedParser: (classNames: ClassNames[]) => string;
+export declare const composeParser: <T extends Variants>(classNames: ClassNamesAndVariant<T>[]) => {
+    className: string;
+    variants: T;
+    defaultVariants: Partial<Partial<{ [K in keyof T]: keyof T[K]; }>>;
+};
+//# sourceMappingURL=parser.d.ts.map

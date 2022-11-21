@@ -1,0 +1,39 @@
+{
+  "name": "@radix-ui/react-icons",
+  "private": false,
+  "version": "1.1.1",
+  "license": "MIT",
+  "description": "Radix UI React Icon Set",
+  "authors": [
+    "Vlad Moroz <vlad@modulz.app>",
+    "Pedro Duarte <pedro@modulz.app>",
+    "Colm Tuite <colm@modulz.app>"
+  ],
+  "module": "dist/react-icons.esm.js",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "outline/",
+    "solid/",
+    "dist/",
+    "index.js",
+    "manifest.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "generate-src": "generate-icon-lib --file=9Df5CaFUEomVzn20gRpaX3 && mv ./icons/15/* ./icons && rmdir ./icons/15 && cd ./icons && zip -r ../../../radix-icons.zip ./",
+    "build": "rimraf dist && tsdx build --format es,cjs --entry src/index.tsx",
+    "watch": "rimraf dist && tsdx watch --format es,cjs --entry src/index.tsx",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^16.x || ^17.x || ^18.x"
+  },
+  "devDependencies": {
+    "@modulz/generate-icon-lib": "^0.2.0",
+    "tsdx": "0.14.0"
+  },
+  "gitHead": "efac090e58b8e44ad0ace704e9262d2f82c60050"
+}

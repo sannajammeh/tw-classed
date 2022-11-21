@@ -1,0 +1,36 @@
+{
+  "name": "title",
+  "version": "3.5.3",
+  "description": "Capitalize your titles properly",
+  "main": "./lib/index.js",
+  "repository": "vercel/title",
+  "scripts": {
+    "test": "ava"
+  },
+  "keywords": [
+    "title",
+    "capitalize",
+    "chicago",
+    "manual",
+    "of",
+    "style"
+  ],
+  "bin": {
+    "title": "./bin/title.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "author": "leo",
+  "license": "MIT",
+  "dependencies": {
+    "arg": "1.0.0",
+    "chalk": "2.3.0",
+    "clipboardy": "1.2.2",
+    "titleize": "1.0.0"
+  },
+  "devDependencies": {
+    "ava": "0.25.0"
+  }
+}
