@@ -53,6 +53,7 @@ export interface ClassedFunctionType {
       | string
       | Util.Function
       | {
+          base?: string;
           variants?: { [name: string]: unknown };
         }
     )[]
@@ -64,12 +65,24 @@ export interface ClassedFunctionType {
         : Composers[K] extends string | Util.Function
         ? Composers[K]
         : {
+            base?: string;
             variants: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
                   [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
                 }
               : never;
+
+            compoundVariants?: (("variants" extends keyof Composers[K]
+              ? {
+                  [Name in keyof Composers[K]["variants"]]?:
+                    | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Util.String;
+                }
+              : never) & {
+              className?: Util.String;
+              class?: Util.String;
+            })[];
           };
     }
   ): ClassedComponentType<

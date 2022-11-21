@@ -177,4 +177,18 @@ describe("Composition", () => {
       ])
     ).toBe(true);
   });
+
+  it("Should parse base from variant config object", () => {
+    const button = classed({
+      base: "bg-blue-100",
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    expect(button({ size: "sm" })).toBe("bg-blue-100 text-sm");
+  });
 });

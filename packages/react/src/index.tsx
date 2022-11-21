@@ -1,6 +1,12 @@
 "use client";
 import { forwardRef, useMemo } from "react";
-import { parseClassNames, getVariantSelector, TW_VARS } from "@tw-classed/core";
+import {
+  parseClassNames,
+  getVariantSelector,
+  TW_VARS,
+  getCompoundVariantClasses,
+  mapPropsToVariantClass,
+} from "@tw-classed/core";
 import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";
 
 import type {
@@ -16,7 +22,8 @@ function classed<
   T extends keyof JSX.IntrinsicElements | AnyComponent,
   V extends Variants = {}
 >(elementType: T, ...classNames: ClassNamesAndVariant<V>[]) {
-  const { className, variants, defaultVariants } = parseClassNames(classNames);
+  const { className, variants, defaultVariants, compoundVariants } =
+    parseClassNames(classNames);
   const ClassedComponent = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
       const Component = isClassedComponent(elementType)
@@ -25,23 +32,12 @@ function classed<
 
       // Map props variant to className
       const variantClassNames = useMemo(() => {
-        return Object.keys(variants)
-          .reduce((acc, variantKey) => {
-            const variantSelector = getVariantSelector(variantKey, props, {
-              defaultVariants,
-            });
-
-            if (!variantSelector) return acc; // Skip if no variant in props
-
-            delete props[variantKey];
-
-            const className = variants[variantKey][variantSelector as string]; // Get className from variant
-
-            if (!className) return acc; // Skip if no className
-            return acc.concat(acc.length ? " " + className : className); // Add className to acc
-          }, "")
-          .trim();
-      }, [variants, props]);
+        return mapPropsToVariantClass(
+          { variants, defaultVariants, compoundVariants },
+          props,
+          true
+        );
+      }, [props]);
 
       return (
         <Component
