@@ -1,4 +1,4 @@
-export { default as classed } from "./src/index";
+export { classedProxy as classed } from "./src/proxy";
 
 export type {
   InferVariantProps,

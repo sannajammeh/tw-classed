@@ -15,6 +15,7 @@
     "test:coverage": "turbo run test:coverage",
     "prepublish": "turbo run build --filter=./packages/*",
     "prerelease": "pnpm run build --filter=./packages/* && pnpm run test --filter=./packages/*",
+    "ci:version": "pnpm changeset version",
     "ci:publish": "pnpm run prerelease && changeset publish"
   },
   "repository": {

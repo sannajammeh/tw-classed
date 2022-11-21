@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { TW_VARS } from "@tw-classed/core";
 import React from "react";
 import { describe } from "vitest";
-import classed from "../src";
+import { classed } from "../";
 import { render, screen } from "./test.utils";
 
 describe("Classed", () => {
