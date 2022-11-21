@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import React from "react";
-import classed from "../src";
+import { classed } from "../";
 import { render, screen } from "./test.utils";
 
 it("Should apply compound variants", () => {
