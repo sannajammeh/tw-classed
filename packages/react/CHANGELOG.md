@@ -1,5 +1,12 @@
 # @tw-classed/react
 
+## 1.2.0-canary.0
+
+### Minor Changes
+
+- [`dd615ec4`](https://github.com/sannajammeh/tw-classed/commit/dd615ec433a4b2b6fe1bb96029eda277328aaaaf) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Added support for Proxy API i.e `classed.button(...args)`.
+  Regular classed api is unchanged and will use the proxy API to call the main method
+
 ## 1.1.1
 
 ### Patch Changes
