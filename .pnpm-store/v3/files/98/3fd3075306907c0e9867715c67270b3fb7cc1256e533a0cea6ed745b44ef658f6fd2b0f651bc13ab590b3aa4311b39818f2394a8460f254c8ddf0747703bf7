@@ -1,1 +1,0 @@
-// TODO provide bool helper for AND, OR, XOR
