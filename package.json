@@ -49,6 +49,7 @@
     "kleur": "^4.1.5",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "unbuild": "^1.0.1"
   }
 }
