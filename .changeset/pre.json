@@ -7,6 +7,7 @@
     "@tw-classed/react": "1.1.1"
   },
   "changesets": [
-    "curvy-doors-search"
+    "curvy-doors-search",
+    "large-hats-prove"
   ]
 }
