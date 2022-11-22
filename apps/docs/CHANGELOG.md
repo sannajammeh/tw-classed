@@ -1,5 +1,14 @@
 # beta-docs
 
+## 2.0.3-canary.1
+
+### Patch Changes
+
+- [`da54b916`](https://github.com/sannajammeh/tw-classed/commit/da54b9160435d8f85bd789093389f67c76142712) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Document proxy API
+
+- Updated dependencies [[`da54b916`](https://github.com/sannajammeh/tw-classed/commit/da54b9160435d8f85bd789093389f67c76142712)]:
+  - @tw-classed/react@1.2.0-canary.1
+
 ## 2.0.3-canary.0
 
 ### Patch Changes
