@@ -38,3 +38,18 @@ const Button = classed(
   "hover:bg-blue-700"
 );
 ```
+
+## Using the proxy API
+
+You can also use the proxy API to create a component.
+
+```tsx
+import { classed } from "@tw-classed/react";
+
+const Button = classed.button(
+  "bg-blue-500 text-white font-bold py-2 px-4 rounded-md",
+  "hover:bg-blue-700"
+);
+```
+
+These two APIs are equivalent. The proxy API is just a convenience API, but can introduce Typescript performance disadvantages on slow machines.

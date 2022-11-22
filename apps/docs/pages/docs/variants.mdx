@@ -87,3 +87,39 @@ const Button = classed("button", {
 
 () => <Button>Button</Button>;
 ```
+
+## Compound variants
+
+Compound variants are variants that depend on other variants. They are defined using an array of variants and a `class/className`
+
+You can use the `compoundVariants` key to create compound variants:
+
+```tsx
+const Button = classed("button", {
+  variants: {
+    color: {
+      primary: "text-white bg-blue-500",
+      secondary: "text-white bg-gray-700",
+    },
+    size: {
+      small: "py-2 px-4",
+      medium: "py-3 px-6",
+      large: "py-4 px-8",
+    },
+  },
+  compoundVariants: [
+    {
+      size: "small",
+      color: "primary",
+      class: "rounded", // Classes when both size and color are small and primary will be applied
+      className: "", // This is also supported if you prefer to use className
+    },
+  ],
+});
+
+() => (
+  <Button color="primary" size="medium">
+    Button
+  </Button>
+);
+```
