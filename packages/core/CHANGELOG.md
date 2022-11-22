@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.2.0-canary.2
+
+### Patch Changes
+
+- [#19](https://github.com/sannajammeh/tw-classed/pull/19) [`2d24a386`](https://github.com/sannajammeh/tw-classed/commit/2d24a3864977721d88772b0540e727fb1145459b) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Switch core bundler to unbuild for bundleless exports
+
 ## 1.1.0
 
 ### Minor Changes
