@@ -1,5 +1,39 @@
 # beta-docs
 
+## 2.0.3-canary.3
+
+### Patch Changes
+
+- [#21](https://github.com/sannajammeh/tw-classed/pull/21) [`01c1a8b3`](https://github.com/sannajammeh/tw-classed/commit/01c1a8b3efb3d65ded722e20d5e570034a5f2b28) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Final Proxty API & base property
+
+- Updated dependencies [[`01c1a8b3`](https://github.com/sannajammeh/tw-classed/commit/01c1a8b3efb3d65ded722e20d5e570034a5f2b28)]:
+  - @tw-classed/react@1.2.0-canary.3
+
+## 2.0.3-canary.2
+
+### Patch Changes
+
+- [#19](https://github.com/sannajammeh/tw-classed/pull/19) [`2d24a386`](https://github.com/sannajammeh/tw-classed/commit/2d24a3864977721d88772b0540e727fb1145459b) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Switch core bundler to unbuild for bundleless exports
+
+- Updated dependencies [[`2d24a386`](https://github.com/sannajammeh/tw-classed/commit/2d24a3864977721d88772b0540e727fb1145459b)]:
+  - @tw-classed/react@1.2.0-canary.2
+
+## 2.0.3-canary.1
+
+### Patch Changes
+
+- [`da54b916`](https://github.com/sannajammeh/tw-classed/commit/da54b9160435d8f85bd789093389f67c76142712) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Document proxy API
+
+- Updated dependencies [[`da54b916`](https://github.com/sannajammeh/tw-classed/commit/da54b9160435d8f85bd789093389f67c76142712)]:
+  - @tw-classed/react@1.2.0-canary.1
+
+## 2.0.3-canary.0
+
+### Patch Changes
+
+- Updated dependencies [[`dd615ec4`](https://github.com/sannajammeh/tw-classed/commit/dd615ec433a4b2b6fe1bb96029eda277328aaaaf)]:
+  - @tw-classed/react@1.2.0-canary.0
+
 ## 2.0.2
 
 ### Patch Changes

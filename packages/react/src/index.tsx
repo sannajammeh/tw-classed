@@ -1,9 +1,7 @@
 import { forwardRef, useMemo } from "react";
 import {
   parseClassNames,
-  getVariantSelector,
   TW_VARS,
-  getCompoundVariantClasses,
   mapPropsToVariantClass,
 } from "@tw-classed/core";
 import type { Variants, ClassNamesAndVariant } from "@tw-classed/core";

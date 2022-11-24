@@ -66,7 +66,7 @@ export interface ClassedFunctionType {
         ? Composers[K]
         : {
             base?: string;
-            variants: Variants;
+            variants?: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
                   [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
@@ -91,3 +91,53 @@ export interface ClassedFunctionType {
     ClassedComponentVariants<Composers>
   >;
 }
+
+export interface ClassedProxyFunctionType<
+  Type extends keyof JSX.IntrinsicElements | AnyComponent
+> {
+  <
+    Composers extends (
+      | string
+      | Util.Function
+      | {
+          base?: string;
+          variants?: { [name: string]: unknown };
+        }
+    )[]
+  >(
+    ...composers: {
+      [K in keyof Composers]: string extends Composers[K]
+        ? Composers[K]
+        : Composers[K] extends string | Util.Function
+        ? Composers[K]
+        : {
+            base?: string;
+            variants?: Variants;
+            defaultVariants?: "variants" extends keyof Composers[K]
+              ? {
+                  [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
+                }
+              : never;
+
+            compoundVariants?: (("variants" extends keyof Composers[K]
+              ? {
+                  [Name in keyof Composers[K]["variants"]]?:
+                    | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Util.String;
+                }
+              : never) & {
+              className?: Util.String;
+              class?: Util.String;
+            })[];
+          };
+    }
+  ): ClassedComponentType<
+    Type,
+    ClassedComponentProps<Composers>,
+    ClassedComponentVariants<Composers>
+  >;
+}
+
+export type ClassedFunctionProxy = ClassedFunctionType & {
+  [K in keyof JSX.IntrinsicElements]: ClassedProxyFunctionType<K>;
+};

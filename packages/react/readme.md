@@ -6,17 +6,19 @@
 
 A Stitches & Styled-Components inspired library to create reusable Tailwind based components, fully typed with polymorphic `as` prop, media queries and interaction support.
 
+See the [documentation](https://tw-classed.vercel.app/) for more information.
+
 ## Installation
 
 ```bash
-npm i tw-classed
+npm i @tw-classed/react
 ```
 
 ## Usage
 
 ```tsx
 // With `tw-classed`
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 const Button = classed("button", "bg-blue-500 text-white p-4 rounded-md");
 
 // Without `tw-classed`
@@ -40,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 ```tsx
 // Grid.tsx
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 
 const Grid = classed(
   "div",
@@ -60,7 +62,7 @@ Later use the key i.e color prop to set the variant.
 
 ```tsx
 // Button.tsx
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 
 const Button = classed("button", "p-4 rounded-md", {
   variants: {
@@ -90,7 +92,7 @@ const MyApp = () => {
 This allows for TypeScript intellisense to infer props based on the `as` prop.
 
 ```tsx
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 
 const Button = classed("button", "bg-blue-500 text-white p-4 rounded-md");
 
@@ -102,16 +104,6 @@ const MyApp = () => {
   );
 };
 ```
-
-## Coverage
-
------------|---------|----------|---------|---------|-------------------
-File | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
------------|---------|----------|---------|---------|-------------------
-All files | 100 | 100 | 100 | 100 |  
- index.tsx | 100 | 100 | 100 | 100 |  
- parser.ts | 100 | 100 | 100 | 100 |  
------------|---------|----------|---------|---------|-------------------
 
 ## Contributing
 
@@ -126,8 +118,3 @@ This library uses pnpm as package manager, Vitest for testing, tsc as compiler a
 7. Create a pull request and await review
 
 > This is still under development, and the API is subject to change. Thanks for your patience.
-
-**Upcoming**
-
-- [ ] compoundVariants support
-- [ ] TS Support for `as={ComponentFn}` prop (currently only `keyof JSX.InstrinsicElements`)

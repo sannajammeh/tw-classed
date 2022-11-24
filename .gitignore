@@ -21,3 +21,5 @@ coverage/tmp/**
 .env 
 
 .pnpm-store
+
+.trace_dir

@@ -4,5 +4,6 @@
   "variants": "Variants",
   "composing-components": "Composing components",
   "typescript": "TypeScript",
-  "vscode-setup": "VSCode Setup"
+  "vscode-setup": "VSCode Setup",
+  "changelog": "Changelog"
 }
