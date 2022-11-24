@@ -66,7 +66,7 @@ export interface ClassedFunctionType {
         ? Composers[K]
         : {
             base?: string;
-            variants: Variants;
+            variants?: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
                   [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
@@ -112,7 +112,7 @@ export interface ClassedProxyFunctionType<
         ? Composers[K]
         : {
             base?: string;
-            variants: Variants;
+            variants?: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
                   [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
