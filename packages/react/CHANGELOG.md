@@ -1,5 +1,23 @@
 # @tw-classed/react
 
+## 1.2.0
+
+### Minor Changes
+
+- [#17](https://github.com/sannajammeh/tw-classed/pull/17) [`dd615ec4`](https://github.com/sannajammeh/tw-classed/commit/dd615ec433a4b2b6fe1bb96029eda277328aaaaf) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Added support for Proxy API i.e `classed.button(...args)`.
+  Regular classed api is unchanged and will use the proxy API to call the main method
+
+### Patch Changes
+
+- [#21](https://github.com/sannajammeh/tw-classed/pull/21) [`da54b916`](https://github.com/sannajammeh/tw-classed/commit/da54b9160435d8f85bd789093389f67c76142712) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Document proxy API
+
+- [#19](https://github.com/sannajammeh/tw-classed/pull/19) [`2d24a386`](https://github.com/sannajammeh/tw-classed/commit/2d24a3864977721d88772b0540e727fb1145459b) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Switch core bundler to unbuild for bundleless exports
+
+- [#21](https://github.com/sannajammeh/tw-classed/pull/21) [`01c1a8b3`](https://github.com/sannajammeh/tw-classed/commit/01c1a8b3efb3d65ded722e20d5e570034a5f2b28) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Final Proxty API & base property
+
+- Updated dependencies [[`2d24a386`](https://github.com/sannajammeh/tw-classed/commit/2d24a3864977721d88772b0540e727fb1145459b), [`01c1a8b3`](https://github.com/sannajammeh/tw-classed/commit/01c1a8b3efb3d65ded722e20d5e570034a5f2b28)]:
+  - @tw-classed/core@1.2.0
+
 ## 1.2.0-canary.3
 
 ### Patch Changes
