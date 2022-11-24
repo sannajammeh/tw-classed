@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.2.0-canary.3
+
+### Patch Changes
+
+- [#21](https://github.com/sannajammeh/tw-classed/pull/21) [`01c1a8b3`](https://github.com/sannajammeh/tw-classed/commit/01c1a8b3efb3d65ded722e20d5e570034a5f2b28) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Final Proxty API & base property
+
 ## 1.2.0-canary.2
 
 ### Patch Changes
