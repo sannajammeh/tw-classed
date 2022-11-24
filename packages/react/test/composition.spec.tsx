@@ -157,3 +157,41 @@ it("Should handle complex composition", () => {
   expect(screen.getByTestId("d")).toHaveClass("rounded-sm");
   expect(screen.getByTestId("d").tagName).toBe("BUTTON");
 });
+
+it("Should work with regular react component", () => {
+  const Button = classed("button", "bg-red-500", {
+    variants: {
+      size: {
+        sm: "text-sm",
+        md: "text-md",
+      },
+    },
+  });
+
+  const Hello: React.FC<
+    {
+      children?: React.ReactNode;
+      color: string;
+    } & React.ButtonHTMLAttributes<HTMLButtonElement>
+  > = ({ children, color, ...props }) => {
+    return (
+      <button style={{ color }} {...props}>
+        {children}
+      </button>
+    );
+  };
+
+  const HelloButton = classed(Hello, Button);
+
+  render(<HelloButton color="red" size="sm" data-testid="hello-button" />);
+
+  expect(screen.getByTestId("hello-button")).toHaveClass("bg-red-500");
+  expect(screen.getByTestId("hello-button")).toHaveClass("text-sm");
+
+  render(
+    <Button as={Hello} color="red" size="sm" data-testid="hello-button1" />
+  );
+
+  expect(screen.getByTestId("hello-button1")).toHaveClass("bg-red-500");
+  expect(screen.getByTestId("hello-button1")).toHaveClass("text-sm");
+});
