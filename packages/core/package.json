@@ -2,12 +2,11 @@
   "name": "@tw-classed/core",
   "version": "1.2.0",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
-  "type": "module",
   "sideEffects": false,
   "files": [
     "dist"
   ],
-  "main": "dist/esm/index.mjs",
+  "main": "dist/cjs/index.js",
   "types": "dist/esm/index.d.ts",
   "exports": {
     ".": {
