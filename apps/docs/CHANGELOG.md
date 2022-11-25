@@ -1,5 +1,12 @@
 # beta-docs
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`c6d76b9e`](https://github.com/sannajammeh/tw-classed/commit/c6d76b9e77262a227b6430e32a3e2fc95a32a58f)]:
+  - @tw-classed/react@1.2.1
+
 ## 2.0.3
 
 ### Patch Changes
