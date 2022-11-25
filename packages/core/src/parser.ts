@@ -20,14 +20,20 @@ export const parseClassNames = <TVariants extends Variants>(
     Required<VariantConfig<TVariants>>["defaultVariants"]
   >;
   let compoundVariants = [] as Record<string, any>[];
+  // TODO - ADD check for undefined
   for (const className of classNames) {
+    if (!className) continue;
+
     if (typeof className === "string") {
       stringClassNames.push(className);
       continue;
     }
 
     // If className is a function, it is a classed producer. Check for Symbol
-    if (Reflect.has(className, TW_VARS)) {
+    if (
+      (typeof className === "function" || typeof className === "object") &&
+      Reflect.has(className, TW_VARS)
+    ) {
       const record: VariantConfig<TVariants> = Reflect.get(className, TW_VARS);
       // Merge variants
       Object.assign(variantObj, record.variants);
