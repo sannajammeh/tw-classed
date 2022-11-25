@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.2.1
+
+### Patch Changes
+
+- [#27](https://github.com/sannajammeh/tw-classed/pull/27) [`c6d76b9e`](https://github.com/sannajammeh/tw-classed/commit/c6d76b9e77262a227b6430e32a3e2fc95a32a58f) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fixes Reflect.has api bug
+
 ## 1.2.0
 
 ### Patch Changes
