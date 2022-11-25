@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.2.2
+
+### Patch Changes
+
+- [#30](https://github.com/sannajammeh/tw-classed/pull/30) [`1cc8c2e6`](https://github.com/sannajammeh/tw-classed/commit/1cc8c2e6dcb407e21897f4360aa1ba4ae608b44e) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix core require
+
 ## 1.2.1
 
 ### Patch Changes
