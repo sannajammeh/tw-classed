@@ -27,7 +27,10 @@ export const parseClassNames = <TVariants extends Variants>(
     }
 
     // If className is a function, it is a classed producer. Check for Symbol
-    if (Reflect.has(className, TW_VARS)) {
+    if (
+      (typeof className === "function" || typeof className === "object") &&
+      Reflect.has(className, TW_VARS)
+    ) {
       const record: VariantConfig<TVariants> = Reflect.get(className, TW_VARS);
       // Merge variants
       Object.assign(variantObj, record.variants);
