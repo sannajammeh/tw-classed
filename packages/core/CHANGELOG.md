@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.2.3-canary.0
+
+### Patch Changes
+
+- [#33](https://github.com/sannajammeh/tw-classed/pull/33) [`92617148`](https://github.com/sannajammeh/tw-classed/commit/92617148c2243b2d6a1fe42ccb1cfaa6fe1390d7) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix numeric variants
+
 ## 1.2.2
 
 ### Patch Changes
