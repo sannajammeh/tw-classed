@@ -15,13 +15,15 @@ import { COMPONENT_SYMBOL, isClassedComponent } from "./utility/unique";
 
 export * from "./types";
 
+const cx = (...args: string[]) => args.filter(Boolean).join(" ");
+
 function classed<
   T extends keyof JSX.IntrinsicElements | AnyComponent,
   V extends Variants = {}
 >(elementType: T, ...classNames: ClassNamesAndVariant<V>[]) {
   const { className, variants, defaultVariants, compoundVariants } =
     parseClassNames(classNames);
-  const ClassedComponent = forwardRef(
+  const Comp = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
       const Component = isClassedComponent(elementType)
         ? elementType
@@ -38,11 +40,7 @@ function classed<
 
       return (
         <Component
-          className={
-            className +
-            (cName ? " " + cName : "") +
-            (variantClassNames ? " " + variantClassNames : "")
-          }
+          className={cx(className, cName, variantClassNames)}
           {...props}
           as={isClassedComponent(elementType) ? as : undefined}
           ref={forwardedRef}
@@ -51,17 +49,17 @@ function classed<
     }
   ) as unknown as ClassedComponentType<T, V>; // Add variant types
 
-  ClassedComponent.displayName = `TwComponent(${elementType.toString()})`;
+  Comp.displayName = `TwComponent(${elementType.toString()})`;
   // Set variables to check if component is classed
-  Reflect.set(ClassedComponent, TW_VARS, {
+  Reflect.set(Comp, TW_VARS, {
     className,
     variants,
     defaultVariants,
   });
 
-  Reflect.set(ClassedComponent, COMPONENT_SYMBOL, true);
+  Reflect.set(Comp, COMPONENT_SYMBOL, true);
 
-  return ClassedComponent;
+  return Comp;
 }
 
 export default classed as ClassedFunctionType;
