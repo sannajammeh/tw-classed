@@ -1,5 +1,14 @@
 # @tw-classed/react
 
+## 1.2.3-canary.1
+
+### Patch Changes
+
+- [`55e8b2b8`](https://github.com/sannajammeh/tw-classed/commit/55e8b2b808fbcf611eec3e0551727469ddc16e97) Thanks [@sannajammeh](https://github.com/sannajammeh)! - ES2018 build spec, code refactor, readme updates
+
+- Updated dependencies [[`55e8b2b8`](https://github.com/sannajammeh/tw-classed/commit/55e8b2b808fbcf611eec3e0551727469ddc16e97)]:
+  - @tw-classed/core@1.2.3-canary.1
+
 ## 1.2.3-canary.0
 
 ### Patch Changes
