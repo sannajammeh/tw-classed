@@ -35,9 +35,7 @@ export type ClassedProducer<V extends Variants = {}> = ((
 export type InferVariantProps<V extends Variants | undefined = undefined> =
   V extends Variants
     ? Partial<{
-        [K in keyof V]: V[K] extends BooleanVariant
-          ? boolean
-          : keyof V[K] | undefined;
+        [K in keyof V]: Util.Widen<keyof V[K]>;
       }>
     : {};
 
@@ -98,7 +96,9 @@ export interface ClassedCoreFunctionType {
             variants?: Variants;
             defaultVariants?: "variants" extends keyof Composers[K]
               ? {
-                  [Name in keyof Composers[K]["variants"]]?: keyof Composers[K]["variants"][Name];
+                  [Name in keyof Composers[K]["variants"]]?: Util.Widen<
+                    keyof Composers[K]["variants"][Name]
+                  >;
                 }
               : never;
             compoundVariants?: (("variants" extends keyof Composers[K]
