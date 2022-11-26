@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "docs": "2.0.5",
+    "@tw-classed/core": "1.2.2",
+    "@tw-classed/react": "1.2.2"
+  },
+  "changesets": []
+}

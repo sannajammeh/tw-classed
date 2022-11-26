@@ -90,8 +90,12 @@ export const getVariantSelector = <TVariants extends Variants>(
     variantSelector = variantValue;
   } else if (typeof (variantValue as unknown as boolean) === "boolean") {
     variantSelector = variantValue!.toString();
+  } else if (typeof (variantValue as unknown as number) === "number") {
+    variantSelector = variantValue!.toString();
   } else {
-    variantSelector = defaultVariants?.[variantKey] as string | undefined;
+    variantSelector = defaultVariants?.[variantKey]?.toString() as
+      | string
+      | undefined;
   }
 
   return variantSelector;
@@ -118,6 +122,7 @@ export const mapPropsToVariantClass = <
     const variantSelector = getVariantSelector(variantKey, props, {
       defaultVariants,
     });
+
     if (!variantSelector) return acc;
     shouldDeleteProps && matchedKeys.push(variantKey);
     const variantClassName = variants[variantKey][variantSelector];
