@@ -1,6 +1,6 @@
 ![tw-classed](https://raw.githubusercontent.com/sannajammeh/tw-classed/master/tw-classed.jpg)
 
-![npm](https://img.shields.io/npm/v/tw-classed?logoColor=%23000000&style=for-the-badge) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/tw-classed?label=GZIP%20Size&logoColor=%23000000&style=for-the-badge) ![NPM](https://img.shields.io/npm/l/tw-classed?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/@tw-classed/react?logoColor=%23000000&style=for-the-badge) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@tw-classed/react?label=GZIP%20Size&logoColor=%23000000&style=for-the-badge) ![NPM](https://img.shields.io/npm/l/@tw-classed/react?style=for-the-badge)
 
 # tw-classed
 
@@ -116,5 +116,3 @@ This library uses pnpm as package manager, Vitest for testing, tsc as compiler a
 5. Make sure coverage is acceptable by running `pnpm run coverage`
 6. Commit your changes and push them to your new branch
 7. Create a pull request and await review
-
-> This is still under development, and the API is subject to change. Thanks for your patience.
