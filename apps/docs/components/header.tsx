@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { TbBrandTailwind } from "react-icons/tb";
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 import { AppBar } from "./ui";
 
 const Header = () => {

@@ -2,7 +2,7 @@ import { Button, Text } from "components/ui";
 import { NextPage } from "next";
 import Link from "next/link";
 import { FiArrowRight, FiExternalLink } from "react-icons/fi";
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 import {
   UpdateIcon,
   LayersIcon,

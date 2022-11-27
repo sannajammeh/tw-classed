@@ -1,4 +1,4 @@
-import classed from "tw-classed";
+import { classed } from "@tw-classed/react";
 
 const Text = classed("p", "leading-normal", {
   variants: {
