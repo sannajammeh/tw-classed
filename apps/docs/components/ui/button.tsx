@@ -1,8 +1,7 @@
 import { classed } from "@tw-classed/react";
 
 export const Button = classed("button", {
-  className:
-    "flex items-center gap-2 font-medium transition-colors border border-transparent focus:outline focus:outline-2",
+  base: "flex items-center gap-2 font-medium transition-colors border border-transparent focus:outline focus:outline-2",
   variants: {
     color: {
       blue: "bg-radix-blue5 text-radix-blue10 hover:bg-radix-blue4 hover:border-radix-blue8 !outline-radix-blue7",

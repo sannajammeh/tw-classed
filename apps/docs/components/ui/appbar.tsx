@@ -1,7 +1,7 @@
 import { classed } from "@tw-classed/react";
 
 export const AppBar = classed("header", {
-  className: "top-0 z-50",
+  base: "top-0 z-50",
   variants: {
     size: {
       md: "h-12",
