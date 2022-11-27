@@ -69,6 +69,37 @@ describe("Core functionality", () => {
 
     expect(button()).toBe("bg-blue-100 text-md");
   });
+
+  it("Should handle numerical variants", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          1: "text-sm",
+          2: "text-md",
+          "3": "text-lg",
+        },
+      },
+    });
+
+    const button2 = classed("bg-blue-100", {
+      variants: {
+        size: {
+          1: "text-sm",
+          2: "text-md",
+          3: "text-lg",
+        },
+      },
+      defaultVariants: {
+        size: 3,
+      },
+    });
+
+    expect(button({ size: 1 })).toBe("bg-blue-100 text-sm");
+
+    expect(button({ size: "3" })).toBe("bg-blue-100 text-lg");
+
+    expect(button2()).toBe("bg-blue-100 text-lg");
+  });
 });
 
 describe("Composition", () => {

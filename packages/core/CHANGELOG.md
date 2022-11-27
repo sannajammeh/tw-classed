@@ -1,5 +1,17 @@
 # @tw-classed/core
 
+## 1.2.3-canary.1
+
+### Patch Changes
+
+- [`55e8b2b8`](https://github.com/sannajammeh/tw-classed/commit/55e8b2b808fbcf611eec3e0551727469ddc16e97) Thanks [@sannajammeh](https://github.com/sannajammeh)! - ES2018 build spec, code refactor, readme updates
+
+## 1.2.3-canary.0
+
+### Patch Changes
+
+- [#33](https://github.com/sannajammeh/tw-classed/pull/33) [`92617148`](https://github.com/sannajammeh/tw-classed/commit/92617148c2243b2d6a1fe42ccb1cfaa6fe1390d7) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix numeric variants
+
 ## 1.2.2
 
 ### Patch Changes

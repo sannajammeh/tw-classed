@@ -29,41 +29,18 @@ export const parseClassNames = <TVariants extends Variants>(
       continue;
     }
 
-    // If className is a function, it is a classed producer. Check for Symbol
-    if (
-      (typeof className === "function" || typeof className === "object") &&
-      Reflect.has(className, TW_VARS)
-    ) {
-      const record: VariantConfig<TVariants> = Reflect.get(className, TW_VARS);
-      // Merge variants
-      Object.assign(variantObj, record.variants);
-      // Merge default variants
-      Object.assign(defaultVariants, record.defaultVariants);
+    if (typeof className === "object" || typeof className === "function") {
+      const record: VariantConfig<TVariants> = Reflect.has(className, TW_VARS)
+        ? Reflect.get<VariantConfig<TVariants>, symbol>(className, TW_VARS)
+        : (className as VariantConfig<TVariants>);
+
+      record.variants && Object.assign(variantObj, record.variants);
+      record.defaultVariants &&
+        Object.assign(defaultVariants, record.defaultVariants);
       record.compoundVariants &&
         compoundVariants.push(...record.compoundVariants);
-      // Merge className
       record.className && stringClassNames.push(record.className);
       record.base && stringClassNames.push(record.base);
-      continue;
-    }
-
-    if (className.variants) {
-      Object.assign(variantObj, className.variants);
-    }
-
-    if (className.defaultVariants) {
-      Object.assign(defaultVariants, (className as any).defaultVariants);
-    }
-
-    if (className.compoundVariants) {
-      compoundVariants.push(...className.compoundVariants);
-    }
-
-    if ((className as VariantConfig<TVariants>).className) {
-      stringClassNames.push((className as any).className);
-    }
-    if ((className as VariantConfig<TVariants>).base) {
-      stringClassNames.push((className as any).base);
     }
   }
 
@@ -84,17 +61,8 @@ export const getVariantSelector = <TVariants extends Variants>(
   { defaultVariants }: Pick<VariantConfig<TVariants>, "defaultVariants">
 ) => {
   const variantValue = props[variantKey];
-  let variantSelector!: string | undefined;
-
-  if (typeof variantValue === "string") {
-    variantSelector = variantValue;
-  } else if (typeof (variantValue as unknown as boolean) === "boolean") {
-    variantSelector = variantValue!.toString();
-  } else {
-    variantSelector = defaultVariants?.[variantKey] as string | undefined;
-  }
-
-  return variantSelector;
+  const vStringValue = variantValue?.toString();
+  return vStringValue || defaultVariants?.[variantKey]?.toString();
 };
 
 export const mapPropsToVariantClass = <
@@ -118,6 +86,7 @@ export const mapPropsToVariantClass = <
     const variantSelector = getVariantSelector(variantKey, props, {
       defaultVariants,
     });
+
     if (!variantSelector) return acc;
     shouldDeleteProps && matchedKeys.push(variantKey);
     const variantClassName = variants[variantKey][variantSelector];

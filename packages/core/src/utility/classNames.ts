@@ -1,4 +1,5 @@
-export const cx = (classNames: string[]) => classNames.join(" ");
+export const cx = (classNames: string[]) =>
+  classNames.filter(Boolean).join(" ");
 
 export const mergeClass = (
   c1: string,
@@ -7,9 +8,6 @@ export const mergeClass = (
   if (typeof c2 === "boolean") return c1;
   if (!c2) return c1;
   // Check if c1 is empty
-  if (c1.length === 0) return c2;
-  // Check if c2 is empty
-  if (c2.length === 0) return c1;
-
+  if (!c1) return c2;
   return c1 + " " + c2;
 };

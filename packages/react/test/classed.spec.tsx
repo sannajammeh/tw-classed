@@ -132,6 +132,40 @@ describe("Classed with Variants", () => {
 
     expect(screen.getByTestId("btn")).toHaveClass("border-2 border-gray-500");
   });
+
+  it("Should handle numerical variants", () => {
+    const Button = classed("button", {
+      variants: {
+        size: {
+          1: "text-xs",
+          2: "text-sm",
+          3: "text-base",
+          "4": "text-lg",
+        },
+      },
+    });
+
+    const Button2 = classed("button", {
+      variants: {
+        size: {
+          1: "text-xs",
+          2: "text-sm",
+          3: "text-base",
+        },
+      },
+
+      defaultVariants: {
+        size: "3",
+      },
+    });
+
+    render(<Button size={"4"} data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("text-lg");
+
+    render(<Button2 data-testid="btn2" />);
+    expect(screen.getByTestId("btn2")).toHaveClass("text-base");
+  });
 });
 
 describe("Composition", () => {

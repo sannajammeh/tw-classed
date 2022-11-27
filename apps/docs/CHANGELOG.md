@@ -1,5 +1,23 @@
 # beta-docs
 
+## 2.0.6-canary.1
+
+### Patch Changes
+
+- [`55e8b2b8`](https://github.com/sannajammeh/tw-classed/commit/55e8b2b808fbcf611eec3e0551727469ddc16e97) Thanks [@sannajammeh](https://github.com/sannajammeh)! - ES2018 build spec, code refactor, readme updates
+
+- Updated dependencies [[`55e8b2b8`](https://github.com/sannajammeh/tw-classed/commit/55e8b2b808fbcf611eec3e0551727469ddc16e97)]:
+  - @tw-classed/react@1.2.3-canary.1
+
+## 2.0.6-canary.0
+
+### Patch Changes
+
+- [#33](https://github.com/sannajammeh/tw-classed/pull/33) [`92617148`](https://github.com/sannajammeh/tw-classed/commit/92617148c2243b2d6a1fe42ccb1cfaa6fe1390d7) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix numeric variants
+
+- Updated dependencies [[`92617148`](https://github.com/sannajammeh/tw-classed/commit/92617148c2243b2d6a1fe42ccb1cfaa6fe1390d7)]:
+  - @tw-classed/react@1.2.3-canary.0
+
 ## 2.0.5
 
 ### Patch Changes
