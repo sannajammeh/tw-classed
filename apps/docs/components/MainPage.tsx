@@ -13,6 +13,7 @@ import {
 import { NextSeo } from "next-seo";
 import { Aos } from "utils/aos";
 import { useEffect } from "react";
+import Stats from "./Stats";
 
 const Home: NextPage<{}> = ({}) => {
   useEffect(() => {
@@ -154,23 +155,7 @@ const Home: NextPage<{}> = ({}) => {
           </FeatureCard>
         </section>
         <Divider />
-        <section data-aos="fadeInUp" data-aos-mount>
-          <h2 className="text-center text-4xl font-bold mb-4">Stats</h2>
-          <StatList>
-            <Stat>
-              Bundle size ( core )<StatValue>0.6kb</StatValue>
-            </Stat>
-            <Stat>
-              Bundle size ( react )<StatValue>0.97kb</StatValue>
-            </Stat>
-            <Stat>
-              Variants
-              <StatValue>
-                <span className="text-radix-cyan11">∞</span>
-              </StatValue>
-            </Stat>
-          </StatList>
-        </section>
+        <Stats />
         <Divider />
 
         <div className="my-12 block"></div>
