@@ -3,10 +3,14 @@ import React from "react";
 import useSWR from "swr";
 import { BundleSizes } from "types/BundleSizes";
 
-const Stats = () => {
-  const { data: bundlesize } = useSWR<BundleSizes>("/api/bundlesize", (url) =>
+export const useBundleSize = () => {
+  return useSWR<BundleSizes>("/api/bundlesize", (url) =>
     fetch(url).then((r) => r.json())
   );
+};
+
+const Stats = () => {
+  const { data: bundlesize } = useBundleSize();
 
   return (
     <section data-aos="fadeInUp" data-aos-mount>
@@ -41,7 +45,7 @@ const StatList = classed(
 const Stat = classed("li", "flex flex-col text-lg text-radix-slate11");
 const StatValue = classed("span", "text-3xl font-bold text-radix-slate12");
 
-const formatBytes = (bytes?: number) => {
+export const formatBytes = (bytes?: number) => {
   if (!bytes) return "0kb";
   try {
     const ByteFormatter = new Intl.NumberFormat("en", {

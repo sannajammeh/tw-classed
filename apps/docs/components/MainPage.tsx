@@ -13,9 +13,10 @@ import {
 import { NextSeo } from "next-seo";
 import { Aos } from "utils/aos";
 import { useEffect } from "react";
-import Stats from "./Stats";
+import Stats, { formatBytes, useBundleSize } from "./Stats";
 
 const Home: NextPage<{}> = ({}) => {
+  const { data: bundlesize } = useBundleSize();
   useEffect(() => {
     const unobserve = Aos.observeAll(
       document.querySelectorAll<HTMLElement>("[data-aos]")
@@ -150,7 +151,10 @@ const Home: NextPage<{}> = ({}) => {
             <FeatureTitle>Tiny</FeatureTitle>
             <Text className="mt-1" color="secondary">
               Acheive excellent DX and performance with only{" "}
-              <small className="text-radix-cyan11">~975b</small> of code!
+              <small className="text-radix-cyan11">
+                ~{formatBytes(bundlesize?.react.gzip)}
+              </small>{" "}
+              of code!
             </Text>
           </FeatureCard>
         </section>
