@@ -1,21 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
-import { exec } from "shelljs";
+import type { NextApiResponse } from "next";
 
 const getStats = (lib: string) => {
-  return new Promise<string>((resolve, reject) => {
-    exec(
-      `bundle-phobia --json ${lib}`,
-      { silent: true },
-      (code, stdout, stderr) => {
-        if (code !== 0) {
-          reject(stderr);
-        } else {
-          resolve(JSON.parse(stdout));
-        }
-      }
-    );
-  });
+  return fetch(`https://bundlephobia.com/api/size?package=${lib}`).then((res) =>
+    res.json()
+  );
 };
 
 export default async function handler(_: any, res: NextApiResponse) {
