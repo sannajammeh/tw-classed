@@ -13,7 +13,7 @@ By adding this script to your `settings.json` in the workspace or globally, you 
 {
   // ... settings
   "tailwindCSS.experimental.classRegex": [
-    ["tailwind|classed\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["classed(?:\\.\\w*)?\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ]
 }
 ```
