@@ -1,5 +1,14 @@
 # beta-docs
 
+## 2.0.7
+
+### Patch Changes
+
+- [`413c87d1`](https://github.com/sannajammeh/tw-classed/commit/413c87d1ab54fc26793b44c5b49e9082aaf2c183) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Export VariantProps from core, document variant props in core docs
+
+- Updated dependencies []:
+  - @tw-classed/react@1.2.4
+
 ## 2.0.6
 
 ### Patch Changes
