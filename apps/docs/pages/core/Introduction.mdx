@@ -53,8 +53,31 @@ document.body.appendChild(Button);
 
 The library is written in typescript and provides types for all the functions and options.
 
+### Getting variants
+
+```ts
+import { classed, VariantProps } from "@tw-classed/core";
+
+const button = classed("flex items-center", {
+  variants: {
+    size: {
+      1: "px-2 py-1 text-sm",
+      2: "px-4 py-2 text-base",
+      3: "px-6 py-3 text-lg",
+    },
+    color: {
+      blue: "bg-blue-300",
+      red: "bg-red-300",
+    },
+  },
+});
+
+type ButtonVariants = VariantProps<typeof button>;
+// ButtonVariants = { size?: "1" | "2" | "3"; color?: "blue" | "red" }
+```
+
 <Link href="/docs/typescript">
   <a className="flex w-max rounded-lg font-medium px-2 py-1 text-radix-blue11 blue-cta-int blue-border-int border-2 mt-4">
-    Typescript guide
+    React Typescript guide
   </a>
 </Link>

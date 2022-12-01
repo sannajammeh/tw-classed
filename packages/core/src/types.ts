@@ -75,6 +75,10 @@ export type ClassedVariants<T extends any[]> =
     : {}) &
     (T extends [lead: any, ...tail: infer V] ? ClassedVariants<V> : {});
 
+export type VariantProps<T extends ClassedType<any, any>> = InferVariantProps<
+  T[$$ClassedVariants]["variants"]
+>;
+
 export interface ClassedCoreFunctionType {
   <
     Composers extends (
