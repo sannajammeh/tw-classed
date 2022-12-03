@@ -210,4 +210,46 @@ describe("Composition", () => {
 
     expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
   });
+
+  it("Should correctly support boolean variants", () => {
+    const BasicButton = classed("button", {
+      variants: { loading: { true: "animate-pulse" } },
+    });
+
+    const ButtonContent = classed("div", {
+      variants: { loading: { false: "invisible" } },
+    });
+
+    const Button = ({
+      loading,
+      children,
+      ...props
+    }: React.ComponentProps<typeof BasicButton>) => (
+      <BasicButton loading={loading} {...props}>
+        <ButtonContent
+          data-testid={props["data-innertestid"]}
+          loading={loading}
+        >
+          {children}
+        </ButtonContent>
+        {/* => Type 'boolean | "true" | undefined' is not assignable to type 'boolean | "false" | undefined'. */}
+      </BasicButton>
+    );
+
+    render(
+      <Button data-testid="a1" data-innertestid="a2" loading={false}>
+        Click me
+      </Button>
+    );
+    expect(screen.getByTestId("a1")).not.toHaveClass("animate-pulse");
+    expect(screen.getByTestId("a2")).toHaveClass("invisible");
+
+    render(
+      <Button data-testid="b1" data-innertestid="b2" loading={true}>
+        Click me
+      </Button>
+    );
+    expect(screen.getByTestId("b1")).toHaveClass("animate-pulse");
+    expect(screen.getByTestId("b2")).not.toHaveClass("invisible");
+  });
 });

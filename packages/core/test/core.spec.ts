@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { classed } from "../src/classed";
+import { VariantProps } from "../src/types";
 
 const classIncludes = (className: string, classes: string[]) => {
   return classes.every((c) => className.includes(c));
@@ -52,6 +53,48 @@ describe("Core functionality", () => {
     });
 
     expect(button({ disabled: true })).toBe("bg-blue-100 opacity-50");
+  });
+
+  it("Should allow for composable boolean variants", () => {
+    const BasicButton = classed("bg-blue-100", {
+      variants: { loading: { true: "opacity-50" } },
+    });
+
+    const ButtonContent = classed("flex items-center justify-center", {
+      variants: { loading: { false: "invisible" } },
+    });
+
+    const Button = (props: VariantProps<typeof BasicButton>) => {
+      return (BasicButton(props) + " " + ButtonContent(props)).trim();
+    };
+
+    expect(
+      classIncludes(
+        Button({ loading: true }),
+        "bg-blue-100 opacity-50".split(" ")
+      )
+    ).toBe(true);
+
+    expect(
+      classIncludes(
+        Button({ loading: false }),
+        "bg-blue-100 flex items-center justify-center invisible".split(" ")
+      )
+    ).toBe(true);
+
+    expect(
+      classIncludes(
+        Button({ loading: "false" }),
+        "bg-blue-100 flex items-center justify-center invisible".split(" ")
+      )
+    ).toBe(true);
+
+    expect(
+      classIncludes(
+        Button({ loading: "true" }),
+        "bg-blue-100 opacity-50".split(" ")
+      )
+    ).toBe(true);
   });
 
   it("Should apply default variants", () => {
