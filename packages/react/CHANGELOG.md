@@ -1,5 +1,14 @@
 # @tw-classed/react
 
+## 1.2.5
+
+### Patch Changes
+
+- [`9d8f12f4`](https://github.com/sannajammeh/tw-classed/commit/9d8f12f4d0b8cfbc9f05809a1f67fa08b81ccd23) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Widen types of boolean variants
+
+- Updated dependencies [[`9d8f12f4`](https://github.com/sannajammeh/tw-classed/commit/9d8f12f4d0b8cfbc9f05809a1f67fa08b81ccd23)]:
+  - @tw-classed/core@1.2.5
+
 ## 1.2.4
 
 ### Patch Changes
