@@ -1,3 +1,5 @@
+![tw-classed](https://raw.githubusercontent.com/sannajammeh/tw-classed/master/tw-classed.jpg)
+
 # TW Classed
 
 Monorepo of the TW Classed project. Consists of Core and React packages.
