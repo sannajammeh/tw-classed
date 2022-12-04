@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.3.0-canary.0
+
+### Minor Changes
+
+- [#52](https://github.com/sannajammeh/tw-classed/pull/52) [`47437bca`](https://github.com/sannajammeh/tw-classed/commit/47437bcab160071d863280a9f9541af6836a02b1) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Add createClassed API to extend the classed function with additional functionality. Currently only "merger" prop is supported
+
 ## 1.2.5
 
 ### Patch Changes
