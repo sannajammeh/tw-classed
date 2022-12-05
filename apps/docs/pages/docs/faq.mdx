@@ -1,0 +1,17 @@
+# FAQ
+
+Answers to common questions from the community.
+
+### What browsers does `tw-classed` support?
+
+`tw-classed` supports almost all modern browsers. It is tested on the latest versions of Chrome, Firefox, Safari, and Edge. We compile down to ES2018, which is supported by all modern browsers. If you need to support older browsers, you can use a transpiler like Babel or SWC to compile down to ES5.
+
+Specifically, `tw-classed` works with browsers supporting `Symbol` and `Proxy`. Polyfill these if needed.
+
+### Is `tw-classed` limited to `React`?
+
+No. You can use `@tw-classed/core` in any JavaScript environment. It is completely framework agnostic. The primary difference between `@tw-classed/core` and `@tw-classed/react` is that `@tw-classed/core` returns string returning functions instead of React components.
+
+### How does `tw-classed` compare to `class-variance-authority`?
+
+CVA is excellent, but it was not designed to be a react first library, features like automatic typescript intellisense, composability, and ref forwarding are not supported. With `tw-classed`, you get all these features and more!

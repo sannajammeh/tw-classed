@@ -1,9 +1,30 @@
 {
+  "-- Overview --": {
+    "type": "separator",
+    "title": "Overview"
+  },
   "introduction": "Introduction",
+  "guide": "Guide",
+  "faq": "Frequently Asked Questions",
+  "api": "API",
+  "-- GettingStarted --": {
+    "type": "separator",
+    "title": "Getting Started"
+  },
   "installation": "Installation",
   "variants": "Variants",
   "composing-components": "Composing components",
   "typescript": "TypeScript",
   "vscode-setup": "VSCode Setup",
-  "changelog": "Changelog"
+  "-- More --": {
+    "type": "separator",
+    "title": "More"
+  },
+  "changelog": "Changelog",
+  "about": {
+    "title": "About",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
 }

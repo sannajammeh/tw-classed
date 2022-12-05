@@ -7,7 +7,7 @@ import { TbBrandTailwind } from "react-icons/tb";
 export default {
   docsRepositoryBase:
     "https://github.com/sannajammeh/tw-classed/tree/master/apps/beta-docs", // base URL for the docs repository
-  getNextSeoProps: () => {
+  useNextSeoProps: () => {
     const { frontMatter } = useConfig();
 
     let section = "TwClassed";
@@ -24,6 +24,15 @@ export default {
   darkMode: true,
   project: {
     link: "https://github.com/sannajammeh/tw-classed",
+  },
+  sidebar: {
+    titleComponent: ({ title, type }) => {
+      if (type === "separator") {
+        return <span className="cursor-default">{title}</span>;
+      }
+      return <>{title}</>;
+    },
+    defaultMenuCollapseLevel: 0,
   },
   unstable_flexsearch: true,
   unstable_staticImage: true,
@@ -59,5 +68,15 @@ export default {
   ),
   nextThemes: {
     defaultTheme: "dark",
+  },
+
+  components: {
+    code: ({ children }) => {
+      return (
+        <code className="text-radix-blue11 bg-radix-blue3 px-[2px] rounded">
+          {children}
+        </code>
+      );
+    },
   },
 };

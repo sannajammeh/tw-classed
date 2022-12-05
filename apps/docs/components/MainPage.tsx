@@ -43,16 +43,15 @@ const Home: NextPage<{}> = ({}) => {
           </p>
 
           <div className="flex justify-center gap-6 mb-12">
-            <Link href="/docs/installation" passHref>
-              <Button
-                className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
-                as="a"
-                size="md"
-                radius="pill"
-              >
-                Quick Start <FiArrowRight size="1.25rem" />
-              </Button>
-            </Link>
+            <Button
+              className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
+              as={Link}
+              href="/docs/installation"
+              size="md"
+              radius="pill"
+            >
+              Quick Start <FiArrowRight size="1.25rem" />
+            </Button>
             <Button
               color="ghostSlate"
               className="safari:border-2 safari:!outline-none safari:!border-radix-slate6 safari:hover:!border-radix-slate7"
