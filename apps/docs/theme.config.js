@@ -1,5 +1,6 @@
 import { useConfig } from "nextra-theme-docs";
 import { TbBrandTailwind } from "react-icons/tb";
+import Logo from "./components/Logo";
 
 /**
  * @type {import('nextra-theme-docs').DocsThemeConfig}
@@ -47,10 +48,10 @@ export default {
     float: true,
   },
   logo: (
-    <div className="flex items-center gap-1">
-      <TbBrandTailwind size="1.75rem" />
-      <span>TwClassed</span>
-    </div>
+    <span className="flex items-center gap-2 hover:bg-clip-text hover:bg-gradient-to-r from-radix-blue9 to-radix-violet9 transition-all hover:text-transparent">
+      <Logo width={32} height={32} />
+      <span className="font-bold text-lg font-mono">TW CLASSED</span>
+    </span>
   ),
   head: (
     <>

@@ -119,8 +119,8 @@ const Home: NextPage<{}> = ({}) => {
             </FeatureCardIcon>
             <FeatureTitle>Reusable</FeatureTitle>
             <Text className="mt-1" color="secondary">
-              Classed Tailwind lets you create reusable components in record
-              time. No more `forwardRef` & Typescript interfaces
+              TW Classed lets you create reusable components in record time. No
+              more `forwardRef` & Typescript interfaces
             </Text>
           </FeatureCard>
           <FeatureCard>
