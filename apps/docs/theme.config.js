@@ -26,6 +26,9 @@ export default {
   project: {
     link: "https://github.com/sannajammeh/tw-classed",
   },
+  chat: {
+    link: "https://discord.gg/Ur2xTYj2Gr",
+  },
   sidebar: {
     titleComponent: ({ title, type }) => {
       if (type === "separator") {
