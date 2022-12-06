@@ -1,0 +1,16 @@
+# Benchmarks
+
+Benchmarks measuring native `react`, `tw-classed`, `class-variance-authority` and `stitches.js`.
+Keep in mind that `stitches.js` is a CSS-in-JS library, so it's not a fair comparison, but was added in order to see how tw-classed performs against the fastest CSS-in-JS library.
+
+All benchmarks are performed on a 2021 Macbook Pro 13" with M1 chip and 8GB ram.
+
+## Mounting and unmounting a button
+
+Mounting and unmounting a button with variant props. Performed 1000x to get a stable result.
+
+import ButtonVariantsBench from "../../components/benchmark/button-variants";
+
+<ButtonVariantsBench />
+
+When mounting and unmounting a button with variant props, `react` is the fastest (no shock here), followed by `cva` and `tw-classed`. `stitches.js` is the slowest.

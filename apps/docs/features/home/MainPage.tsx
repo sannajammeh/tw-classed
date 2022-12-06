@@ -13,7 +13,7 @@ import {
 import { NextSeo } from "next-seo";
 import { Aos } from "utils/aos";
 import { useEffect } from "react";
-import Stats, { formatBytes, useBundleSize } from "./Stats";
+import Stats, { formatBytes, useBundleSize } from "../../components/Stats";
 
 const Home: NextPage<{}> = ({}) => {
   const { data: bundlesize } = useBundleSize();
@@ -193,21 +193,25 @@ const FeatureCardIcon = classed(
   }
 );
 
-const Divider = classed("span", "block mx-auto w-11 h-[1px] bg-radix-slate6", {
-  variants: {
-    space: {
-      1: "my-4",
-      2: "my-8",
-      3: "my-12",
-      4: "my-16",
-      5: "my-20",
-      6: "my-40",
+export const Divider = classed(
+  "span",
+  "block mx-auto w-11 h-[1px] bg-radix-slate6",
+  {
+    variants: {
+      space: {
+        1: "my-4",
+        2: "my-8",
+        3: "my-12",
+        4: "my-16",
+        5: "my-20",
+        6: "my-32",
+      },
     },
-  },
-  defaultVariants: {
-    space: 6,
-  },
-});
+    defaultVariants: {
+      space: 6,
+    },
+  }
+);
 
 const StatList = classed(
   "ul",

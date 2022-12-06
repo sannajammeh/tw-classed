@@ -1,4 +1,24 @@
 {
-  "extending-classed": "Configuring classed",
-  "using-radix-ui": "Usage with Radix UI"
+  "installation_link": {
+    "title": "Installation",
+    "href": "/docs/installation",
+    "icon": "DownloadIcon"
+  },
+  "variants_link": {
+    "title": "Using variants",
+    "href": "/docs/variants",
+    "icon": "TransformIcon"
+  },
+  "extending-classed": {
+    "title": "Configuring classed",
+    "icon": "GearIcon"
+  },
+  "using-radix-ui": {
+    "title": "Usage with Radix UI",
+    "icon": "RadixIcon"
+  },
+  "with-css-modules": {
+    "title": "Usage with CSS Modules",
+    "icon": "Pencil2Icon"
+  }
 }
