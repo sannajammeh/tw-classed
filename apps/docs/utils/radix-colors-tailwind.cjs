@@ -9,14 +9,19 @@ module.exports = plugin.withOptions(
       let darkColors = {};
       let radix = options.colors ?? [];
       radix.forEach((color) => {
-        const light = { ...radixColors[color] };
+        const lightOpacity = radixColors[color + "A"] || {};
+        const light = { ...radixColors[color], ...lightOpacity };
         Object.keys(light).forEach(
           (oldKey) =>
             delete Object.assign(light, {
               ["--" + oldKey]: light[oldKey],
             })[oldKey]
         );
-        const dark = { ...radixColors[color + "Dark"] };
+        const darkOpacity = radixColors[color + "DarkA"] || {};
+        const dark = {
+          ...radixColors[color + "Dark"],
+          ...darkOpacity,
+        };
         Object.keys(dark).forEach(
           (oldKey) =>
             delete Object.assign(dark, {
@@ -86,17 +91,18 @@ module.exports = plugin.withOptions(
   },
   function (options) {
     const chosen = options.colors ?? [];
+    const chosenWithA = chosen.reduce((acc, color) => {
+      acc.push(color);
+      if (!color.includes("A")) acc.push(color + "A");
+      return acc;
+    }, []);
+
     const filtered = Object.keys(radixColors)
-      .filter(
-        (color) =>
-          chosen.includes(color) &&
-          !color.includes("A") &&
-          !color.includes("Dark")
-      )
+      .filter((color) => chosenWithA.includes(color) && !color.includes("Dark"))
       .reduce((obj, key) => {
-        Object.keys(radixColors[key]).forEach(
-          (color) => (obj[color] = `var(--${color})`)
-        );
+        Object.keys(radixColors[key]).forEach((color) => {
+          obj[color] = `var(--${color})`;
+        });
         return obj;
       }, {});
     return {

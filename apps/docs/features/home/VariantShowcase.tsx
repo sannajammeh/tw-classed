@@ -1,7 +1,13 @@
 import { classed } from "@tw-classed/react";
 import { Snippet, useSnippetSwitcher } from "components/SnippetSwitcher";
-import React, { Children, useMemo, useRef, useState } from "react";
-import { flushSync } from "react-dom";
+import {
+  ScrollArea,
+  ScrollAreaCorner,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
+} from "components/ui/ScrollArea";
+import React, { useRef } from "react";
 import { Text } from "../../components/ui";
 
 type Props = {
@@ -101,9 +107,16 @@ const VariantShowcase = ({ children }: Props) => {
           </Feature>
         </Features>
       </div>
-      <Snippet ref={ref} className="md:mt-16 md:max-h-[70vh] md:overflow-auto">
+      {/* <Snippet ref={ref} className="md:mt-16 md:max-h-[70vh] md:overflow-auto">
         {child}
-      </Snippet>
+      </Snippet> */}
+      <ScrollArea className="md:mt-16 md:max-h-[70vh] p-3 rounded-lg">
+        <ScrollAreaViewport ref={ref}>{child}</ScrollAreaViewport>
+        <ScrollAreaScrollbar orientation="vertical">
+          <ScrollAreaThumb />
+        </ScrollAreaScrollbar>
+        <ScrollAreaCorner />
+      </ScrollArea>
     </div>
   );
 };
