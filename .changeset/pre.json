@@ -4,9 +4,11 @@
   "initialVersions": {
     "docs": "2.0.8",
     "@tw-classed/core": "1.2.5",
-    "@tw-classed/react": "1.2.5"
+    "@tw-classed/react": "1.2.5",
+    "benchmark": "0.1.0"
   },
   "changesets": [
-    "eight-clouds-watch"
+    "eight-clouds-watch",
+    "new-games-shout"
   ]
 }
