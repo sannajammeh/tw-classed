@@ -23,6 +23,10 @@ const Text = classed("p", "leading-normal", {
       black: "text-black",
       white: "text-white",
     },
+
+    center: {
+      true: "text-center",
+    },
   },
 });
 

@@ -44,7 +44,7 @@ const Home: NextPage<{}> = ({}) => {
 
           <div className="flex justify-center gap-6 mb-12">
             <Button
-              className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
+              className="ios:border-2 ios:!outline-none ios:!border-radix-blue6 ios:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
               as={Link}
               href="/docs/installation"
               size="md"
@@ -54,7 +54,7 @@ const Home: NextPage<{}> = ({}) => {
             </Button>
             <Button
               color="ghostSlate"
-              className="safari:border-2 safari:!outline-none safari:!border-radix-slate6 safari:hover:!border-radix-slate7"
+              className="ios:border-2 ios:!outline-none ios:!border-radix-slate6 ios:hover:!border-radix-slate7"
               as="a"
               radius="pill"
               size="md"

@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -26,5 +28,11 @@ module.exports = {
       colors: ["blue", "slate", "cyan", "violet", "green"],
     }),
     require("@tailwindcss/typography"),
+    plugin(function ({ addVariant }) {
+      addVariant(
+        "ios",
+        "@supports (selector(:nth-child(1 of x))) or (-webkit-touch-callout: none)"
+      );
+    }),
   ],
 };
