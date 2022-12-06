@@ -5,7 +5,6 @@ on:
       - canary
 env:
   CI: true
-  PNPM_CACHE_FOLDER: .pnpm-store
 jobs:
   version:
     timeout-minutes: 15
@@ -15,18 +14,39 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: setup node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: install pnpm
-        run: npm i pnpm@latest -g
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
       - name: Setup npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-      - name: setup pnpm config
-        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: install dependencies
         run: pnpm install --filter {packages/**}... --filter .
+
       - name: create and publish versions
         uses: changesets/action@v1
         with:
