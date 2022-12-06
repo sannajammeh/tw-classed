@@ -1,5 +1,14 @@
 # @tw-classed/react
 
+## 1.3.0-canary.1
+
+### Patch Changes
+
+- [`79be37a2`](https://github.com/sannajammeh/tw-classed/commit/79be37a2543a46b85358f44f7ee8c27f729fb912) Thanks [@sannajammeh](https://github.com/sannajammeh)! - This release extends core to support the createClassed API, adds improvements to the documentation
+
+- Updated dependencies [[`79be37a2`](https://github.com/sannajammeh/tw-classed/commit/79be37a2543a46b85358f44f7ee8c27f729fb912)]:
+  - @tw-classed/core@1.3.0-canary.1
+
 ## 1.3.0-canary.0
 
 ### Minor Changes
