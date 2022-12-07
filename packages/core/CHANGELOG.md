@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.3.0-canary.3
+
+### Patch Changes
+
+- [`f328e321`](https://github.com/sannajammeh/tw-classed/commit/f328e32140a24d472f7b8d396181c36022afaebd) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Switch to SWC powered bunchee bundler
+
 ## 1.3.0-canary.2
 
 ### Patch Changes

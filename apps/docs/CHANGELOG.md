@@ -1,5 +1,12 @@
 # beta-docs
 
+## 2.0.9-canary.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tw-classed/react@1.3.0-canary.3
+
 ## 2.0.9-canary.2
 
 ### Patch Changes
