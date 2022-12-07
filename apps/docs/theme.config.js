@@ -83,4 +83,16 @@ export default {
       );
     },
   },
+
+  // banner: {
+  //   key: "see-preview-release-1",
+  //   text: (
+  //     <a
+  //       href="https://tw-classed-git-canary-sannajammeh.vercel.app/"
+  //       target="_blank"
+  //     >
+  //       👀 See and review whats new in the latest Preview docs. (v1.3.0)
+  //     </a>
+  //   ),
+  // },
 };
