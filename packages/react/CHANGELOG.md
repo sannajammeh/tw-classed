@@ -1,5 +1,12 @@
 # @tw-classed/react
 
+## 1.3.0-canary.3
+
+### Patch Changes
+
+- Updated dependencies [[`f328e321`](https://github.com/sannajammeh/tw-classed/commit/f328e32140a24d472f7b8d396181c36022afaebd)]:
+  - @tw-classed/core@1.3.0-canary.3
+
 ## 1.3.0-canary.2
 
 ### Patch Changes
