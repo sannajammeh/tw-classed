@@ -9,7 +9,12 @@
     "href": "/docs/variants",
     "icon": "TransformIcon"
   },
-  "extending-classed": {
+  "writing-clean-classed": {
+    "title": "Writing clean components",
+    "icon": "CodeIcon",
+    "typesetting": "article"
+  },
+  "configuring-classed": {
     "title": "Configuring classed",
     "icon": "GearIcon"
   },

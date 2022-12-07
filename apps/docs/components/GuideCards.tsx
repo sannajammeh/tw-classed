@@ -3,6 +3,7 @@ import {
   TransformIcon,
   GearIcon,
   Pencil2Icon,
+  CodeIcon,
 } from "@radix-ui/react-icons";
 import React, { useMemo } from "react";
 import { Cards, Card } from "./ui/Card";
@@ -50,6 +51,8 @@ const getIcon = (icon: string) => {
       return <RadixIcon />;
     case "Pencil2Icon":
       return <Pencil2Icon />;
+    case "CodeIcon":
+      return <CodeIcon />;
     default:
       return null;
   }
