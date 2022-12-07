@@ -6,6 +6,8 @@ Monorepo of the TW Classed project. Consists of Core and React packages.
 
 See the docs for more information. [Docs](https://tw-classed.vercel.app)
 
+![Discord Banner 2](https://discordapp.com/api/guilds/1049812722319118416/widget.png?style=banner2)
+
 ## Core
 
 The core package is a library that provides a set of classes to help you build your own classed components.
