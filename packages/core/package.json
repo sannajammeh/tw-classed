@@ -6,18 +6,17 @@
   "files": [
     "dist"
   ],
-  "main": "dist/cjs/index.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/esm/index.d.ts"
-    }
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs",
+    "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "dev": "nodemon --watch './src/**/*' -e ts,tsx --exec 'pnpm run build'",
-    "build": "unbuild",
+    "dev": "pnpm run build --watch",
+    "build": "bunchee ./src/index.ts --target es2018",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
