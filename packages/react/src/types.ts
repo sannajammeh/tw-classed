@@ -19,6 +19,12 @@ export interface ClassedComponentType<
   [$$ClassedComponentVariants]: TComposedVariants;
 }
 
+export type DerivedComponentType<
+  Type extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  Props extends {} = {},
+  TComposedVariants extends {} = {}
+> = ClassedComponentType<Type, Omit<Props, "as">, TComposedVariants>;
+
 /** Unique symbol used to reference the props of a Classed Component. */
 export declare const $$ClassedComponentProps: unique symbol;
 export type $$ClassedComponentProps = typeof $$ClassedComponentProps;

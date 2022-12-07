@@ -7,8 +7,11 @@
     "lint": {
       "outputs": []
     },
+    "typecheck": {
+      "outputs": ["tsconfig.test.tsbuildinfo"]
+    },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^typecheck"],
       "outputs": ["coverage/**", "dist/**", ".next/**"]
     },
     "test:coverage": {

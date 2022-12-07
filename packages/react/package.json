@@ -22,6 +22,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit --project ./tsconfig.test.json",
     "prepublishOnly": "cd ../../ && turbo run build test --filter=@tw-classed/react"
   },
   "keywords": [],

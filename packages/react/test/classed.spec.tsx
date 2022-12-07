@@ -227,7 +227,7 @@ describe("Composition", () => {
     }: React.ComponentProps<typeof BasicButton>) => (
       <BasicButton loading={loading} {...props}>
         <ButtonContent
-          data-testid={props["data-innertestid"]}
+          data-testid={(props as any)["data-innertestid"]}
           loading={loading}
         >
           {children}

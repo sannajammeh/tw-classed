@@ -5,4 +5,5 @@ export type {
   InferVariantProps,
   ClassedComponentType,
   VariantProps,
+  DerivedComponentType,
 } from "./src/types";

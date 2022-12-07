@@ -15,6 +15,7 @@ import type * as Classed from "@tw-classed/react";
 These include:
 
 - `Classed.ClassedComponentType` - the type of a classed component
+- `Classed.DerivedComponentType` The type of a derived component. (Removing the `as` prop from the base component)
 - `Classed.InferVariantProps` Infers the variant props of a set of variants (internal but exported for convenience)
 - `Classed.VariantProps` Infers the variant props of a component
 - `Classed.Variants` The legal variants of a component (use to type an external variant object)
@@ -39,6 +40,48 @@ type ButtonVariants = Classed.VariantProps<typeof Button>;
 // }
 
 export type ButtonProps = React.ComponentProps<typeof Button>; // This of course works as expected
+```
+
+### Creating a derived component
+
+Sometimes you might have to extend a component with React logic. You can do this by creating a derived component.
+
+For Typescript to work correctly with the `as` prop you need to override the component's type as `DerivedComponentType` type. This internally removes the `as` prop from the base component.
+
+```tsx
+import { DerivedComponentType } from "@tw-classed/react";
+import { forwardRef } from "react";
+import { classed } from "@tw-classed/react";
+
+const BaseButton = classed("button", "px-2 py-4", {
+  variants: {
+    color: {
+      blue: "bg-blue-500",
+      red: "bg-red-500",
+    },
+  },
+});
+
+type BaseButtonProps = React.ComponentProps<typeof BaseButton> & {
+  icon?: React.ReactNode; // Add an icon prop
+};
+
+const Button = forwardRef<HTMLButtonElement, BaseButtonProps>(
+  ({ icon, ...props }, ref) => {
+    return (
+      <BaseButton {...props} ref={ref}>
+        {icon && <span className="mr-2">{icon}</span>}
+        {props.children}
+      </BaseButton>
+    );
+  }
+) as DerivedComponentType<typeof BaseButton, BaseButtonProps>;
+
+() => (
+  <Button color="blue" as="a" href="/">
+    Click me
+  </Button>
+);
 ```
 
 ### Typescript 4.9 and above (satisfies api)
