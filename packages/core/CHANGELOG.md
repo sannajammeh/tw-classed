@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.3.0-canary.2
+
+### Patch Changes
+
+- [`29570c7e`](https://github.com/sannajammeh/tw-classed/commit/29570c7e185b2ee1b92259a3a97629ce7650e9dd) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Export DerivedComponentType to handle as prop in derived components
+
 ## 1.3.0-canary.1
 
 ### Patch Changes
