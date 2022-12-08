@@ -3,17 +3,18 @@
   "version": "1.3.0-canary.3",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
   "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.mjs",
+    "module": "./dist/index.esm.js",
+    "require": "./dist/index.cjs"
+  },
   "files": [
     "dist"
   ],
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs",
-    "types": "./dist/index.d.ts"
-  },
   "scripts": {
     "dev": "pnpm run build --watch",
     "build": "bunchee ./src/index.ts --target es2018",
