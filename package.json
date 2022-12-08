@@ -32,8 +32,6 @@
   "packageManager": "pnpm@7.0.0",
   "dependencies": {
     "@changesets/cli": "^2.25.2",
-    "fs-extra": "^10.1.0",
-    "npm": "^9.1.1",
     "turbo": "^1.6.3"
   },
   "config": {
@@ -43,12 +41,8 @@
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
-    "arg": "^5.0.2",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^16.0.3",
-    "kleur": "^4.1.5",
     "rimraf": "^3.0.2",
-    "shelljs": "^0.8.5",
     "typescript": "^4.8.4",
     "unbuild": "^1.0.1"
   }

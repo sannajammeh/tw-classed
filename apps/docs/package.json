@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "2.0.8",
+  "version": "2.0.9-canary.4",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-icons": "^1.1.1",
+    "@radix-ui/react-scroll-area": "^1.0.2",
     "@tw-classed/react": "workspace:*",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
@@ -19,10 +20,10 @@
     "clsx": "^1.2.1",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
-    "next": "12",
+    "next": "^13.0.6",
     "next-seo": "^5.14.1",
-    "nextra": "2.0.0-beta.41",
-    "nextra-theme-docs": "2.0.0-beta.41",
+    "nextra": "2.0.1",
+    "nextra-theme-docs": "2.0.1",
     "postcss": "^8.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",

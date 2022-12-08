@@ -23,3 +23,5 @@ coverage/tmp/**
 .pnpm-store
 
 .trace_dir
+
+tsconfig.test.tsbuildinfo

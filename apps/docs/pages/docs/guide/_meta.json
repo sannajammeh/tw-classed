@@ -1,0 +1,29 @@
+{
+  "installation_link": {
+    "title": "Installation",
+    "href": "/docs/installation",
+    "icon": "DownloadIcon"
+  },
+  "variants_link": {
+    "title": "Using variants",
+    "href": "/docs/variants",
+    "icon": "TransformIcon"
+  },
+  "writing-clean-classed": {
+    "title": "Writing clean components",
+    "icon": "CodeIcon",
+    "typesetting": "article"
+  },
+  "configuring-classed": {
+    "title": "Configuring classed",
+    "icon": "GearIcon"
+  },
+  "using-radix-ui": {
+    "title": "Usage with Radix UI",
+    "icon": "RadixIcon"
+  },
+  "with-css-modules": {
+    "title": "Usage with CSS Modules",
+    "icon": "Pencil2Icon"
+  }
+}

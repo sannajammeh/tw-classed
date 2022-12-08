@@ -1,5 +1,6 @@
 import { useConfig } from "nextra-theme-docs";
 import { TbBrandTailwind } from "react-icons/tb";
+import Logo from "./components/Logo";
 
 /**
  * @type {import('nextra-theme-docs').DocsThemeConfig}
@@ -7,7 +8,7 @@ import { TbBrandTailwind } from "react-icons/tb";
 export default {
   docsRepositoryBase:
     "https://github.com/sannajammeh/tw-classed/tree/master/apps/beta-docs", // base URL for the docs repository
-  getNextSeoProps: () => {
+  useNextSeoProps: () => {
     const { frontMatter } = useConfig();
 
     let section = "TwClassed";
@@ -25,6 +26,18 @@ export default {
   project: {
     link: "https://github.com/sannajammeh/tw-classed",
   },
+  chat: {
+    link: "https://discord.gg/Ur2xTYj2Gr",
+  },
+  sidebar: {
+    titleComponent: ({ title, type }) => {
+      if (type === "separator") {
+        return <span className="cursor-default">{title}</span>;
+      }
+      return <>{title}</>;
+    },
+    defaultMenuCollapseLevel: 0,
+  },
   unstable_flexsearch: true,
   unstable_staticImage: true,
   navigation: {
@@ -38,10 +51,10 @@ export default {
     float: true,
   },
   logo: (
-    <div className="flex items-center gap-1">
-      <TbBrandTailwind size="1.75rem" />
-      <span>TwClassed</span>
-    </div>
+    <span className="flex items-center gap-2 hover:bg-clip-text hover:bg-gradient-to-r from-radix-blue9 to-radix-violet9 transition-all hover:text-transparent">
+      <Logo width={32} height={32} />
+      <span className="font-bold text-lg font-mono">TW CLASSED</span>
+    </span>
   ),
   head: (
     <>
@@ -60,4 +73,26 @@ export default {
   nextThemes: {
     defaultTheme: "dark",
   },
+
+  components: {
+    code: ({ children }) => {
+      return (
+        <code className="text-radix-blue11 bg-radix-blue3 px-[2px] rounded">
+          {children}
+        </code>
+      );
+    },
+  },
+
+  // banner: {
+  //   key: "see-preview-release-1",
+  //   text: (
+  //     <a
+  //       href="https://tw-classed-git-canary-sannajammeh.vercel.app/"
+  //       target="_blank"
+  //     >
+  //       👀 See and review whats new in the latest Preview docs. (v1.3.0)
+  //     </a>
+  //   ),
+  // },
 };

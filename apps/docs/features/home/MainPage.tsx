@@ -13,7 +13,7 @@ import {
 import { NextSeo } from "next-seo";
 import { Aos } from "utils/aos";
 import { useEffect } from "react";
-import Stats, { formatBytes, useBundleSize } from "./Stats";
+import Stats, { formatBytes, useBundleSize } from "../../components/Stats";
 
 const Home: NextPage<{}> = ({}) => {
   const { data: bundlesize } = useBundleSize();
@@ -43,19 +43,18 @@ const Home: NextPage<{}> = ({}) => {
           </p>
 
           <div className="flex justify-center gap-6 mb-12">
-            <Link href="/docs/installation" passHref>
-              <Button
-                className="safari:border-2 safari:!outline-none safari:!border-radix-blue6 safari:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
-                as="a"
-                size="md"
-                radius="pill"
-              >
-                Quick Start <FiArrowRight size="1.25rem" />
-              </Button>
-            </Link>
+            <Button
+              className="ios:border-2 ios:!outline-none ios:!border-radix-blue6 ios:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
+              as={Link}
+              href="/docs/installation"
+              size="md"
+              radius="pill"
+            >
+              Quick Start <FiArrowRight size="1.25rem" />
+            </Button>
             <Button
               color="ghostSlate"
-              className="safari:border-2 safari:!outline-none safari:!border-radix-slate6 safari:hover:!border-radix-slate7"
+              className="ios:border-2 ios:!outline-none ios:!border-radix-slate6 ios:hover:!border-radix-slate7"
               as="a"
               radius="pill"
               size="md"
@@ -120,8 +119,8 @@ const Home: NextPage<{}> = ({}) => {
             </FeatureCardIcon>
             <FeatureTitle>Reusable</FeatureTitle>
             <Text className="mt-1" color="secondary">
-              Classed Tailwind lets you create reusable components in record
-              time. No more `forwardRef` & Typescript interfaces
+              TW Classed lets you create reusable components in record time. No
+              more `forwardRef` & Typescript interfaces
             </Text>
           </FeatureCard>
           <FeatureCard>
@@ -194,21 +193,25 @@ const FeatureCardIcon = classed(
   }
 );
 
-const Divider = classed("span", "block mx-auto w-11 h-[1px] bg-radix-slate6", {
-  variants: {
-    space: {
-      1: "my-4",
-      2: "my-8",
-      3: "my-12",
-      4: "my-16",
-      5: "my-20",
-      6: "my-40",
+export const Divider = classed(
+  "span",
+  "block mx-auto w-11 h-[1px] bg-radix-slate6",
+  {
+    variants: {
+      space: {
+        1: "my-4",
+        2: "my-8",
+        3: "my-12",
+        4: "my-16",
+        5: "my-20",
+        6: "my-32",
+      },
     },
-  },
-  defaultVariants: {
-    space: 6,
-  },
-});
+    defaultVariants: {
+      space: 6,
+    },
+  }
+);
 
 const StatList = classed(
   "ul",

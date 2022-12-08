@@ -4,18 +4,28 @@ description: "How to install tw-classed and get up and running."
 publishedAt: "01/06/2022"
 ---
 
+import { Tab, Tabs } from "nextra-theme-docs";
+
 ## Install it
 
-```bash
-# With npm
-npm install @tw-classed/react
-
-# With yarn
-yarn add @tw-classed/react
-
-# With pnpm
-pnpm install @tw-classed/react
-```
+{/* prettier-ignore */}
+<Tabs items={["pnpm", "npm", "yarn"]}>
+  <Tab>
+    ```bash 
+    pnpm i @tw-classed/react 
+    ```
+  </Tab>
+  <Tab>
+    ```bash 
+    npm i @tw-classed/react 
+    ```
+  </Tab>
+  <Tab>
+    ```bash 
+    yarn add @tw-classed/react 
+    ```
+  </Tab>
+</Tabs>
 
 ## Import it
 
