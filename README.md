@@ -6,6 +6,8 @@ Monorepo of the TW Classed project. Consists of Core and React packages.
 
 See the docs for more information. [Docs](https://tw-classed.vercel.app)
 
+![Discord Banner 2](https://discordapp.com/api/guilds/1049812722319118416/widget.png?style=banner2)
+
 ## React
 
 The react package is a wrapper around the core package that provides an easy to way to create classed components. See the [React Docs](https://tw-classed.vercel.app)
@@ -34,6 +36,7 @@ const App = () => {
   );
 };
 ```
+
 
 ## Core
 
