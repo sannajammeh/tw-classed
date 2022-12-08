@@ -1,5 +1,14 @@
 # @tw-classed/react
 
+## 1.3.0-canary.4
+
+### Patch Changes
+
+- [`e7596bb9`](https://github.com/sannajammeh/tw-classed/commit/e7596bb9e0672ba22a83bcafae2e3925848c4596) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fixes "This module is a CJS module" in node.js with type:"module"
+
+- Updated dependencies [[`e7596bb9`](https://github.com/sannajammeh/tw-classed/commit/e7596bb9e0672ba22a83bcafae2e3925848c4596)]:
+  - @tw-classed/core@1.3.0-canary.4
+
 ## 1.3.0-canary.3
 
 ### Patch Changes
