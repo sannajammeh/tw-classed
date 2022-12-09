@@ -1,8 +1,9 @@
 import Image from "next/image";
+import bannerImg from "public/tw-classed.png";
 
 # Introduction
 
-<img src="/tw-classed.jpg" className="w-full object-contain" />
+<Image className="rounded-lg" placeholder="blur" priority src={bannerImg} />
 
 `TW-Classed` is a lightweight performance Tailwind CSS utility library for React. It's aimed at taking full advantage of Tailwind CSS's powerful utility classes, and provide excellent DX at the same time. The re-usability & DX of CSS in JS combined with the power of Tailwind's static extraction.
 

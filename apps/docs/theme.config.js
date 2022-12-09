@@ -64,6 +64,7 @@ export default {
         content="Create reusable Tailwind css components in React and vanilla js"
       />
       <meta name="og:title" content="TwClassed - Tailwind made reusable" />
+      <meta name="og:image" content="/api/og.png" />
       <meta
         name="google-site-verification"
         content="aTSMCVyGalldJrWOIOo7ns7W-TWm5O4EXBEC173f1qE"

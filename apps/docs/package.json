@@ -16,6 +16,7 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "^18.0.8",
+    "@vercel/og": "^0.0.21",
     "autoprefixer": "^10.4.13",
     "clsx": "^1.2.1",
     "eslint": "8.27.0",
