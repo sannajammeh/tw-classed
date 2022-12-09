@@ -4,9 +4,7 @@
 
 Monorepo of the TW Classed project. Consists of Core and React packages.
 
-See the docs for more information. [Docs](https://tw-classed.vercel.app)
-
-![Discord Banner 2](https://discordapp.com/api/guilds/1049812722319118416/widget.png?style=banner2)
+[Full Documentation](https://tw-classed.vercel.app)
 
 ## React
 
@@ -67,3 +65,6 @@ const Button = () => html`<button class="${button({ color: "primary" })}" />`;
 ## License
 
 MIT
+
+#### Discord community
+![Discord Banner 2](https://discordapp.com/api/guilds/1049812722319118416/widget.png?style=banner2)
