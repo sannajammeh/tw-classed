@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.3.1
+
+### Patch Changes
+
+- [`4ffde042`](https://github.com/sannajammeh/tw-classed/commit/4ffde0421ee2d99d7c40c4fe89583eeb4b86591e) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Export ClassedConfig type
+
 ## 1.3.0
 
 ### Minor Changes
