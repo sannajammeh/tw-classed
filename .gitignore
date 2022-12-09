@@ -25,3 +25,6 @@ coverage/tmp/**
 .trace_dir
 
 tsconfig.test.tsbuildinfo
+apps/docs/public/robots.txt
+apps/docs/public/sitemap-0.xml
+apps/docs/public/sitemap.xml
