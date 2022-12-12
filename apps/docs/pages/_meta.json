@@ -11,5 +11,11 @@
     }
   },
   "docs": "React",
-  "core": "Core"
+  "core": "Core",
+  "blog": {
+    "title": "Blog",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
 }
