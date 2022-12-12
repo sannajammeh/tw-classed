@@ -1,6 +1,8 @@
 export const cx = (classNames: string[]) =>
   classNames.filter(Boolean).join(" ");
 
+export const cn = (...classes: string[]) => cx(classes);
+
 export const mergeClass = (
   c1: string,
   c2: string | null | undefined | boolean

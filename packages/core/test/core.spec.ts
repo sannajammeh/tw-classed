@@ -266,3 +266,63 @@ describe("Composition", () => {
     expect(button({ size: "sm" })).toBe("bg-blue-100 text-sm");
   });
 });
+
+describe("With extra classes", () => {
+  it("Should add `class` to the list", () => {
+    const button = classed("bg-blue-100");
+
+    expect(button({ class: "text-white" })).toBe("bg-blue-100 text-white");
+  });
+
+  it("Should work with variants", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    expect(button({ size: "sm", class: "text-white" })).toBe(
+      "bg-blue-100 text-sm text-white"
+    );
+  });
+
+  it("Should work with multiple classed functions", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    const button2 = classed(button, "bg-red-100");
+
+    expect(
+      classIncludes(button2({ size: "sm", class: "text-white" }), [
+        "bg-blue-100",
+        "text-sm",
+        "bg-red-100",
+        "text-white",
+      ])
+    ).toBe(true);
+  });
+
+  it("Should work with className", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    expect(button({ size: "sm", className: "text-white" })).toBe(
+      "bg-blue-100 text-sm text-white"
+    );
+  });
+});

@@ -1,6 +1,6 @@
 import { ClassedProducer, Variants, ClassedCoreFunctionType } from "./types";
 import { mapPropsToVariantClass, parseClassNames } from "./parser";
-import { mergeClass } from "./utility/classNames";
+import { cn } from "./utility/classNames";
 import { TW_VARS } from "./constants";
 
 export interface ClassedCoreConfig {
@@ -14,20 +14,24 @@ export interface CreateClassedCoreType {
 
 const internalClassed = <V extends Variants = {}>(
   classes: Array<any>,
-  { merger = mergeClass }: ClassedCoreConfig = {}
+  { merger = cn }: ClassedCoreConfig = {}
 ) => {
   // Parse classNames and variants
   const { className, variants, defaultVariants, compoundVariants } =
     parseClassNames(classes);
 
-  const producer: ClassedProducer<V> = ((variantProps) => {
+  const producer = ((variantProps: any) => {
     // Map variant props to className
     const variantClassName = mapPropsToVariantClass(
       { variants, defaultVariants, compoundVariants },
       variantProps
     );
 
-    return merger(className, variantClassName);
+    const extra = [variantProps?.className, variantProps?.class].filter(
+      Boolean
+    );
+
+    return merger(className, variantClassName, ...extra);
   }) as ClassedProducer<V>;
 
   // Add variants to the classed producer

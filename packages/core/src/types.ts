@@ -39,8 +39,12 @@ export type InferVariantProps<V extends Variants | undefined = undefined> =
       }>
     : {};
 
+interface PropsWithClass {
+  className?: string;
+  class?: string;
+}
 interface ClassedCreator<Props extends {} = {}> {
-  (variantProps?: Props): string;
+  (variantProps?: Props & PropsWithClass): string;
 }
 
 export interface ClassedType<
