@@ -1,5 +1,20 @@
 # @tw-classed/core
 
+## 1.3.2-canary.1
+
+### Patch Changes
+
+- [`091ef6a4`](https://github.com/sannajammeh/tw-classed/commit/091ef6a4d8fe9c91f4a75f0efd99db0caf2470b2) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Adds support in core lib for `class` & `className` when calling a class producer function
+
+  Example:
+
+  ```js
+  const button = classed("bg-blue-500");
+
+  // LitHTML
+  html`<button class=${button({ class: "text-white" })}>Click me</button>`;
+  ```
+
 ## 1.3.0
 
 ### Patch Changes
