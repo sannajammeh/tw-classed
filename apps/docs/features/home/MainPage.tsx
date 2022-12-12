@@ -212,11 +212,3 @@ export const Divider = classed(
     },
   }
 );
-
-const StatList = classed(
-  "ul",
-  "flex justify-around flex-wrap grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-);
-
-const Stat = classed("li", "flex flex-col text-lg text-radix-slate11");
-const StatValue = classed("span", "text-3xl font-bold text-radix-slate12");
