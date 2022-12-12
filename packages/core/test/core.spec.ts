@@ -55,6 +55,17 @@ describe("Core functionality", () => {
     expect(button({ disabled: true })).toBe("bg-blue-100 opacity-50");
   });
 
+  it("Should not crash on empty variant", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        test: {},
+      },
+    });
+
+    // @ts-expect-error test is not a valid variant
+    expect(button({ test: "lg" })).toBe("bg-blue-100");
+  });
+
   it("Should allow for composable boolean variants", () => {
     const BasicButton = classed("bg-blue-100", {
       variants: { loading: { true: "opacity-50" } },
@@ -324,5 +335,18 @@ describe("With extra classes", () => {
     expect(button({ size: "sm", className: "text-white" })).toBe(
       "bg-blue-100 text-sm text-white"
     );
+  });
+
+  it("Should work with no variants added", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    expect(button({ class: "text-white" })).toBe("bg-blue-100 text-white");
   });
 });
