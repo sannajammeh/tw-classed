@@ -134,4 +134,41 @@ describe("createClassed with config", () => {
     // Should only have one bg-red-500
     expect(className.split("bg-red-500")).toHaveLength(2);
   });
+
+  it("Should work with merger removing newlines", () => {
+    const myMerger = (...args: string[]) => {
+      const classes = args.filter(Boolean).join(" ");
+
+      return classes.replace(/\s{2,}/g, " ");
+    };
+
+    const { classed } = createClassed({
+      merger: myMerger,
+    });
+
+    const Comp = classed("div", {
+      base: "bg-red-500",
+      variants: {
+        color: {
+          red: `
+            bg-red-500
+            text-red-900
+            test1
+            test2
+          `,
+          blue: "bg-blue-500",
+        },
+      },
+    });
+
+    expect(Comp).toBeDefined();
+
+    render(<Comp color="red" data-testid="a" />);
+
+    const className = screen.getByTestId("a").className;
+
+    expect(className).toContain("bg-red-500");
+
+    expect(className).not.contain("\n");
+  });
 });

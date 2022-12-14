@@ -1,5 +1,19 @@
 # beta-docs
 
+## 2.0.11-canary.1
+
+### Patch Changes
+
+- Updated dependencies [[`091ef6a4`](https://github.com/sannajammeh/tw-classed/commit/091ef6a4d8fe9c91f4a75f0efd99db0caf2470b2)]:
+  - @tw-classed/react@1.3.2-canary.1
+
+## 2.0.11-canary.0
+
+### Patch Changes
+
+- Updated dependencies [[`df315431`](https://github.com/sannajammeh/tw-classed/commit/df3154317d2513b641371b80ec05c05d5daec70e)]:
+  - @tw-classed/react@1.3.2-canary.0
+
 ## 2.0.10
 
 ### Patch Changes

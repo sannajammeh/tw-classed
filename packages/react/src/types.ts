@@ -1,12 +1,21 @@
 import type * as Polymorphic from "./utility/polymorphic";
-import type { InferVariantProps, Variants } from "@tw-classed/core";
+import type {
+  InferVariantProps,
+  Variants,
+  $$ClassedProps,
+  $$ClassedVariants,
+} from "@tw-classed/core";
 import * as Util from "./util";
 
 export { InferVariantProps, Variants };
 
-export type VariantProps<
-  T extends ClassedComponentType<any, any, { variants: Variants }>
-> = InferVariantProps<T[$$ClassedComponentVariants]["variants"]>;
+interface InferableClassedType {
+  [$$ClassedVariants]: { variants: {} };
+}
+
+export type VariantProps<T extends InferableClassedType> = InferVariantProps<
+  T[$$ClassedVariants]["variants"]
+>;
 
 export type AnyComponent = React.ComponentType<any>;
 
@@ -15,8 +24,8 @@ export interface ClassedComponentType<
   Props extends {} = {},
   TComposedVariants extends {} = {}
 > extends Polymorphic.ForwardRefComponent<Type, Props> {
-  [$$ClassedComponentProps]: Props;
-  [$$ClassedComponentVariants]: TComposedVariants;
+  [$$ClassedProps]: Props;
+  [$$ClassedVariants]: TComposedVariants;
 }
 
 export type DerivedComponentType<
@@ -25,17 +34,10 @@ export type DerivedComponentType<
   TComposedVariants extends {} = {}
 > = ClassedComponentType<Type, Omit<Props, "as">, TComposedVariants>;
 
-/** Unique symbol used to reference the props of a Classed Component. */
-export declare const $$ClassedComponentProps: unique symbol;
-export type $$ClassedComponentProps = typeof $$ClassedComponentProps;
-/** Unique symbol used to reference the variants of a Classed Component. */
-export declare const $$ClassedComponentVariants: unique symbol;
-export type $$ClassedComponentVariants = typeof $$ClassedComponentVariants;
-
 /** Returns the cumulative props from the given array of compositions. */
 export type ClassedComponentProps<T extends any[]> =
-  ($$ClassedComponentProps extends keyof T[0]
-    ? T[0][$$ClassedComponentProps]
+  ($$ClassedProps extends keyof T[0]
+    ? T[0][$$ClassedProps]
     : T[0] extends { variants: { [name: string]: unknown } }
     ? InferVariantProps<T[0]["variants"]>
     : {}) &
@@ -43,8 +45,8 @@ export type ClassedComponentProps<T extends any[]> =
 
 /** Returns the cumulative variants from the given array of compositions. */
 export type ClassedComponentVariants<T extends any[]> =
-  ($$ClassedComponentVariants extends keyof T[0]
-    ? T[0][$$ClassedComponentVariants]
+  ($$ClassedVariants extends keyof T[0]
+    ? T[0][$$ClassedVariants]
     : T[0] extends { variants: { [name: string]: unknown } }
     ? Pick<T[0], "variants" | "defaultVariants">
     : {}) &
