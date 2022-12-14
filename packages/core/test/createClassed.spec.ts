@@ -98,4 +98,41 @@ describe("createClassed with config", () => {
 
     expect(Array.from(classes.matchAll(/text-sm/g)).length).toBe(1);
   });
+
+  it("Should work with a merger that removes newline syntax", () => {
+    const myMerger = (...args: string[]) => {
+      const classes = args.filter(Boolean).join(" ");
+
+      return classes.replace(/\s{2,}/g, " ");
+    };
+
+    const { classed } = createClassed({
+      merger: myMerger,
+    });
+
+    const button = classed(
+      `
+      bg-red-500
+      text-sm
+      hover:bg-red-600
+      focus:outline-none
+      bg-red-500
+    `,
+      `
+      text-sm
+    `,
+      "testing"
+    );
+
+    const classes = button();
+
+    expect(
+      stringIncludes(
+        classes,
+        "bg-red-500 text-sm hover:bg-red-600 focus:outline-none testing"
+      )
+    ).toBe(true);
+
+    expect(classes).not.toContain("\n");
+  });
 });
