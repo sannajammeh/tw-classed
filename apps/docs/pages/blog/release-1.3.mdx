@@ -52,6 +52,21 @@ import { classed } from "@tw-classed/react";
 export const Button = classed.button(button); // Variants & props are automatically inferred
 ```
 
+## Support for additional classnames in `core`
+
+The @tw-classed/core package now supports additional classnames, which allows developers to add additional classes to a classed utility. This is useful for adding classes that are not part of the classed utility, such as one-off classes.
+
+```tsx
+const button = classed("bg-blue-500 text-white");
+
+() =>
+  html`<button class="${button({ class: "flex items-center" })}">docs</button>`;
+() =>
+  html`<button class="${button({ className: "flex items-center" })}">
+    docs
+  </button>`;
+```
+
 ## Other improvements
 
 Other improvements in this release include the export of the ClassedConfig and DerivedComponentType types, as well as fixes for issues with `CJS` modules in Node.js and updates to dependencies.
