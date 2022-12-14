@@ -1,8 +1,4 @@
-import {
-  getVariantSelector,
-  mapPropsToVariantClass,
-  parseClassNames,
-} from "../src/parser";
+import { mapPropsToVariantClass, parseClassNames } from "../src/parser";
 import { describe, expect, it } from "vitest";
 import { TW_VARS } from "../src/constants";
 
