@@ -43,7 +43,6 @@
     "@changesets/changelog-github": "^0.4.7",
     "cz-conventional-changelog": "^3.3.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.8.4",
-    "unbuild": "^1.0.1"
+    "typescript": "^4.8.4"
   }
 }
