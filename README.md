@@ -14,7 +14,7 @@ The react package is a wrapper around the core package that provides an easy to 
 // Button.tsx
 import { classed } from "@tw-classed/react";
 
-const Button = classed("px-4 py-2", {
+const Button = classed.button("px-4 py-2", {
   variants: {
     color: {
       primary: "bg-blue-500 text-white",
