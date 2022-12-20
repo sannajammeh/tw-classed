@@ -1,0 +1,65 @@
+---
+title: Announcing Solid.js library (experimental)
+date: 2022/12/20
+description: TW-Classed is expanding its packages to include a Solid.js library with 1-1 API parity with @tw-classed/react. This library is experimental and is not yet ready for production use.
+---
+
+import { Tabs, Tab } from "nextra-theme-docs";
+
+# Announcing Solid.js library (experimental)
+
+We are excited to announce the release of the @tw-classed/solid package, a wrapper around the Solid.js core that provides an easy way to create classed components in your Solid.js applications. This package has 1-1 API parity with `@tw-classed/react`, follow the [React docs](/docs) to learn more about how to use it.
+
+To install the `@tw-classed/solid` package, you can use the following command:
+
+{/* prettier-ignore */}
+<Tabs items={["pnpm", "npm", "yarn"]}>
+  <Tab>
+    ```bash 
+    pnpm i @tw-classed/solid@canary 
+    ```
+  </Tab>
+  <Tab>
+    ```bash 
+    npm i @tw-classed/solid@canary 
+    ```
+  </Tab>
+  <Tab>
+    ```bash 
+    yarn add @tw-classed/solid@canary 
+    ```
+  </Tab>
+</Tabs>
+
+Using the `@tw-classed/solid` package no different to `@tw-classed/react`. The only difference is the use of `class` instead of `className`.
+Here's an example of how you can use it to create a button component in your Solid.js application:
+
+```tsx
+import { classed } from "@tw-classed/solid";
+
+const Button = classed.button("px-4 py-2", {
+  variants: {
+    color: {
+      primary: "bg-blue-500 text-white",
+      secondary: "bg-gray-500 text-white",
+    },
+  },
+});
+
+// In your App
+
+const App = () => {
+  return (
+    <>
+      <Button color="primary">Primary</Button>
+      <Button class="w-full" color="secondary">
+        Secondary
+      </Button>
+    </>
+  );
+};
+```
+
+With the `@tw-classed/solid` package, you can easily apply classes to your components and customize their appearance using variants. We hope this package will make it easier for you to create stylish and consistent interfaces in your Solid.js applications.
+
+Try out the `@tw-classed/solid` package today and let us know what you think!
