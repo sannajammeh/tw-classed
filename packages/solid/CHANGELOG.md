@@ -1,6 +1,6 @@
 # @tw-classed/solid
 
-## 1.3.3-canary.0
+## 1.3.2-canary.0
 
 ### Patch Changes
 
