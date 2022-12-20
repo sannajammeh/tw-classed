@@ -11,6 +11,7 @@
     }
   },
   "docs": "React",
+  "solid": "Solid",
   "core": "Core",
   "blog": {
     "title": "Blog",
