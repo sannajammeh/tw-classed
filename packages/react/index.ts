@@ -9,4 +9,5 @@ export type {
   VariantProps,
   DerivedComponentType,
   StrictComponentType,
+  ComponentProps,
 } from "./src/types";

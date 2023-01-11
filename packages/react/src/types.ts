@@ -18,6 +18,11 @@ interface InferableClassedType {
 
 export type AnyComponent = React.ComponentType<any>;
 type AnyClassedComponent = ClassedComponentType<any, {}, {}>;
+export type ComponentProps<Component> = Component extends (
+  ...args: any[]
+) => any
+  ? Parameters<Component>[0]
+  : never;
 
 /**
  * Returns the variant props of the given component.
