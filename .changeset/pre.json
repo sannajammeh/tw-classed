@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "benchmark": "0.1.0",
+    "docs": "2.0.11",
+    "@tw-classed/core": "1.3.2",
+    "@tw-classed/react": "1.3.2",
+    "@tw-classed/solid": "1.3.2"
+  },
+  "changesets": [
+    "itchy-ties-perform"
+  ]
+}
