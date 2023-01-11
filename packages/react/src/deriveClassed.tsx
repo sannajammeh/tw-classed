@@ -1,3 +1,4 @@
+import { $$ClassedVariants } from "@tw-classed/core";
 import { forwardRef } from "react";
 import { ClassedComponentType, DerivedComponentType } from "./types";
 import { COMPONENT_SYMBOL } from "./utility/unique";
@@ -9,12 +10,31 @@ export const DERIVED_COMPONENT_SYMBOL: unique symbol = Symbol.for(
 export interface DeriveClassedFunction {
   <
     Type extends ClassedComponentType<any>,
-    Props extends {} = React.ComponentProps<Type>,
-    HTMLType = React.ComponentRef<Type>
+    Props extends {} = Omit<React.ComponentProps<Type>, "as" | "ref">
   >(
-    callback: React.ForwardRefRenderFunction<HTMLType, Props>
+    callback: React.ForwardRefRenderFunction<React.ComponentRef<Type>, Props>
   ): DerivedComponentType<Type, Props>;
 }
+
+// export interface DeriveClassedFunction1 {
+//   <
+//     Type extends ClassedComponentType<any>,
+//     Props extends {} = Omit<React.ComponentProps<Type>, "as" | "ref">,
+//     HTMLType = null,
+//     InferredType = HTMLType extends null ? 0 : 1
+//   >(
+//     callback: React.ForwardRefRenderFunction<
+//       HTMLType extends null ? React.ComponentRef<Type> : HTMLType,
+//       Props
+//     >
+//   ): HTMLType extends null
+//     ? DerivedComponentType<Type, Props>
+//     : DerivedComponentType<
+//         React.ComponentType<any>,
+//         Props & React.HTMLProps<HTMLType>,
+//         Type[$$ClassedVariants]
+//       >;
+// }
 
 export const deriveClassed = ((
   fn: React.ForwardRefRenderFunction<unknown, any>

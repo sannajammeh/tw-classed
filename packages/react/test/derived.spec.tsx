@@ -1,6 +1,12 @@
 import "@testing-library/jest-dom";
 import React, { forwardRef } from "react";
-import { classed, DerivedComponentType, deriveClassed } from "../index";
+import { expectTypeOf } from "vitest";
+import {
+  classed,
+  DerivedComponentType,
+  deriveClassed,
+  ComponentProps,
+} from "../index";
 import { DERIVED_COMPONENT_SYMBOL } from "../src/deriveClassed";
 import { render, screen } from "./test.utils";
 
@@ -92,4 +98,51 @@ it("Should work with automatic derive", () => {
   const renderedElem = screen.getByTestId("rendered");
 
   expect(renderedElem).toBeInTheDocument();
+
+  /**
+   * Type testing
+   */
+
+  type LabelProps = React.ComponentProps<typeof Label>;
+  expectTypeOf(Label).parameter(0).toHaveProperty("variant");
+
+  const p: LabelProps = {} as LabelProps;
+
+  expectTypeOf(p["variant"]).toEqualTypeOf<"label1" | undefined>();
+});
+
+it("Should have TS support for custom AS prop override", () => {
+  const Button = classed("span", {
+    base: "t-1",
+    variants: {
+      variant: {
+        label1: "l-1",
+      },
+    },
+  });
+  type ButtonType = typeof Button;
+  type ButtonProps = ComponentProps<ButtonType>;
+
+  const Anchor = deriveClassed<ButtonType, ButtonProps>(
+    ({ children, ...props }, ref) => {
+      return (
+        <Button {...props} ref={ref}>
+          {children}
+        </Button>
+      );
+    }
+  );
+
+  //@ts-expect-error - href is not a valid prop
+  render(<Anchor href="/" as="button" variant="label1" data-testid="button" />);
+
+  const anchorElem = screen.getByTestId("button");
+  expect(anchorElem).toHaveClass("l-1");
+  expect(anchorElem.tagName).toBe("BUTTON");
+
+  render(<Anchor href="/" as="a" variant="label1" data-testid="anchor" />);
+
+  const anchorElem2 = screen.getByTestId("anchor");
+  expect(anchorElem2).toHaveClass("l-1");
+  expect(anchorElem2.tagName).toBe("A");
 });
