@@ -10,15 +10,47 @@ import * as Util from "./util";
 export { InferVariantProps, Variants };
 
 interface InferableClassedType {
-  [$$ClassedVariants]: { variants: {} };
+  [$$ClassedVariants]: {
+    variants?: {} | unknown;
+    defaultVariants?: {} | unknown;
+  };
 }
 
+export type AnyComponent = React.ComponentType<any>;
+type AnyClassedComponent = ClassedComponentType<any, {}, {}>;
+
+/**
+ * Returns the variant props of the given component.
+ */
 export type VariantProps<T extends InferableClassedType> = InferVariantProps<
   T[$$ClassedVariants]["variants"]
 >;
 
-export type AnyComponent = React.ComponentType<any>;
+/**
+ * Creates a strict version of the given component.
+ * This means that all variants must be passed as props unless `defaultVariants` are defined.
+ * A second generic parameter can be used to specify which variants are required. This skips the automatic detection of `defaultVariants`.
+ */
+export type StrictComponentType<
+  T extends AnyClassedComponent,
+  U extends keyof VariantProps<T> | unknown = unknown,
+  VProps extends VariantProps<T> = VariantProps<T>
+> = ClassedComponentType<
+  T,
+  Required<Pick<VProps, U extends unknown ? PickRequiredVariants<T> : U>>
+>;
 
+export type PickRequiredVariants<
+  T extends AnyClassedComponent & InferableClassedType
+> = T[$$ClassedVariants]["defaultVariants"] extends {}
+  ? keyof Required<
+      Omit<VariantProps<T>, keyof T[$$ClassedVariants]["defaultVariants"]>
+    >
+  : never;
+
+/**
+ * Defines a Classed component.
+ */
 export interface ClassedComponentType<
   Type extends keyof JSX.IntrinsicElements | AnyComponent,
   Props extends {} = {},
@@ -28,6 +60,10 @@ export interface ClassedComponentType<
   [$$ClassedVariants]: TComposedVariants;
 }
 
+/**
+ * Defines a Derived classed component.
+ * Useful when you want to extend a classed component with additional props.
+ */
 export type DerivedComponentType<
   Type extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
   Props extends {} = {},
@@ -54,6 +90,9 @@ export type ClassedComponentVariants<T extends any[]> =
       ? ClassedComponentVariants<V>
       : {});
 
+/**
+ * Defines the classed function. Used to create classed components.
+ */
 export interface ClassedFunctionType {
   <
     Type extends keyof JSX.IntrinsicElements | AnyComponent,
@@ -63,6 +102,7 @@ export interface ClassedFunctionType {
       | {
           base?: string;
           variants?: { [name: string]: unknown };
+          defaultVariants?: { [name: string]: unknown };
         }
     )[]
   >(
@@ -81,7 +121,7 @@ export interface ClassedFunctionType {
                     keyof Composers[K]["variants"][Name]
                   >;
                 }
-              : never;
+              : {};
 
             compoundVariants?: (("variants" extends keyof Composers[K]
               ? {
@@ -102,6 +142,9 @@ export interface ClassedFunctionType {
   >;
 }
 
+/**
+ * Defines the classed proxy function. Used to create classed components.
+ */
 export interface ClassedProxyFunctionType<
   Type extends keyof JSX.IntrinsicElements | AnyComponent
 > {
@@ -112,6 +155,7 @@ export interface ClassedProxyFunctionType<
       | {
           base?: string;
           variants?: { [name: string]: unknown };
+          defaultVariants?: { [name: string]: unknown };
         }
     )[]
   >(
@@ -129,7 +173,7 @@ export interface ClassedProxyFunctionType<
                     keyof Composers[K]["variants"][Name]
                   >;
                 }
-              : never;
+              : {};
 
             compoundVariants?: (("variants" extends keyof Composers[K]
               ? {
@@ -150,6 +194,21 @@ export interface ClassedProxyFunctionType<
   >;
 }
 
+/**
+ * Defines the classed function. Used to create classed components.
+ * @example
+ * const Button = classed("button", "bg-blue-500 text-white");
+ * const Link = classed.a("bg-blue-500 text-white");
+ * const Text = classed.span({
+ *  base: "text-gray-500",
+ *  variants: {
+ *  size: {
+ *   sm: "text-sm",
+ *   md: "text-md",
+ *   lg: "text-lg",
+ *  },
+ * })
+ */
 export type ClassedFunctionProxy = ClassedFunctionType & {
   [K in keyof JSX.IntrinsicElements]: ClassedProxyFunctionType<K>;
 };
