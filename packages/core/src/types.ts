@@ -32,12 +32,13 @@ export type ClassedProducer<V extends Variants = {}> = ((
   };
 };
 
-export type InferVariantProps<V extends Variants | undefined = undefined> =
-  V extends Variants
-    ? Partial<{
-        [K in keyof V]: Util.Widen<keyof V[K]>;
-      }>
-    : {};
+export type InferVariantProps<
+  V extends Variants | unknown | undefined = undefined
+> = V extends Variants
+  ? Partial<{
+      [K in keyof V]: Util.Widen<keyof V[K]>;
+    }>
+  : {};
 
 interface PropsWithClass {
   className?: string;

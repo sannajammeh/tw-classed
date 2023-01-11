@@ -8,5 +8,7 @@
       "pagination": false,
       "typesetting": "article"
     }
-  }
+  },
+  "experimental-solidjs": "Announcing SolidJS library (experimental)",
+  "release-1.3": "Introducing TW Classed v1.3"
 }
