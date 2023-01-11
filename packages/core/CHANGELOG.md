@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.4.0-canary.1
+
+### Minor Changes
+
+- [#82](https://github.com/sannajammeh/tw-classed/pull/82) [`0f5f46fa`](https://github.com/sannajammeh/tw-classed/commit/0f5f46fa6ce9f5eb78115c5a04fd9bc06f64c847) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Adds support for `deriveClassed` & `makeStrict`. Updated core internal typing for compatibility.
+
 ## 1.3.2
 
 ### Patch Changes
