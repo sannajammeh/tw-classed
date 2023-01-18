@@ -1,5 +1,19 @@
 # @tw-classed/react
 
+## 1.4.0-canary.2
+
+### Patch Changes
+
+- [`81a77612`](https://github.com/sannajammeh/tw-classed/commit/81a77612d73058a515fcc6ed5ee548c89a0b8cb6) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fixes As prop usage inside a derived component's render method by implicitly requiring `As` generic.
+
+  **NOTE:** Use only when manually setting `as` inside derive's render method. Otherwise, let the compiler infer the `As` generic.
+
+  ```tsx
+  deriveClassed<Comp, Props, "div">((props, ref) => (
+    <BaseComp as="div" {...props} ref={ref} />
+  ));
+  ```
+
 ## 1.4.0-canary.1
 
 ### Minor Changes
