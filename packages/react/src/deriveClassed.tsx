@@ -1,6 +1,6 @@
-import { $$ClassedVariants } from "@tw-classed/core";
 import { forwardRef } from "react";
 import { ClassedComponentType, DerivedComponentType } from "./types";
+import { Merge } from "./utility/polymorphic";
 import { COMPONENT_SYMBOL } from "./utility/unique";
 
 export const DERIVED_COMPONENT_SYMBOL: unique symbol = Symbol.for(
@@ -10,10 +10,25 @@ export const DERIVED_COMPONENT_SYMBOL: unique symbol = Symbol.for(
 export interface DeriveClassedFunction {
   <
     Type extends ClassedComponentType<any>,
-    Props extends {} = Omit<React.ComponentProps<Type>, "as" | "ref">
+    Props extends {} = React.ComponentProps<Type>,
+    As extends keyof JSX.IntrinsicElements | unknown = unknown
   >(
-    callback: React.ForwardRefRenderFunction<React.ComponentRef<Type>, Props>
-  ): DerivedComponentType<Type, Props>;
+    callback: React.ForwardRefRenderFunction<
+      React.ComponentRef<As extends keyof JSX.IntrinsicElements ? As : Type>,
+      React.PropsWithoutRef<
+        As extends keyof JSX.IntrinsicElements
+          ? Merge<Omit<Props, "as">, React.ComponentProps<As>>
+          : Props
+      >
+    >
+  ): DerivedComponentType<
+    Type,
+    React.PropsWithoutRef<
+      As extends keyof JSX.IntrinsicElements
+        ? Merge<Props, React.ComponentProps<As>>
+        : Props
+    >
+  >;
 }
 
 // export interface DeriveClassedFunction1 {
