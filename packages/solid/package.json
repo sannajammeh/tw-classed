@@ -1,6 +1,6 @@
 {
   "name": "@tw-classed/solid",
-  "version": "1.4.0-canary.1",
+  "version": "1.4.0-canary.5",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind Solid components",
   "sideEffects": false,
   "exports": {

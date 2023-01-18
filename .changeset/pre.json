@@ -9,6 +9,7 @@
     "@tw-classed/solid": "1.3.2"
   },
   "changesets": [
+    "cool-lizards-tell",
     "healthy-ducks-stare",
     "itchy-ties-perform",
     "red-brooms-carry",
