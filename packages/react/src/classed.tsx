@@ -77,6 +77,7 @@ export const internalClassed = <
     className,
     variants,
     defaultVariants,
+    compoundVariants,
   });
 
   Reflect.set(Comp, COMPONENT_SYMBOL, true);

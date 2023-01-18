@@ -20,7 +20,6 @@ export const parseClassNames = <TVariants extends Variants>(
     Required<VariantConfig<TVariants>>["defaultVariants"]
   >;
   let compoundVariants = [] as Record<string, any>[];
-  // TODO - ADD check for undefined
   for (const className of classNames) {
     if (!className) continue;
 
