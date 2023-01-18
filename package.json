@@ -2,13 +2,9 @@
   "name": "@tw-classed/mono",
   "version": "1.0.0",
   "description": "Monorepo for tw classed",
-  "workspaces": [
-    "apps/**",
-    "packages/**"
-  ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo run test",
@@ -31,8 +27,8 @@
   "homepage": "https://github.com/sannajammeh/tw-classed#readme",
   "packageManager": "pnpm@7.0.0",
   "dependencies": {
-    "@changesets/cli": "^2.25.2",
-    "turbo": "^1.6.3"
+    "@changesets/cli": "^2.26.0",
+    "turbo": "^1.7.0"
   },
   "config": {
     "commitizen": {
@@ -40,9 +36,9 @@
     }
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.4.7",
+    "@changesets/changelog-github": "^0.4.8",
     "cz-conventional-changelog": "^3.3.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.8.4"
+    "rimraf": "^4.1.1",
+    "typescript": "^4.9.4"
   }
 }
