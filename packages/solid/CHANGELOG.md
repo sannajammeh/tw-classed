@@ -1,5 +1,12 @@
 # @tw-classed/solid
 
+## 1.4.0-canary.5
+
+### Patch Changes
+
+- Updated dependencies [[`785bcaaa`](https://github.com/sannajammeh/tw-classed/commit/785bcaaada76f9b19edce4b1724d7850dcb4fbd6)]:
+  - @tw-classed/core@1.4.0-canary.5
+
 ## 1.4.0-canary.1
 
 ### Patch Changes
