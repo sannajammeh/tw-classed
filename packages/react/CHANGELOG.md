@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.4.0-canary.4
+
+### Patch Changes
+
+- [`b183d8ab`](https://github.com/sannajammeh/tw-classed/commit/b183d8ab03ea864c65927226bb6dc9ada250c250) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Reverse insert order of first element composition to allow overriding of defaultVariants & other variant properties when re-classing
+
 ## 1.4.0-canary.3
 
 ### Patch Changes
