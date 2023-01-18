@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.4.0-canary.3
+
+### Patch Changes
+
+- [`d392ab1c`](https://github.com/sannajammeh/tw-classed/commit/d392ab1cfb74cd45d86637f0fcc19c6de2cdb2e6) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Export Classed Proxy type due to TS error on pnpm
+
 ## 1.4.0-canary.2
 
 ### Patch Changes
