@@ -193,3 +193,69 @@ it("Should work with regular react component", () => {
   expect(screen.getByTestId("hello-button1")).toHaveClass("bg-red-500");
   expect(screen.getByTestId("hello-button1")).toHaveClass("text-sm");
 });
+
+it("Should handle composition with compoundVariants on base", () => {
+  const Base = classed("div", {
+    variants: {
+      color: {
+        red: "bg-red-500",
+        blue: "bg-blue-500",
+      },
+      size: {
+        sm: "text-sm",
+        md: "text-md",
+      },
+    },
+
+    compoundVariants: [
+      {
+        color: "red",
+        size: "sm",
+        className: "RED-SM",
+      },
+      {
+        color: "blue",
+        size: "md",
+        className: "BLUE-MD",
+      },
+    ],
+  });
+
+  const Inheritor: React.FC<
+    {
+      children?: React.ReactNode;
+      color: string;
+    } & React.ButtonHTMLAttributes<HTMLButtonElement>
+  > = ({ children, color, ...props }) => {
+    return (
+      <button style={{ color }} {...props}>
+        {children}
+      </button>
+    );
+  };
+
+  const InheritorButton = classed(Inheritor, Base);
+
+  render(<InheritorButton color="red" size="sm" data-testid="b1" />);
+  expect(screen.getByTestId("b1")).toHaveClass("RED-SM");
+
+  render(<InheritorButton color="blue" size="md" data-testid="b2" />);
+  expect(screen.getByTestId("b2")).toHaveClass("BLUE-MD");
+
+  render(<Base as={Inheritor} color="red" size="sm" data-testid="b3" />);
+  expect(screen.getByTestId("b3")).toHaveClass("RED-SM");
+
+  const Defaulted = classed(Inheritor, Base, {
+    defaultVariants: {
+      color: "red",
+      size: "sm",
+    },
+  });
+
+  render(<Defaulted data-testid="b4" />);
+  expect(screen.getByTestId("b4")).toHaveClass("RED-SM");
+
+  render(<Defaulted color="blue" data-testid="b5" />);
+  expect(screen.getByTestId("b5")).not.toHaveClass("BLUE-MD");
+  expect(screen.getByTestId("b5")).not.toHaveClass("RED-SM");
+});
