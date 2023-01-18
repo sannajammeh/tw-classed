@@ -10,4 +10,7 @@ export type {
   DerivedComponentType,
   StrictComponentType,
   ComponentProps,
+  ClassedFunctionProxy,
+  ClassedFunctionType,
+  ClassedProxyFunctionType,
 } from "./src/types";
