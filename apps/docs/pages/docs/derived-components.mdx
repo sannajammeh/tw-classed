@@ -67,6 +67,25 @@ This is a very simple example, but you can use this pattern to add any kind of l
 
 **NOTE** The `ref` must be forwarded in your derived function.
 
+### Experimental `As` manual prop support
+
+The `deriveClassed` function also accepts a third argument to support the `as` prop manually in its render function. This is an experimental feature and might be removed in the future.
+
+In order to use this feature you must pass the `as` prop type as the third generic argument to the `deriveClassed` function. This is to allow the compiler to infer the correct `as` prop type since its being manually set in the render function.
+
+```tsx
+export const Anchor = deriveClassed<typeof ButtonBase, ButtonProps, "a">( // Notice the third argument.
+  ({ children, icon, ...rest }, ref) => {
+    return (
+      <ButtonBase as="a" {...rest} ref={ref}>
+        {icon && <span>{icon}</span>}
+        <span>{children}</span>
+      </ButtonBase>
+    );
+  }
+);
+```
+
 ### Using the TypeScript `casting` API
 
 A second option is to use the TypeScript `casting` API to cast the component to a strict component.
