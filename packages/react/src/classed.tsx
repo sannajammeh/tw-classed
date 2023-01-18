@@ -28,7 +28,7 @@ export const internalClassed = <
   const toParse = Array.from(classNames);
   const isClassed = isClassedComponent(elementType);
   if (isClassed) {
-    toParse.push(elementType as any);
+    toParse.unshift(elementType as any);
   }
   const { className, variants, defaultVariants, compoundVariants } =
     parseClassNames(toParse);
