@@ -28,3 +28,4 @@ tsconfig.test.tsbuildinfo
 apps/docs/public/robots.txt
 apps/docs/public/sitemap-0.xml
 apps/docs/public/sitemap.xml
+apps/docs/pages/solid/changelog.mdx
