@@ -1,5 +1,12 @@
 # beta-docs
 
+## 2.0.12-canary.5
+
+### Patch Changes
+
+- Updated dependencies [[`fc48bf56`](https://github.com/sannajammeh/tw-classed/commit/fc48bf56799b41b6fcb5bffb01e7911e9f3a9693)]:
+  - @tw-classed/react@1.4.0-canary.6
+
 ## 2.0.12-canary.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.4.0-canary.6
+
+### Patch Changes
+
+- [`fc48bf56`](https://github.com/sannajammeh/tw-classed/commit/fc48bf56799b41b6fcb5bffb01e7911e9f3a9693) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Sets target to es2018 in tsconfig to allow bundling to newer syntax
+
 ## 1.4.0-canary.5
 
 ### Patch Changes
