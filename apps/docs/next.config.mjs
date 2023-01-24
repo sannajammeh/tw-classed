@@ -1,6 +1,6 @@
 import Nextra from "nextra";
 
-import fs from "fs";
+import fsp from "fs/promises";
 import path from "path";
 import process from "process";
 
@@ -26,14 +26,10 @@ const coreChangelogPath = path.resolve(
   "CHANGELOG.md"
 );
 
-fs.copyFileSync(
-  reactChangelogPath,
-  path.resolve(currentDIR, "pages", "docs", "changelog.mdx")
-);
-
-fs.copyFileSync(
-  coreChangelogPath,
-  path.resolve(currentDIR, "pages", "core", "changelog.mdx")
+const solidChangelogPath = path.resolve(
+  currentDIR,
+  "../../packages/solid",
+  "CHANGELOG.md"
 );
 
 const withNextra = Nextra({
@@ -42,4 +38,25 @@ const withNextra = Nextra({
   unstable_staticImage: true,
 });
 
-export default withNextra(nextConfig);
+export default async (phase, {}) => {
+  if (phase === "phase-production-build") {
+    console.info("info  - Generating changelog pages...");
+    await Promise.all([
+      fsp.copyFile(
+        reactChangelogPath,
+        path.resolve(currentDIR, "pages", "docs", "changelog.mdx")
+      ),
+      fsp.copyFile(
+        coreChangelogPath,
+        path.resolve(currentDIR, "pages", "core", "changelog.mdx")
+      ),
+      fsp.copyFile(
+        solidChangelogPath,
+        path.resolve(currentDIR, "pages", "solid", "changelog.mdx")
+      ),
+    ]);
+  }
+
+  const config = withNextra(nextConfig);
+  return config;
+};

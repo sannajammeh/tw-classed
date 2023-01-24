@@ -14,8 +14,14 @@
   "installation": "Installation",
   "variants": "Variants",
   "composing-components": "Composing components",
-  "typescript": "TypeScript",
   "vscode-setup": "VSCode Setup",
+  "-- Advanced --": {
+    "type": "separator",
+    "title": "Advanced"
+  },
+  "typescript": "TypeScript",
+  "strict-components": "Strict components",
+  "derived-components": "Deriving components",
   "-- More --": {
     "type": "separator",
     "title": "More"

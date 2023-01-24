@@ -17,6 +17,7 @@ export type OwnProps<E> = E extends ForwardRefComponent<any, infer P> ? P : {};
 export type IntrinsicElement<E> = E extends ForwardRefComponent<infer I, any>
   ? I
   : never;
+
 type ForwardRefExoticComponent<E, OwnProps> = React.ForwardRefExoticComponent<
   Merge<
     E extends React.ElementType ? React.ComponentPropsWithRef<E> : never,

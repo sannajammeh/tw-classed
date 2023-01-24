@@ -1,5 +1,47 @@
 # beta-docs
 
+## 2.0.12-canary.5
+
+### Patch Changes
+
+- Updated dependencies [[`fc48bf56`](https://github.com/sannajammeh/tw-classed/commit/fc48bf56799b41b6fcb5bffb01e7911e9f3a9693)]:
+  - @tw-classed/react@1.4.0-canary.6
+
+## 2.0.12-canary.4
+
+### Patch Changes
+
+- Updated dependencies [[`785bcaaa`](https://github.com/sannajammeh/tw-classed/commit/785bcaaada76f9b19edce4b1724d7850dcb4fbd6)]:
+  - @tw-classed/react@1.4.0-canary.5
+
+## 2.0.12-canary.3
+
+### Patch Changes
+
+- Updated dependencies [[`b183d8ab`](https://github.com/sannajammeh/tw-classed/commit/b183d8ab03ea864c65927226bb6dc9ada250c250)]:
+  - @tw-classed/react@1.4.0-canary.4
+
+## 2.0.12-canary.2
+
+### Patch Changes
+
+- Updated dependencies [[`d392ab1c`](https://github.com/sannajammeh/tw-classed/commit/d392ab1cfb74cd45d86637f0fcc19c6de2cdb2e6)]:
+  - @tw-classed/react@1.4.0-canary.3
+
+## 2.0.12-canary.1
+
+### Patch Changes
+
+- Updated dependencies [[`81a77612`](https://github.com/sannajammeh/tw-classed/commit/81a77612d73058a515fcc6ed5ee548c89a0b8cb6)]:
+  - @tw-classed/react@1.4.0-canary.2
+
+## 2.0.12-canary.0
+
+### Patch Changes
+
+- Updated dependencies [[`0f5f46fa`](https://github.com/sannajammeh/tw-classed/commit/0f5f46fa6ce9f5eb78115c5a04fd9bc06f64c847)]:
+  - @tw-classed/react@1.4.0-canary.1
+
 ## 2.0.11
 
 ### Patch Changes

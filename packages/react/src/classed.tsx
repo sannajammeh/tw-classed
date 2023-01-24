@@ -10,6 +10,8 @@ import {
   AnyComponent,
   ClassedComponentType,
   ClassedFunctionProxy,
+  StrictComponentType,
+  VariantProps,
 } from "./types";
 import { isClassedComponent, COMPONENT_SYMBOL } from "./utility/unique";
 
@@ -23,11 +25,18 @@ export const internalClassed = <
   classNames: ClassNamesAndVariant<{}>[],
   { merger = cx }: ClassedConfig = {}
 ) => {
+  const toParse = Array.from(classNames);
+  const isClassed = isClassedComponent(elementType);
+  if (isClassed) {
+    toParse.unshift(elementType as any);
+  }
   const { className, variants, defaultVariants, compoundVariants } =
-    parseClassNames(classNames);
+    parseClassNames(toParse);
   const Comp = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
-      const Component = isClassedComponent(elementType)
+      const Component = isClassed
+        ? elementType
+        : typeof elementType === "object"
         ? elementType
         : as || elementType;
 
@@ -49,19 +58,26 @@ export const internalClassed = <
         <Component
           className={merged}
           {...props}
-          as={isClassedComponent(elementType) ? as : undefined}
+          {...(isClassed && Object.keys(defaultVariants).length
+            ? defaultVariants
+            : {})}
+          as={isClassed ? as : undefined}
           ref={forwardedRef}
         />
       );
     }
   ) as unknown as ClassedComponentType<T, V>; // Add variant types
 
-  Comp.displayName = `TwComponent(${elementType.toString()})`;
+  Comp.displayName =
+    (isClassed && elementType.displayName) ||
+    `TwComponent(${elementType.toString()})`;
+
   // Set variables to check if component is classed
   Reflect.set(Comp, TW_VARS, {
     className,
     variants,
     defaultVariants,
+    compoundVariants,
   });
 
   Reflect.set(Comp, COMPONENT_SYMBOL, true);
@@ -96,3 +112,16 @@ export const createClassed = ((config: any) => {
     classed: classedProxy,
   };
 }) as CreateClassedType;
+
+export type StrictClassedFunction = <
+  T extends ClassedComponentType<any, {}>,
+  Composers extends (keyof VariantProps<T>)[] | never[]
+>(
+  comp: T,
+  ...composers: Composers
+) => Composers extends never[]
+  ? StrictComponentType<T>
+  : StrictComponentType<T, Composers[number]>;
+
+export const makeStrict = ((component: any) =>
+  component) as StrictClassedFunction;
