@@ -1,5 +1,12 @@
 # beta-docs
 
+## 2.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`db2effb5`](https://github.com/sannajammeh/tw-classed/commit/db2effb5a0947bae667c847e039caacecd030d11)]:
+  - @tw-classed/react@1.4.1
+
 ## 2.0.12
 
 ### Patch Changes

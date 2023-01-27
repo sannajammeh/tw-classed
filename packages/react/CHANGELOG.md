@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.4.1
+
+### Patch Changes
+
+- [`db2effb5`](https://github.com/sannajammeh/tw-classed/commit/db2effb5a0947bae667c847e039caacecd030d11) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Extend inherited components displayName if not classed component
+
 ## 1.4.0
 
 ### Minor Changes
