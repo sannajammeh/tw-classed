@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { describe } from "vitest";
-import { classed, makeStrict } from "../";
+import { classed, makeStrict } from "../index";
 import { render, screen } from "./test.utils";
 import type { StrictComponentType } from "../src/types";
 
@@ -296,5 +296,61 @@ describe("Composition", () => {
         Click me
       </Button4>
     );
+  });
+});
+
+describe("DisplayName", () => {
+  it("Should set displayName", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+    });
+
+    expect(Button.displayName).toBe("TwComponent(button)");
+  });
+
+  it("Should set displayName for composed components", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+    });
+
+    const Anchor = classed(Button, "bg-red-100");
+
+    expect(Anchor.displayName).toBe("TwComponent(button)");
+  });
+
+  it("Should set displayName for non-classed comps", () => {
+    const MyComponent = ({ className }: { className: string }) => (
+      <div className={className} />
+    );
+
+    const Button = classed(MyComponent, {
+      base: "bg-blue-100",
+    });
+
+    expect(Button.displayName).toBe("MyComponent");
+  });
+
+  it("Should reuse displayName when set on parent", () => {
+    const MyComponent = ({ className }: { className: string }) => (
+      <div className={className} />
+    );
+
+    MyComponent.displayName = "X";
+
+    const Button = classed(MyComponent, {
+      base: "bg-blue-100",
+    });
+
+    expect(Button.displayName).toBe("X");
   });
 });

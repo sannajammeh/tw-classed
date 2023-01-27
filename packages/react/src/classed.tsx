@@ -69,12 +69,9 @@ export const internalClassed = <
   ) as unknown as ClassedComponentType<T, V>; // Add variant types
 
   Comp.displayName =
-    (isClassed && elementType.displayName) ||
-    `TwComponent(${
-      (elementType as any).displayName ||
-      (elementType as any).name ||
-      "Component"
-    })`;
+    typeof elementType !== "string"
+      ? elementType.displayName || elementType.name || "Compoonent"
+      : `TwComponent(${elementType})`;
 
   // Set variables to check if component is classed
   Reflect.set(Comp, TW_VARS, {
