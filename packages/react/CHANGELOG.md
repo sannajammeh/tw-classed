@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.4.2
+
+### Patch Changes
+
+- [`1715d071`](https://github.com/sannajammeh/tw-classed/commit/1715d0712a229a61879545022226fe33e83967ef) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Refactors displayName set in #a382966 to use .name and .displayName raw when set on parent component
+
 ## 1.4.1
 
 ### Patch Changes
