@@ -70,7 +70,11 @@ export const internalClassed = <
 
   Comp.displayName =
     (isClassed && elementType.displayName) ||
-    `TwComponent(${elementType.toString()})`;
+    `TwComponent(${
+      (elementType as any).displayName ||
+      (elementType as any).name ||
+      "Component"
+    })`;
 
   // Set variables to check if component is classed
   Reflect.set(Comp, TW_VARS, {
