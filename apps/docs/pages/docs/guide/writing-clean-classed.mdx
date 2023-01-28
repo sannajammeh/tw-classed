@@ -34,11 +34,11 @@ const Button = classed.button("px-4 py-2 bg-blue-500 text-white rounded-md", {
 });
 ```
 
-Now we can use the `variant` prop to change the appearance of the button.
+Now we can use the `color` prop to change the appearance of the button.
 
 ```tsx
-() => <Button variant="primary">Primary</Button>;
-() => <Button variant="secondary">Secondary</Button>;
+() => <Button color="primary">Primary</Button>;
+() => <Button color="secondary">Secondary</Button>;
 ```
 
 ## Using default variants
@@ -65,7 +65,7 @@ Now, when we render the button, it will have the color classes applied with no d
 
 ```tsx
 () => <Button>Primary</Button>;
-() => <Button variant="secondary">Secondary</Button>;
+() => <Button color="secondary">Secondary</Button>;
 ```
 
 ## Organizing your classed components
