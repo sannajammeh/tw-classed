@@ -50,7 +50,7 @@ export const internalClassed = <
       }, [props]);
 
       const merged = useMemo(
-        () => merger(className, cName, variantClassNames),
+        () => merger(className, variantClassNames, cName),
         [className, cName, variantClassNames]
       );
 
