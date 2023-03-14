@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.4.3
+
+### Patch Changes
+
+- [#96](https://github.com/sannajammeh/tw-classed/pull/96) [`714d2389`](https://github.com/sannajammeh/tw-classed/commit/714d238977083a9a60cac012b459988a1a372629) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fixes the merged className order from classed->component->variants to classed->variants->component
+
 ## 1.4.2
 
 ### Patch Changes
