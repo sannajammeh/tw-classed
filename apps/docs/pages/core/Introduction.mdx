@@ -3,6 +3,7 @@ title: "Core introduction"
 ---
 
 import Link from "next/link";
+import { Tabs, Tab } from "nextra-theme-docs";
 
 # Core
 
@@ -11,9 +12,24 @@ Under the hood `@tw-classed/react` uses `@tw-classed/core` to parse the variants
 
 ## Installation
 
-```bash
-npm install @tw-classed/core
-```
+{/* prettier-ignore */}
+<Tabs items={["pnpm", "npm", "yarn"]}>
+  <Tab>
+    ```bash 
+    pnpm add @tw-classed/core
+    ```
+  </Tab>
+  <Tab>
+    ```bash 
+    npm i @tw-classed/core
+    ```
+  </Tab>
+  <Tab>
+    ```bash 
+    yarn add @tw-classed/core
+    ```
+  </Tab>
+</Tabs>
 
 ## Usage
 
