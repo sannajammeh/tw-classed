@@ -1,5 +1,12 @@
 # @tw-classed/react
 
+## 1.4.4
+
+### Patch Changes
+
+- Updated dependencies [[`f19df61f`](https://github.com/sannajammeh/tw-classed/commit/f19df61fe812481e97f40b09cd9713380a39470a)]:
+  - @tw-classed/core@1.4.4
+
 ## 1.4.3
 
 ### Patch Changes

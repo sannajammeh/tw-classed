@@ -1,5 +1,12 @@
 # beta-docs
 
+## 2.0.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tw-classed/react@1.4.4
+
 ## 2.0.15
 
 ### Patch Changes

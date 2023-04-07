@@ -1,5 +1,11 @@
 # @tw-classed/core
 
+## 1.4.4
+
+### Patch Changes
+
+- [#101](https://github.com/sannajammeh/tw-classed/pull/101) [`f19df61f`](https://github.com/sannajammeh/tw-classed/commit/f19df61fe812481e97f40b09cd9713380a39470a) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Improve performance for core lib, carries over to React
+
 ## 1.4.0
 
 ### Minor Changes
