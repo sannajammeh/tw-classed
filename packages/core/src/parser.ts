@@ -117,18 +117,21 @@ export function getCompoundVariantClasses(
   },
   compoundVariants: VariantConfig<any>["compoundVariants"] = []
 ) {
-  return compoundVariants?.reduce(
+  return compoundVariants.reduce(
     (acc: string[], { class: cvClass, className: cvClassName, ...cvo }) => {
-      const isMatched = Object.entries(cvo).every(([key, value]) => {
+      const notMatched = Object.entries(cvo).some(([key, value]) => {
         const propValue = props[key];
         return (
-          (propValue !== undefined ? propValue : defaultVariants?.[key]) ===
+          (propValue !== undefined ? propValue : defaultVariants?.[key]) !==
           value
         );
       });
-      if (!isMatched) return acc;
-      if (cvClass) acc.push(cvClass);
-      if (cvClassName) acc.push(cvClassName);
+
+      if (!notMatched) {
+        if (cvClass) acc.push(cvClass);
+        if (cvClassName) acc.push(cvClassName);
+      }
+
       return acc;
     },
     [] as string[]
