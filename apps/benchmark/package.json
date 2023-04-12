@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
-    "@tw-classed/current": "npm:@tw-classed/react@^1.2.5",
+    "@tw-classed/current": "npm:@tw-classed/react@1.4.3",
     "@tw-classed/react": "workspace:*",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
