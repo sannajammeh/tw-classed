@@ -15,6 +15,8 @@ export type VariantConfig<V extends Variants> = {
     [K in keyof V]: keyof V[K];
   }>;
   compoundVariants: Record<string, any>[];
+  // TODO: Type this properly
+  dataAttributes?: string[];
 };
 
 export type ClassNamesAndVariant<V extends Variants> =
@@ -120,6 +122,8 @@ export interface ClassedCoreFunctionType {
               className?: Util.String;
               class?: Util.String;
             })[];
+            // TODO: type this properly
+            dataAttributes?: string[];
           };
     }
   ): ClassedType<ClassedProps<Composers>, ClassedVariants<Composers>>;

@@ -166,6 +166,43 @@ describe("Classed with Variants", () => {
     render(<Button2 data-testid="btn2" />);
     expect(screen.getByTestId("btn2")).toHaveClass("text-base");
   });
+
+  it("Should render dom element with data-attribute for variant", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: 'bg-red-100'
+        },
+      },
+      dataAttributes: ['color']
+    });
+
+    render(<Button color="blue" className="test" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
+    expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'blue')
+  });
+
+  it("Should render dom element with data-attribute for variant using default", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: 'bg-red-100'
+        },
+      },
+      defaultVariants: {
+        color: 'red',
+      },
+      dataAttributes: ['color']
+    });
+
+    render(<Button className="test" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-red-100");
+    expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'red')
+  });
 });
 
 describe("Composition", () => {

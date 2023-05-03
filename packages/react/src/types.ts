@@ -138,6 +138,8 @@ export interface ClassedFunctionType {
               className?: Util.String;
               class?: Util.String;
             })[];
+            // TODO: Properly type this
+            dataAttributes?: string[];
           };
     }
   ): ClassedComponentType<
