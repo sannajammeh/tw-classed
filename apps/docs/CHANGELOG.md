@@ -1,5 +1,39 @@
 # beta-docs
 
+## 2.0.17-canary.0
+
+### Patch Changes
+
+- [#105](https://github.com/sannajammeh/tw-classed/pull/105) [`233bddfd`](https://github.com/sannajammeh/tw-classed/commit/233bddfd28bed25a40c38a52bb75164dae7bfb36) Thanks [@Xiot](https://github.com/Xiot)! - Adds support for matched variants to appear as dataAttributes
+
+  ### Example
+
+  ```tsx
+  const Button = classed("button", {
+    variants: {
+      color: {
+        blue: "bg-blue-100",
+        red: "bg-red-100",
+      },
+    },
+    defaultVariants: {
+      color: "red",
+    },
+    dataAttributes: ["color"],
+  });
+
+  <Button color="blue" />
+  // Rendered html will be
+  <button data-color="blue" />
+
+  <Button>
+  // Rendered html will be
+  <button data-color="red /> // From default variants
+  ```
+
+- Updated dependencies [[`233bddfd`](https://github.com/sannajammeh/tw-classed/commit/233bddfd28bed25a40c38a52bb75164dae7bfb36)]:
+  - @tw-classed/react@1.5.0-canary.0
+
 ## 2.0.16
 
 ### Patch Changes
