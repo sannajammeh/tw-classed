@@ -1,6 +1,7 @@
 import {
   ClassNamesAndVariant,
   mapPropsToVariantClass,
+  getDataAttributes,
   parseClassNames,
   TW_VARS,
   Variants,
@@ -30,8 +31,9 @@ export const internalClassed = <
   if (isClassed) {
     toParse.unshift(elementType as any);
   }
-  const { className, variants, defaultVariants, compoundVariants } =
+  const { className, variants, defaultVariants, compoundVariants, dataAttributes } =
     parseClassNames(toParse);
+    
   const Comp = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
       const Component = isClassed
@@ -39,6 +41,13 @@ export const internalClassed = <
         : typeof elementType === "object"
         ? elementType
         : as || elementType;
+
+      const dataAttributeProps = getDataAttributes({
+        props,
+        dataAttributes,
+        variants,
+        defaultVariants
+      })
 
       // Map props variant to className
       const variantClassNames = useMemo(() => {
@@ -61,6 +70,7 @@ export const internalClassed = <
           {...(isClassed && Object.keys(defaultVariants).length
             ? defaultVariants
             : {})}
+          {...dataAttributeProps}
           as={isClassed ? as : undefined}
           ref={forwardedRef}
         />
