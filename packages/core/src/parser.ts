@@ -37,7 +37,7 @@ export const parseClassNames = <TVariants extends Variants>(
       record.defaultVariants &&
         Object.assign(defaultVariants, record.defaultVariants);
       record.compoundVariants &&
-        compoundVariants.push(...record.compoundVariants);
+        record.compoundVariants.forEach((cv) => compoundVariants.push(cv));
       record.className && stringClassNames.push(record.className);
       record.base && stringClassNames.push(record.base);
     }
@@ -117,20 +117,23 @@ export function getCompoundVariantClasses(
   },
   compoundVariants: VariantConfig<any>["compoundVariants"] = []
 ) {
-  return compoundVariants?.reduce(
-    (
-      acc: string[],
-      { class: cvClass, className: cvClassName, ...compoundVariantOptions }
-    ) =>
-      Object.entries(compoundVariantOptions).every(
-        ([key, value]) =>
-          ({
-            ...defaultVariants,
-            ...props,
-          }[key] === value)
-      )
-        ? [...(acc as string[]), cvClass, cvClassName]
-        : acc,
+  return compoundVariants.reduce(
+    (acc: string[], { class: cvClass, className: cvClassName, ...cvo }) => {
+      const notMatched = Object.entries(cvo).some(([key, value]) => {
+        const propValue = props[key];
+        return (
+          (propValue !== undefined ? propValue : defaultVariants?.[key]) !==
+          value
+        );
+      });
+
+      if (!notMatched) {
+        if (cvClass) acc.push(cvClass);
+        if (cvClassName) acc.push(cvClassName);
+      }
+
+      return acc;
+    },
     [] as string[]
   );
 }

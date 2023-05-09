@@ -60,7 +60,8 @@ it("Should apply compound variants with default variants", () => {
 
   expect(button()).toContain("bg-red-500");
 
-  expect(button({ size: "lg", color: "blue" })).not.toContain("bg-red-500");
+  const result = button({ size: "lg", color: "blue" });
+  expect(result).not.toContain("bg-red-500");
 });
 
 it("Should apply compound variants with default variants and custom variants", () => {

@@ -1,5 +1,90 @@
 # @tw-classed/react
 
+## 1.4.4
+
+### Patch Changes
+
+- Updated dependencies [[`f19df61f`](https://github.com/sannajammeh/tw-classed/commit/f19df61fe812481e97f40b09cd9713380a39470a)]:
+  - @tw-classed/core@1.4.4
+
+## 1.4.3
+
+### Patch Changes
+
+- [#96](https://github.com/sannajammeh/tw-classed/pull/96) [`714d2389`](https://github.com/sannajammeh/tw-classed/commit/714d238977083a9a60cac012b459988a1a372629) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fixes the merged className order from classed->component->variants to classed->variants->component
+
+## 1.4.2
+
+### Patch Changes
+
+- [`1715d071`](https://github.com/sannajammeh/tw-classed/commit/1715d0712a229a61879545022226fe33e83967ef) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Refactors displayName set in #a382966 to use .name and .displayName raw when set on parent component
+
+## 1.4.1
+
+### Patch Changes
+
+- [`db2effb5`](https://github.com/sannajammeh/tw-classed/commit/db2effb5a0947bae667c847e039caacecd030d11) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Extend inherited components displayName if not classed component
+
+## 1.4.0
+
+### Minor Changes
+
+- [#82](https://github.com/sannajammeh/tw-classed/pull/82) [`0f5f46fa`](https://github.com/sannajammeh/tw-classed/commit/0f5f46fa6ce9f5eb78115c5a04fd9bc06f64c847) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Adds support for `deriveClassed` & `makeStrict`. Updated core internal typing for compatibility.
+
+### Patch Changes
+
+- [#89](https://github.com/sannajammeh/tw-classed/pull/89) [`785bcaaa`](https://github.com/sannajammeh/tw-classed/commit/785bcaaada76f9b19edce4b1724d7850dcb4fbd6) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Adds support for compoundVariants to be inherit via the composition API.
+
+  Example:
+
+  ```tsx
+  const Button = classed.button({
+    base: "bg-blue-500 text-white",
+    variants: {
+      size: {
+        sm: "px-2 py-1 text-sm",
+        md: "px-4 py-2 text-base",
+      },
+      color: {
+        red: "bg-red-500",
+        green: "bg-green-500",
+      },
+    },
+    compoundVariants: [
+      {
+        size: "sm",
+        color: "green"
+        class: "super-special-class-modifyer"
+      },
+    ],
+  });
+
+  const GreenButton = classed(Button, {
+    defaultVariants: {
+      color: "green", // This now triggers the compoundVariant
+    },
+  });
+  ```
+
+- [#89](https://github.com/sannajammeh/tw-classed/pull/89) [`fc48bf56`](https://github.com/sannajammeh/tw-classed/commit/fc48bf56799b41b6fcb5bffb01e7911e9f3a9693) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Sets target to es2018 in tsconfig to allow bundling to newer syntax
+
+- [#89](https://github.com/sannajammeh/tw-classed/pull/89) [`d392ab1c`](https://github.com/sannajammeh/tw-classed/commit/d392ab1cfb74cd45d86637f0fcc19c6de2cdb2e6) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Export Classed Proxy type due to TS error on pnpm
+
+- [#89](https://github.com/sannajammeh/tw-classed/pull/89) [`b183d8ab`](https://github.com/sannajammeh/tw-classed/commit/b183d8ab03ea864c65927226bb6dc9ada250c250) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Reverse insert order of first element composition to allow overriding of defaultVariants & other variant properties when re-classing
+
+- [#89](https://github.com/sannajammeh/tw-classed/pull/89) [`81a77612`](https://github.com/sannajammeh/tw-classed/commit/81a77612d73058a515fcc6ed5ee548c89a0b8cb6) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fixes As prop usage inside a derived component's render method by implicitly requiring `As` generic.
+
+  **NOTE:** Use only when manually setting `as` inside derive's render method. Otherwise, let the compiler infer the `As` generic.
+
+  ```tsx
+  deriveClassed<Comp, Props, "div">((props, ref) => (
+    <BaseComp as="div" {...props} ref={ref} />
+  ));
+  ```
+
+- Updated dependencies [[`785bcaaa`](https://github.com/sannajammeh/tw-classed/commit/785bcaaada76f9b19edce4b1724d7850dcb4fbd6), [`0f5f46fa`](https://github.com/sannajammeh/tw-classed/commit/0f5f46fa6ce9f5eb78115c5a04fd9bc06f64c847)]:
+  - @tw-classed/core@1.4.0
+
 ## 1.4.0-canary.6
 
 ### Patch Changes

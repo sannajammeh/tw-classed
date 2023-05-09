@@ -50,7 +50,7 @@ export const internalClassed = <
       }, [props]);
 
       const merged = useMemo(
-        () => merger(className, cName, variantClassNames),
+        () => merger(className, variantClassNames, cName),
         [className, cName, variantClassNames]
       );
 
@@ -69,8 +69,9 @@ export const internalClassed = <
   ) as unknown as ClassedComponentType<T, V>; // Add variant types
 
   Comp.displayName =
-    (isClassed && elementType.displayName) ||
-    `TwComponent(${elementType.toString()})`;
+    typeof elementType !== "string"
+      ? elementType.displayName || elementType.name || "Compoonent"
+      : `TwComponent(${elementType})`;
 
   // Set variables to check if component is classed
   Reflect.set(Comp, TW_VARS, {

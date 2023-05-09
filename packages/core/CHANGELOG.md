@@ -1,5 +1,52 @@
 # @tw-classed/core
 
+## 1.4.4
+
+### Patch Changes
+
+- [#101](https://github.com/sannajammeh/tw-classed/pull/101) [`f19df61f`](https://github.com/sannajammeh/tw-classed/commit/f19df61fe812481e97f40b09cd9713380a39470a) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Improve performance for core lib, carries over to React
+
+## 1.4.0
+
+### Minor Changes
+
+- [#82](https://github.com/sannajammeh/tw-classed/pull/82) [`0f5f46fa`](https://github.com/sannajammeh/tw-classed/commit/0f5f46fa6ce9f5eb78115c5a04fd9bc06f64c847) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Adds support for `deriveClassed` & `makeStrict`. Updated core internal typing for compatibility.
+
+### Patch Changes
+
+- [#89](https://github.com/sannajammeh/tw-classed/pull/89) [`785bcaaa`](https://github.com/sannajammeh/tw-classed/commit/785bcaaada76f9b19edce4b1724d7850dcb4fbd6) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Adds support for compoundVariants to be inherit via the composition API.
+
+  Example:
+
+  ```tsx
+  const Button = classed.button({
+    base: "bg-blue-500 text-white",
+    variants: {
+      size: {
+        sm: "px-2 py-1 text-sm",
+        md: "px-4 py-2 text-base",
+      },
+      color: {
+        red: "bg-red-500",
+        green: "bg-green-500",
+      },
+    },
+    compoundVariants: [
+      {
+        size: "sm",
+        color: "green"
+        class: "super-special-class-modifyer"
+      },
+    ],
+  });
+
+  const GreenButton = classed(Button, {
+    defaultVariants: {
+      color: "green", // This now triggers the compoundVariant
+    },
+  });
+  ```
+
 ## 1.4.0-canary.5
 
 ### Patch Changes
