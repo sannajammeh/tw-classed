@@ -1,9 +1,10 @@
 import "@testing-library/jest-dom";
 import React from "react";
-import { describe } from "vitest";
+import { describe, expectTypeOf } from "vitest";
 import { classed, makeStrict } from "../index";
 import { render, screen } from "./test.utils";
-import type { StrictComponentType } from "../src/types";
+import type {  StrictComponentType } from "../src/types";
+import { $$ClassedVariants } from "@tw-classed/core";
 
 describe("Classed", () => {
   it("Should render dom element", () => {
@@ -203,6 +204,92 @@ describe("Classed with Variants", () => {
     expect(screen.getByTestId("btn")).toHaveClass("bg-red-100");
     expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'red')
   });
+
+  it("Should render dom element wit mutliple data-attribute for variant", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: 'bg-red-100',
+        },
+        size: {
+          large: "text-lg",
+          small: "text-sm"
+        }
+      },
+      defaultVariants: {
+        color: 'red',
+      },
+      dataAttributes: ['color', "size"]
+    });
+
+    render(<Button size="large" className="test" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("bg-red-100");
+    expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'red')
+    expect(screen.getByTestId("btn")).toHaveAttribute('data-size', 'large')
+  });
+
+  it("Should NOT render dom element with data-attribute when unmatched", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: 'bg-red-100'
+        },
+      },
+      dataAttributes: ['color']
+    });
+
+    render(<Button className="test" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).not.toHaveClass("bg-blue-100");
+    expect(screen.getByTestId("btn")).not.toHaveAttribute('data-color', 'blue')
+  });
+
+  it("Should contain correct types for data-attribute when variants are present", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: 'bg-red-100'
+        },
+      },
+      // @ts-expect-error - Variants dont match
+      dataAttributes: ['', "sdsds"]
+    });
+
+    const Button2 = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: 'bg-red-100'
+        },
+      },
+      dataAttributes: ["color"]
+    });
+
+    type Button2Extract = (typeof Button2)[$$ClassedVariants];
+
+    expectTypeOf<Button2Extract["dataAttributes"]>().toMatchTypeOf<"color"[]>();
+
+    const Button3 = classed(Button2, {
+      variants: {
+        size: {
+          large: "text-lg"
+        }
+      },
+      dataAttributes: ["size"]
+    });
+
+    type Button3Extract = (typeof Button3)[$$ClassedVariants];
+
+    // @ts-expect-error
+    expectTypeOf<Button3Extract["dataAttributes"]>().toMatchTypeOf<"color"[]>();
+
+    expectTypeOf<Button3Extract["dataAttributes"]>().toMatchTypeOf<"size"[]>();
+
+  })
 });
 
 describe("Composition", () => {

@@ -78,7 +78,7 @@ export type ClassedVariants<T extends any[]> =
   ($$ClassedVariants extends keyof T[0]
     ? T[0][$$ClassedVariants]
     : T[0] extends { variants: { [name: string]: unknown } }
-    ? Pick<T[0], "variants" | "defaultVariants">
+    ? Pick<T[0], "variants" | "defaultVariants" | "dataAttributes">
     : {}) &
     (T extends [lead: any, ...tail: infer V] ? ClassedVariants<V> : {});
 
@@ -122,9 +122,10 @@ export interface ClassedCoreFunctionType {
               className?: Util.String;
               class?: Util.String;
             })[];
-            // TODO: type this properly
-            dataAttributes?: string[];
+
+            dataAttributes?: (("variants" extends keyof Composers[K] ? Array<keyof Composers[K]["variants"]> : Array<string>))
           };
     }
   ): ClassedType<ClassedProps<Composers>, ClassedVariants<Composers>>;
 }
+

@@ -88,17 +88,18 @@ export const mapPropsToVariantClass = <
   props: Partial<InferVariantProps<TVariants>> = {},
   shouldDeleteProps = false
 ) => {
-  const matchedKeys: string[] = [];
+  const matchedKeys: Set<string> = new Set();
   const producedClassName = Object.keys(variants).reduce((acc, variantKey) => {
     const variantSelector = getVariantSelector(variantKey, props, {
       defaultVariants,
     });
 
     if (!variantSelector) return acc;
-    shouldDeleteProps && matchedKeys.push(variantKey);
+    shouldDeleteProps && matchedKeys.add(variantKey);
     const variantClassName = variants[variantKey][variantSelector];
     if (!variantClassName) return acc;
 
+    // Variant is matched
     return mergeClass(acc, variantClassName);
   }, "");
 
