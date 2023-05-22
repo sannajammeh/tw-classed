@@ -14,6 +14,10 @@
     "icon": "CodeIcon",
     "typesetting": "article"
   },
+  "react-native": {
+    "title": "Usage in React Native",
+    "icon": "CodeIcon"
+  },
   "configuring-classed": {
     "title": "Configuring classed",
     "icon": "GearIcon"

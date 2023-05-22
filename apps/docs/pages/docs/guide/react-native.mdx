@@ -1,0 +1,53 @@
+# Using `tw-classed` with React Native
+
+While `tw-classed` is primarily designed for web development, it is also possible to use tw-classed with React Native to style your mobile applications. This documentation page will guide you through the process of setting up and using tw-classed with React Native.
+
+## Install dependencies
+
+Before getting started, make sure you have the following dependencies installed:
+
+- [React Native (>=0.70)](https://reactnative.dev/docs/environment-setup)
+- [React (>=17.0.2)](https://reactjs.dev)
+- [@tw-classed/react (>=1.4)](https://tw-classed.vercel.app)
+- [nativewind](https://nativewind.dev)
+
+## Setup
+
+1. Import the necessary components and libraries in your React Native file:
+
+```tsx
+import { Text as RNText } from "react-native";
+import { styled } from "nativewind";
+import { classed } from "@tw-classed/react";
+```
+
+2. Create a styled component using nativewind:
+
+```tsx
+const StyledText = styled(RNText);
+```
+
+3. Export a classed component by combining the styled component with tw-classed:
+
+```tsx
+export const Text = classed(StyledText, {
+  variants: {
+    color: {
+      blue: "text-blue-500",
+      green: "text-green-500",
+    },
+  },
+});
+```
+
+## Usage
+
+You can now use the `Text` component the same way you would use it in a React web application
+
+```tsx
+import { Text } from "./path/to/Text";
+
+const App = () => {
+  return <Text color="blue">Hello, tw-classed!</Text>;
+};
+```
