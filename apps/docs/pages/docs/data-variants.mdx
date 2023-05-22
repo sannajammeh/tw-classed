@@ -1,0 +1,97 @@
+---
+title: "Data attributes"
+description: "Serializing variants to data attributes"
+publishedAt: "22/05/2022"
+---
+
+# Variants as Data Attributes
+
+The @tw-classed/react library introduces a new feature in version 1.5 that allows you to serialize variants as data attributes. This feature enables you to create more dynamic and responsive components by making nested components react to changes in the parent component's variants. This guide will walk you through the steps of using this feature effectively.
+
+## Using Data attribute variant serialization
+
+To utilize variant serialization, follow these steps:
+
+Define your base component using classed.
+
+```tsx
+const Button = classed.button("p-4 group", {
+  variants: {
+    color: {
+      light: "bg-white text-slate-900",
+      dark: "bg-slate-900 text-white",
+    },
+  },
+});
+```
+
+In the Variant configuration add `dataAttributes` for the variant's you want serialized.
+
+```tsx {7}
+const Button = classed.button("p-4 group", {
+  variants: {
+    color: {
+      light: "bg-white text-slate-900",
+      dark: "bg-slate-900 text-white",
+    },
+    dataAttributes: ["color"],
+  },
+});
+```
+
+When you render the component, you will see the data attributes on the element.
+
+```tsx
+<Button color="light">Light</Button>
+```
+
+Output:
+
+```html
+<button class="p-4 group bg-white text-slate-900" data-color="light">
+  Light
+</button>
+```
+
+### Using data attributes in nested components
+
+The data attributes are also serialized to nested components. This allows you to create more dynamic components that react to changes in the parent component's variants.
+
+```tsx
+const Button = classed.button("p-4 group", {
+  variants: {
+    color: {
+      light: "bg-white text-slate-900",
+      dark: "bg-slate-900 text-white",
+    },
+    dataAttributes: ["color"],
+  },
+});
+
+const LoadingSpinner = classed(
+  FiSpinner,
+  "animate-spin rounded-full h-8 w-8 text-slate-900",
+  "group-data-[color=dark]:text-white" // Matches when button is dark variant
+);
+
+() => {
+  return (
+    <Button>
+      <LoadingSpinner />
+    </Button>
+  );
+};
+```
+
+Output:
+
+```html
+<button class="p-4 group bg-white text-slate-900" data-color="light">
+  <svg
+    class="animate-spin rounded-full h-8 w-8 text-slate-900"
+    data-group-data="[color=dark]:text-white"
+  >
+    ...
+  </svg>
+</button>
+```
