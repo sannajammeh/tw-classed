@@ -20,6 +20,7 @@
     "title": "Advanced"
   },
   "typescript": "TypeScript",
+  "data-variants": "Data attributes",
   "strict-components": "Strict components",
   "derived-components": "Deriving components",
   "-- More --": {

@@ -31,6 +31,7 @@ export default defineConfig({
     setupFiles: "./test/setup.ts",
     typecheck: {
       include: ["./test/**/*.{ts,tsx}"],
+      tsconfig: "./tsconfig.test.json"
     },
   },
 });

@@ -15,6 +15,8 @@ export type VariantConfig<V extends Variants> = {
     [K in keyof V]: keyof V[K];
   }>;
   compoundVariants: Record<string, any>[];
+  // TODO: Type this properly
+  dataAttributes?: string[];
 };
 
 export type ClassNamesAndVariant<V extends Variants> =
@@ -76,7 +78,7 @@ export type ClassedVariants<T extends any[]> =
   ($$ClassedVariants extends keyof T[0]
     ? T[0][$$ClassedVariants]
     : T[0] extends { variants: { [name: string]: unknown } }
-    ? Pick<T[0], "variants" | "defaultVariants">
+    ? Pick<T[0], "variants" | "defaultVariants" | "dataAttributes">
     : {}) &
     (T extends [lead: any, ...tail: infer V] ? ClassedVariants<V> : {});
 
@@ -120,7 +122,10 @@ export interface ClassedCoreFunctionType {
               className?: Util.String;
               class?: Util.String;
             })[];
+
+            dataAttributes?: (("variants" extends keyof Composers[K] ? Array<keyof Composers[K]["variants"]> : Array<string>))
           };
     }
   ): ClassedType<ClassedProps<Composers>, ClassedVariants<Composers>>;
 }
+

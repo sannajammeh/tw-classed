@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "benchmark": "0.1.0",
+    "docs": "2.0.16",
+    "@tw-classed/core": "1.4.4",
+    "@tw-classed/react": "1.4.4",
+    "@tw-classed/solid": "1.4.4"
+  },
+  "changesets": [
+    "polite-crabs-end",
+    "sweet-panthers-beg"
+  ]
+}
