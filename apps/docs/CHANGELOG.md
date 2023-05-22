@@ -1,5 +1,14 @@
 # beta-docs
 
+## 2.0.17-canary.1
+
+### Patch Changes
+
+- [`d46b615f`](https://github.com/sannajammeh/tw-classed/commit/d46b615f3697d1a159367fa7c07b2c7a25f8b776) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Add documentation for Data attributes
+
+- Updated dependencies [[`d46b615f`](https://github.com/sannajammeh/tw-classed/commit/d46b615f3697d1a159367fa7c07b2c7a25f8b776)]:
+  - @tw-classed/react@1.5.0-canary.1
+
 ## 2.0.17-canary.0
 
 ### Patch Changes

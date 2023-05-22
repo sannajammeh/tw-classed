@@ -9,6 +9,7 @@
     "@tw-classed/solid": "1.4.4"
   },
   "changesets": [
+    "polite-crabs-end",
     "sweet-panthers-beg"
   ]
 }
