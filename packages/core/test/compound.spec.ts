@@ -101,3 +101,65 @@ it("Should apply compound variants with default variants and custom variants", (
 
   expect(button({ size: "sm", color: "blue" })).toContain("bg-blue-500");
 });
+
+it("Should work with array compound variants", () => {
+  const button = classed("button", {
+    base: "bg-blue-500",
+    variants: {
+      size: {
+        sm: "text-sm",
+        md: "text-md",
+        lg: "text-lg",
+      },
+      color: {
+        red: "text-red-500",
+        blue: "text-blue-500",
+        green: "text-green-500",
+      },
+    },
+    defaultVariants: {
+      size: "lg",
+      color: "red",
+    },
+    compoundVariants: [
+      {
+        size: "lg",
+        color: ["red", "blue"],
+        className: "MATCH",
+      },
+    ],
+  });
+
+  expect(button({ size: "lg", color: "blue" })).toContain("MATCH");
+});
+
+it("Should work with array compound variants with default variants", () => {
+  const button = classed("button", {
+    base: "bg-blue-500",
+    variants: {
+      size: {
+        sm: "text-sm",
+        md: "text-md",
+        lg: "text-lg",
+      },
+      color: {
+        red: "text-red-500",
+        blue: "text-blue-500",
+        green: "text-green-500",
+      },
+    },
+    defaultVariants: {
+      size: "lg",
+      color: "red",
+    },
+    compoundVariants: [
+      {
+        size: "lg",
+        color: ["red", "blue"],
+        className: "MATCH",
+      },
+    ],
+  });
+
+  expect(button()).toContain("MATCH");
+});
