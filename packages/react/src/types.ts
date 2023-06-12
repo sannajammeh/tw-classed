@@ -132,6 +132,7 @@ export interface ClassedFunctionType {
               ? {
                   [Name in keyof Composers[K]["variants"]]?:
                     | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
                     | Util.String;
                 }
               : never) & {
@@ -139,7 +140,9 @@ export interface ClassedFunctionType {
               class?: Util.String;
             })[];
 
-            dataAttributes?: (("variants" extends keyof Composers[K] ? Array<keyof Composers[K]["variants"]> : Array<string>))
+            dataAttributes?: "variants" extends keyof Composers[K]
+              ? Array<keyof Composers[K]["variants"]>
+              : Array<string>;
           };
     }
   ): ClassedComponentType<
@@ -186,6 +189,7 @@ export interface ClassedProxyFunctionType<
               ? {
                   [Name in keyof Composers[K]["variants"]]?:
                     | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
                     | Util.String;
                 }
               : never) & {
@@ -193,7 +197,9 @@ export interface ClassedProxyFunctionType<
               class?: Util.String;
             })[];
 
-            dataAttributes?: (("variants" extends keyof Composers[K] ? Array<keyof Composers[K]["variants"]> : Array<string>))
+            dataAttributes?: "variants" extends keyof Composers[K]
+              ? Array<keyof Composers[K]["variants"]>
+              : Array<string>;
           };
     }
   ): ClassedComponentType<

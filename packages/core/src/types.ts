@@ -116,6 +116,7 @@ export interface ClassedCoreFunctionType {
               ? {
                   [Name in keyof Composers[K]["variants"]]?:
                     | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
                     | Util.String;
                 }
               : never) & {
@@ -123,9 +124,10 @@ export interface ClassedCoreFunctionType {
               class?: Util.String;
             })[];
 
-            dataAttributes?: (("variants" extends keyof Composers[K] ? Array<keyof Composers[K]["variants"]> : Array<string>))
+            dataAttributes?: "variants" extends keyof Composers[K]
+              ? Array<keyof Composers[K]["variants"]>
+              : Array<string>;
           };
     }
   ): ClassedType<ClassedProps<Composers>, ClassedVariants<Composers>>;
 }
-
