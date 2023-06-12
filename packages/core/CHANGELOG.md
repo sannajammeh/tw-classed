@@ -1,5 +1,29 @@
 # @tw-classed/core
 
+## 1.5.1
+
+### Patch Changes
+
+- [#114](https://github.com/sannajammeh/tw-classed/pull/114) [`52abded9`](https://github.com/sannajammeh/tw-classed/commit/52abded95022cca7c16497b08741538b3a05fe88) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Add support for array matching compound variants
+
+  - Add support for matched variants to appear as dataAttributes
+  - Update dependencies
+
+  chore(core): update parser and types to support array compound variants
+
+  - Update parser to handle array compound variants
+  - Update types to handle array compound variants
+
+  feat(react): update types to support array compound variants
+
+  - Update types to handle array compound variants
+
+  test(core): add tests for array compound variants
+
+  - Add tests for array compound variants
+
+  test(compound.spec.tsx): add tests for array compound variants to improve test coverage
+
 ## 1.5.0
 
 ### Minor Changes
