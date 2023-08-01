@@ -3,7 +3,7 @@ import React from "react";
 import { describe } from "vitest";
 import { classed as core } from "@tw-classed/core";
 
-import { classed } from "../";
+import { classed } from "../src";
 import { render, screen } from "./test.utils";
 
 describe("Interop: Core -> React", () => {

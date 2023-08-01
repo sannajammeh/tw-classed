@@ -6,7 +6,7 @@ import {
   DerivedComponentType,
   deriveClassed,
   ComponentProps,
-} from "../index";
+} from "../src/index";
 import { DERIVED_COMPONENT_SYMBOL } from "../src/deriveClassed";
 import { render, screen } from "./test.utils";
 

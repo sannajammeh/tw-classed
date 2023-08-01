@@ -1,9 +1,9 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { describe, expectTypeOf } from "vitest";
-import { classed, makeStrict } from "../index";
+import { classed, makeStrict } from "../src/index";
 import { render, screen } from "./test.utils";
-import type {  StrictComponentType } from "../src/types";
+import type { StrictComponentType } from "../src/types";
 import { $$ClassedVariants } from "@tw-classed/core";
 
 describe("Classed", () => {
@@ -173,16 +173,16 @@ describe("Classed with Variants", () => {
       variants: {
         color: {
           blue: "bg-blue-100",
-          red: 'bg-red-100'
+          red: "bg-red-100",
         },
       },
-      dataAttributes: ['color']
+      dataAttributes: ["color"],
     });
 
     render(<Button color="blue" className="test" data-testid="btn" />);
 
     expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
-    expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'blue')
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-color", "blue");
   });
 
   it("Should render dom element with data-attribute for variant using default", () => {
@@ -190,19 +190,19 @@ describe("Classed with Variants", () => {
       variants: {
         color: {
           blue: "bg-blue-100",
-          red: 'bg-red-100'
+          red: "bg-red-100",
         },
       },
       defaultVariants: {
-        color: 'red',
+        color: "red",
       },
-      dataAttributes: ['color']
+      dataAttributes: ["color"],
     });
 
     render(<Button className="test" data-testid="btn" />);
 
     expect(screen.getByTestId("btn")).toHaveClass("bg-red-100");
-    expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'red')
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-color", "red");
   });
 
   it("Should render dom element wit mutliple data-attribute for variant", () => {
@@ -210,24 +210,24 @@ describe("Classed with Variants", () => {
       variants: {
         color: {
           blue: "bg-blue-100",
-          red: 'bg-red-100',
+          red: "bg-red-100",
         },
         size: {
           large: "text-lg",
-          small: "text-sm"
-        }
+          small: "text-sm",
+        },
       },
       defaultVariants: {
-        color: 'red',
+        color: "red",
       },
-      dataAttributes: ['color', "size"]
+      dataAttributes: ["color", "size"],
     });
 
     render(<Button size="large" className="test" data-testid="btn" />);
 
     expect(screen.getByTestId("btn")).toHaveClass("bg-red-100");
-    expect(screen.getByTestId("btn")).toHaveAttribute('data-color', 'red')
-    expect(screen.getByTestId("btn")).toHaveAttribute('data-size', 'large')
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-color", "red");
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-size", "large");
   });
 
   it("Should NOT render dom element with data-attribute when unmatched", () => {
@@ -235,16 +235,16 @@ describe("Classed with Variants", () => {
       variants: {
         color: {
           blue: "bg-blue-100",
-          red: 'bg-red-100'
+          red: "bg-red-100",
         },
       },
-      dataAttributes: ['color']
+      dataAttributes: ["color"],
     });
 
     render(<Button className="test" data-testid="btn" />);
 
     expect(screen.getByTestId("btn")).not.toHaveClass("bg-blue-100");
-    expect(screen.getByTestId("btn")).not.toHaveAttribute('data-color', 'blue')
+    expect(screen.getByTestId("btn")).not.toHaveAttribute("data-color", "blue");
   });
 
   it("Should contain correct types for data-attribute when variants are present", () => {
@@ -252,21 +252,21 @@ describe("Classed with Variants", () => {
       variants: {
         color: {
           blue: "bg-blue-100",
-          red: 'bg-red-100'
+          red: "bg-red-100",
         },
       },
       // @ts-expect-error - Variants dont match
-      dataAttributes: ['', "sdsds"]
+      dataAttributes: ["", "sdsds"],
     });
 
     const Button2 = classed("button", {
       variants: {
         color: {
           blue: "bg-blue-100",
-          red: 'bg-red-100'
+          red: "bg-red-100",
         },
       },
-      dataAttributes: ["color"]
+      dataAttributes: ["color"],
     });
 
     type Button2Extract = (typeof Button2)[$$ClassedVariants];
@@ -276,10 +276,10 @@ describe("Classed with Variants", () => {
     const Button3 = classed(Button2, {
       variants: {
         size: {
-          large: "text-lg"
-        }
+          large: "text-lg",
+        },
       },
-      dataAttributes: ["size"]
+      dataAttributes: ["size"],
     });
 
     type Button3Extract = (typeof Button3)[$$ClassedVariants];
@@ -288,8 +288,7 @@ describe("Classed with Variants", () => {
     expectTypeOf<Button3Extract["dataAttributes"]>().toMatchTypeOf<"color"[]>();
 
     expectTypeOf<Button3Extract["dataAttributes"]>().toMatchTypeOf<"size"[]>();
-
-  })
+  });
 });
 
 describe("Composition", () => {
