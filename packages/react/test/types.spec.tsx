@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import { assertType, expectTypeOf } from "vitest";
-import { classed } from "../index";
+import { classed } from "../src/index";
 import {
   ClassedComponentType,
   DerivedComponentType,

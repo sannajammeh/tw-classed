@@ -16,6 +16,6 @@
     "incremental": true,
     "downlevelIteration": true
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "env.d.ts"],
   "exclude": ["node_modules"]
 }

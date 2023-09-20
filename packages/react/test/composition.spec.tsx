@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import React from "react";
-import { classed } from "../index";
+import { classed } from "../src/index";
 import { render, screen, cleanup } from "./test.utils";
 
 it("Should inherit classNames from Classed Component in creator fn", () => {
