@@ -16,7 +16,7 @@ import {
 } from "./types";
 import { isClassedComponent, COMPONENT_SYMBOL } from "./utility/unique";
 
-const cx = (...args: string[]) => args.filter(Boolean).join(" ");
+export const cx = (...args: string[]): string => args.filter((v) => !!v && typeof v === "string").join(" ");
 
 export const internalClassed = <
   T extends keyof JSX.IntrinsicElements | AnyComponent,

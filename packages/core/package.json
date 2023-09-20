@@ -33,12 +33,12 @@
     "url": "https://github.com/sannajammeh/tw-classed"
   },
   "devDependencies": {
-    "@vitest/ui": "^0.34.0",
-    "bunchee": "^3.6.0",
+    "@vitest/ui": "^0.34.4",
+    "bunchee": "^3.8.0",
     "c8": "^8.0.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.8",
-    "vite-plugin-dts": "^3.4.0",
-    "vitest": "^0.34.0"
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3",
+    "vitest": "^0.34.4"
   }
 }

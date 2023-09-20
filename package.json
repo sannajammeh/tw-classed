@@ -28,7 +28,7 @@
   "packageManager": "pnpm@8.3.1",
   "dependencies": {
     "@changesets/cli": "^2.26.2",
-    "turbo": "^1.10.12"
+    "turbo": "^1.10.14"
   },
   "config": {
     "commitizen": {
@@ -39,6 +39,6 @@
     "@changesets/changelog-github": "^0.4.8",
     "cz-conventional-changelog": "^3.3.0",
     "rimraf": "^5.0.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   }
 }

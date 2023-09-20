@@ -1,5 +1,5 @@
 export { classedProxy as classed } from "./proxy";
-export { createClassed, makeStrict } from "./classed";
+export { createClassed, makeStrict, cx } from "./classed";
 export { deriveClassed } from "./deriveClassed";
 export type { ClassedConfig } from "./classed";
 export type { DeriveClassedFunction } from "./deriveClassed";

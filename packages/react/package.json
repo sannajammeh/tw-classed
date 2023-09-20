@@ -1,64 +1,63 @@
 {
-	"name": "@tw-classed/react",
-	"version": "1.5.1",
-	"description": "A Stitches & Styled-Components inspired library to create reusable Tailwind React components",
-	"sideEffects": false,
-	"main": "dist/index.cjs",
-	"module": "dist/index.esm.js",
-	"types": "dist/index.d.ts",
-	"exports": {
-		"types": "./dist/index.d.ts",
-		"import": "./dist/index.mjs",
-		"module": "./dist/index.esm.js",
-		"require": "./dist/index.cjs"
-	},
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"dev": "bunchee ./index.tsx --watch --target es2018",
-		"build": "bunchee ./src/index.tsx --target es2018",
-		"rsc-compat": "node ./.task/rsc-compat.js",
-		"test": "vitest run",
-		"test:watch": "vitest",
-		"test:ui": "vitest --ui",
-		"test:coverage": "vitest run --coverage",
-		"typecheck": "vitest typecheck --run",
-		"prepublishOnly": "cd ../../ && turbo run build test --filter=@tw-classed/react"
-	},
-	"keywords": [],
-	"author": "Sanna Jammeh",
-	"license": "MIT",
-	"homepage": "https://github.com/sannajammeh/tw-classed",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/sannajammeh/tw-classed"
-	},
-	"dependencies": {
-		"@tw-classed/core": "workspace:*"
-	},
-	"peerDependencies": {
-		"react": ">=16.8.0"
-	},
-	"devDependencies": {
-		"@swc/core": "^1.3.73",
-		"@testing-library/jest-dom": "^5.17.0",
-		"@testing-library/react": "^14.0.0",
-		"@testing-library/user-event": "^14.4.3",
-		"@types/react": "^18.2.18",
-		"@types/react-dom": "^18.2.7",
-		"@types/testing-library__jest-dom": "^5.14.9",
-		"@vitejs/plugin-react": "^4.0.4",
-		"@vitest/coverage-c8": "^0.33.0",
-		"@vitest/ui": "^0.34.0",
-		"bunchee": "^3.6.0",
-		"c8": "^8.0.1",
-		"jsdom": "^22.1.0",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"typescript": "^5.1.6",
-		"vite": "^4.4.8",
-		"vite-plugin-dts": "^3.4.0",
-		"vitest": "^0.34.0"
-	}
+  "name": "@tw-classed/react",
+  "version": "1.5.1",
+  "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind React components",
+  "sideEffects": false,
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.mjs",
+    "module": "./dist/index.esm.js",
+    "require": "./dist/index.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "bunchee ./index.tsx --watch --target es2018",
+    "build": "bunchee ./src/index.tsx --target es2018",
+    "rsc-compat": "node ./.task/rsc-compat.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "vitest typecheck --run",
+    "prepublishOnly": "cd ../../ && turbo run build test --filter=@tw-classed/react"
+  },
+  "keywords": [],
+  "author": "Sanna Jammeh",
+  "license": "MIT",
+  "homepage": "https://github.com/sannajammeh/tw-classed",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sannajammeh/tw-classed"
+  },
+  "dependencies": {
+    "@tw-classed/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.86",
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@vitest/coverage-c8": "^0.33.0",
+    "@vitest/ui": "^0.34.4",
+    "bunchee": "^3.8.0",
+    "c8": "^8.0.1",
+    "jsdom": "^22.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3",
+    "vitest": "^0.34.4"
+  }
 }

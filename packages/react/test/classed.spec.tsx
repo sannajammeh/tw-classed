@@ -47,6 +47,15 @@ describe("Classed", () => {
     expect(screen.getByTestId("anchor")).toHaveAttribute("href", "#");
     expect(screen.getByTestId("anchor")).toBeInstanceOf(HTMLAnchorElement);
   });
+
+  it("Should render correct props to DOM", () => {
+    const Button = classed("button");
+
+    render(<Button data-testid="btn" disabled data-cy="test" />);
+
+    expect(screen.getByTestId("btn")).toBeDisabled();
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-cy", "test");
+  })
 });
 
 describe("Classed with Variants", () => {
