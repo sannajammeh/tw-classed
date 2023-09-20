@@ -1,5 +1,14 @@
 # beta-docs
 
+## 2.0.19
+
+### Patch Changes
+
+- [#119](https://github.com/sannajammeh/tw-classed/pull/119) [`67ec8d98`](https://github.com/sannajammeh/tw-classed/commit/67ec8d984b03b7f51e416f98088c0c90a22fcc04) Thanks [@sannajammeh](https://github.com/sannajammeh)! - This release exports the default merger as `cx`, adds additional test cases for cx & react props, bumps all packages to latest
+
+- Updated dependencies [[`67ec8d98`](https://github.com/sannajammeh/tw-classed/commit/67ec8d984b03b7f51e416f98088c0c90a22fcc04)]:
+  - @tw-classed/react@1.5.2
+
 ## 2.0.18
 
 ### Patch Changes

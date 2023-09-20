@@ -1,6 +1,6 @@
 {
   "name": "@tw-classed/react",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind React components",
   "sideEffects": false,
   "main": "dist/index.cjs",
