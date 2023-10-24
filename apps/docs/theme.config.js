@@ -1,5 +1,4 @@
 import { useConfig } from "nextra-theme-docs";
-import { TbBrandTailwind } from "react-icons/tb";
 import Logo from "./components/Logo";
 
 /**
@@ -45,7 +44,12 @@ export default {
     prev: true,
   },
   footer: {
-    text: `MIT ${new Date().getFullYear()} © Sanna Jammeh.`,
+    text: (
+      <>
+        MIT {new Date().getFullYear()} © Sanna Jammeh, In cooperation with{" "}
+        <a href="https://northstrategy.no">North Strategy</a>.
+      </>
+    ),
   },
   toc: {
     float: true,
@@ -84,16 +88,4 @@ export default {
       );
     },
   },
-
-  // banner: {
-  //   key: "see-preview-release-1",
-  //   text: (
-  //     <a
-  //       href="https://tw-classed-git-canary-sannajammeh.vercel.app/"
-  //       target="_blank"
-  //     >
-  //       👀 See and review whats new in the latest Preview docs. (v1.3.0)
-  //     </a>
-  //   ),
-  // },
 };

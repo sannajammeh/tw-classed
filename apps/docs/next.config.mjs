@@ -8,9 +8,6 @@ import process from "process";
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    newNextLinkBehavior: true,
-  },
 };
 
 const currentDIR = process.cwd();
