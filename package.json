@@ -28,7 +28,7 @@
   "packageManager": "pnpm@8.3.1",
   "dependencies": {
     "@changesets/cli": "^2.26.2",
-    "turbo": "^1.10.14"
+    "turbo": "^1.10.16"
   },
   "config": {
     "commitizen": {
