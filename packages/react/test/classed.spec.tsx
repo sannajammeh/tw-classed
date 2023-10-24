@@ -55,7 +55,7 @@ describe("Classed", () => {
 
     expect(screen.getByTestId("btn")).toBeDisabled();
     expect(screen.getByTestId("btn")).toHaveAttribute("data-cy", "test");
-  })
+  });
 });
 
 describe("Classed with Variants", () => {
@@ -298,6 +298,18 @@ describe("Classed with Variants", () => {
 
     expectTypeOf<Button3Extract["dataAttributes"]>().toMatchTypeOf<"size"[]>();
   });
+
+  it("Should render default props on component", () => {
+    const Button = classed("button", {
+      defaultProps: {
+        disabled: true,
+      },
+    });
+
+    render(<Button data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).toBeDisabled();
+  });
 });
 
 describe("Composition", () => {
@@ -428,6 +440,31 @@ describe("Composition", () => {
         Click me
       </Button4>
     );
+  });
+
+  it("Should correctly render data-attributes when composed", () => {
+    const Button = classed("button", {
+      variants: { loading: { true: "animate-pulse" } },
+      dataAttributes: ["loading"],
+    });
+
+    const Button2 = classed(Button, {
+      variants: { color: { blue: "bg-blue-100" } },
+      dataAttributes: ["color"],
+    });
+
+    render(<Button2 color="blue" data-testid="btn" loading />);
+
+    expect(screen.getByTestId("btn")).toHaveClass("animate-pulse bg-blue-100");
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-color", "blue");
+    expect(screen.getByTestId("btn")).toHaveAttribute("data-loading");
+
+    const Button3 = classed.button(Button);
+
+    render(<Button3 color="blue" data-testid="btn3" loading />);
+
+    expect(screen.getByTestId("btn3")).toHaveClass("animate-pulse");
+    expect(screen.getByTestId("btn3")).toHaveAttribute("data-loading");
   });
 });
 
