@@ -1,5 +1,24 @@
 # @tw-classed/core
 
+## 1.6.0
+
+### Minor Changes
+
+- [#125](https://github.com/sannajammeh/tw-classed/pull/125) [`e3b9d61e`](https://github.com/sannajammeh/tw-classed/commit/e3b9d61e5952bdabdd614511c080b039eb417a62) Thanks [@sannajammeh](https://github.com/sannajammeh)! - - (Feat): Add support for defaultProps in React api
+  Components can now have default props in the React api
+
+  ```tsx
+  const Button = classed.button({
+    defaultProps: {
+      someProp: "someValue",
+    },
+  });
+  ```
+
+  This change is considered unstable, for now defaultProps will not populate when using composition nor affect variants or classname generation.
+
+  - (Fix): Data attributes are now correctly generated for composition
+
 ## 1.5.2
 
 ### Patch Changes
