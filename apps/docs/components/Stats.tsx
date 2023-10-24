@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { BundleSizes } from "types/BundleSizes";
 
 export const useBundleSize = () => {
-  return useSWR<BundleSizes>("/api/bundlesize", (url) =>
+  return useSWR<BundleSizes>("/api/bundlesize", (url: string) =>
     fetch(url).then((r) => r.json())
   );
 };
