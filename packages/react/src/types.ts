@@ -108,6 +108,7 @@ export interface ClassedFunctionType {
           base?: string;
           variants?: { [name: string]: unknown };
           defaultVariants?: { [name: string]: unknown };
+          defaultProps?: Record<string, any>;
         }
     )[]
   >(
@@ -143,6 +144,8 @@ export interface ClassedFunctionType {
             dataAttributes?: "variants" extends keyof Composers[K]
               ? Array<keyof Composers[K]["variants"]>
               : Array<string>;
+
+            defaultProps?: Record<string, any>;
           };
     }
   ): ClassedComponentType<
@@ -166,6 +169,7 @@ export interface ClassedProxyFunctionType<
           base?: string;
           variants?: { [name: string]: unknown };
           defaultVariants?: { [name: string]: unknown };
+          defaultProps?: Record<string, any>;
         }
     )[]
   >(
@@ -200,6 +204,8 @@ export interface ClassedProxyFunctionType<
             dataAttributes?: "variants" extends keyof Composers[K]
               ? Array<keyof Composers[K]["variants"]>
               : Array<string>;
+
+            defaultProps?: Record<string, any>;
           };
     }
   ): ClassedComponentType<

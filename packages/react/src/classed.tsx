@@ -16,7 +16,8 @@ import {
 } from "./types";
 import { isClassedComponent, COMPONENT_SYMBOL } from "./utility/unique";
 
-export const cx = (...args: string[]): string => args.filter((v) => !!v && typeof v === "string").join(" ");
+export const cx = (...args: string[]): string =>
+  args.filter((v) => !!v && typeof v === "string").join(" ");
 
 export const internalClassed = <
   T extends keyof JSX.IntrinsicElements | AnyComponent,
@@ -31,9 +32,15 @@ export const internalClassed = <
   if (isClassed) {
     toParse.unshift(elementType as any);
   }
-  const { className, variants, defaultVariants, compoundVariants, dataAttributes } =
-    parseClassNames(toParse);
-    
+  const {
+    className,
+    variants,
+    defaultVariants,
+    compoundVariants,
+    dataAttributes,
+    defaultProps,
+  } = parseClassNames(toParse);
+
   const Comp = forwardRef(
     ({ as, className: cName, ...props }: any, forwardedRef: any) => {
       const Component = isClassed
@@ -42,20 +49,23 @@ export const internalClassed = <
         ? elementType
         : as || elementType;
 
-      const dataAttributeProps = getDataAttributes({
-        props,
-        dataAttributes,
-        variants,
-        defaultVariants
-      })
-
       // Map props variant to className
-      const variantClassNames = useMemo(() => {
-        return mapPropsToVariantClass(
-          { variants, defaultVariants, compoundVariants },
+      const [variantClassNames, dataAttributeProps] = useMemo(() => {
+        const dataAttributeProps = getDataAttributes({
           props,
-          true
-        );
+          dataAttributes,
+          variants,
+          defaultVariants,
+        });
+
+        return [
+          mapPropsToVariantClass(
+            { variants, defaultVariants, compoundVariants },
+            props,
+            true
+          ),
+          dataAttributeProps,
+        ] as const;
       }, [props]);
 
       const merged = useMemo(
@@ -71,6 +81,7 @@ export const internalClassed = <
             ? defaultVariants
             : {})}
           {...dataAttributeProps}
+          {...defaultProps}
           as={isClassed ? as : undefined}
           ref={forwardedRef}
         />
@@ -89,6 +100,7 @@ export const internalClassed = <
     variants,
     defaultVariants,
     compoundVariants,
+    dataAttributes,
   });
 
   Reflect.set(Comp, COMPONENT_SYMBOL, true);

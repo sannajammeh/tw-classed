@@ -21,6 +21,7 @@ export const parseClassNames = <TVariants extends Variants>(
   >;
   let compoundVariants = [] as Record<string, any>[];
   let dataAttributes = new Set<string>();
+  let defaultProps: Record<string, unknown> = {};
 
   for (const className of classNames) {
     if (!className) continue;
@@ -35,18 +36,23 @@ export const parseClassNames = <TVariants extends Variants>(
         ? Reflect.get<VariantConfig<TVariants>, symbol>(className, TW_VARS)
         : (className as VariantConfig<TVariants>);
 
-      record.variants && Object.assign(variantObj, record.variants);
-      record.defaultVariants &&
-        Object.assign(defaultVariants, record.defaultVariants);
-      record.compoundVariants &&
-        record.compoundVariants.forEach((cv) => compoundVariants.push(cv));
-      record.className && stringClassNames.push(record.className);
-      record.base && stringClassNames.push(record.base);
+      if (record.variants) Object.assign(variantObj, record.variants);
 
-      record.dataAttributes &&
+      if (record.defaultVariants)
+        Object.assign(defaultVariants, record.defaultVariants);
+
+      if (record.compoundVariants)
+        record.compoundVariants.forEach((cv) => compoundVariants.push(cv));
+
+      if (record.className) stringClassNames.push(record.className);
+      if (record.base) stringClassNames.push(record.base);
+
+      if (record.dataAttributes)
         record.dataAttributes.forEach((name) => {
           dataAttributes.add(name);
         });
+
+      if (record.defaultProps) Object.assign(defaultProps, record.defaultProps);
     }
   }
 
@@ -56,6 +62,7 @@ export const parseClassNames = <TVariants extends Variants>(
     defaultVariants,
     compoundVariants,
     dataAttributes: Array.from(dataAttributes),
+    defaultProps,
   };
 };
 

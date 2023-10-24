@@ -5,7 +5,7 @@ export type Variants = Record<string, Variant>;
 export type BooleanVariant = Record<"true", string>;
 
 /**
- * @deprecated
+ * @internal
  */
 export type VariantConfig<V extends Variants> = {
   variants?: V;
@@ -15,8 +15,8 @@ export type VariantConfig<V extends Variants> = {
     [K in keyof V]: keyof V[K];
   }>;
   compoundVariants: Record<string, any>[];
-  // TODO: Type this properly
   dataAttributes?: string[];
+  defaultProps?: Record<string, unknown>;
 };
 
 export type ClassNamesAndVariant<V extends Variants> =

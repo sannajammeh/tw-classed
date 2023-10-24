@@ -17,6 +17,6 @@
     "downlevelIteration": true,
     "types": ["react", "react-dom"]
   },
-  "include": ["test/**"],
+  "include": ["./test/**/*.ts"],
   "exclude": ["node_modules"]
 }
