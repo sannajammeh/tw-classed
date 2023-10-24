@@ -1,5 +1,12 @@
 # @tw-classed/solid
 
+## 1.6.0
+
+### Patch Changes
+
+- Updated dependencies [[`e3b9d61e`](https://github.com/sannajammeh/tw-classed/commit/e3b9d61e5952bdabdd614511c080b039eb417a62)]:
+  - @tw-classed/core@1.6.0
+
 ## 1.5.2
 
 ### Patch Changes
