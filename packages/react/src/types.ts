@@ -108,7 +108,7 @@ export interface ClassedFunctionType {
           base?: string;
           variants?: { [name: string]: unknown };
           defaultVariants?: { [name: string]: unknown };
-          defaultProps?: Record<string, any>;
+          defaultProps?: React.ComponentProps<Type>;
         }
     )[]
   >(
@@ -145,7 +145,7 @@ export interface ClassedFunctionType {
               ? Array<keyof Composers[K]["variants"]>
               : Array<string>;
 
-            defaultProps?: Record<string, any>;
+            defaultProps?: React.ComponentProps<Type>;
           };
     }
   ): ClassedComponentType<
@@ -169,7 +169,7 @@ export interface ClassedProxyFunctionType<
           base?: string;
           variants?: { [name: string]: unknown };
           defaultVariants?: { [name: string]: unknown };
-          defaultProps?: Record<string, any>;
+          defaultProps?: React.ComponentProps<Type>;
         }
     )[]
   >(
@@ -205,7 +205,7 @@ export interface ClassedProxyFunctionType<
               ? Array<keyof Composers[K]["variants"]>
               : Array<string>;
 
-            defaultProps?: Record<string, any>;
+            defaultProps?: React.ComponentProps<Type>;
           };
     }
   ): ClassedComponentType<
