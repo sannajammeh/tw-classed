@@ -47,7 +47,12 @@ export default {
     text: (
       <p>
         MIT {new Date().getFullYear()} © Sanna Jammeh, In cooperation with{" "}
-        <a href="https://northstrategy.no" className="underline">
+        <a
+          href="https://northstrategy.no"
+          className="underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           North Strategy
         </a>
         .
