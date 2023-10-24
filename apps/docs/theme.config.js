@@ -45,10 +45,13 @@ export default {
   },
   footer: {
     text: (
-      <>
+      <p>
         MIT {new Date().getFullYear()} © Sanna Jammeh, In cooperation with{" "}
-        <a href="https://northstrategy.no">North Strategy</a>.
-      </>
+        <a href="https://northstrategy.no" className="underline">
+          North Strategy
+        </a>
+        .
+      </p>
     ),
   },
   toc: {
