@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.6.1
+
+### Patch Changes
+
+- [#127](https://github.com/sannajammeh/tw-classed/pull/127) [`50e69a7e`](https://github.com/sannajammeh/tw-classed/commit/50e69a7ebfd22377b798eda2dd2f21fea5a14dfd) Thanks [@emmanuelchucks](https://github.com/emmanuelchucks)! - add proper autocompletion for default props
+
 ## 1.6.0
 
 ### Minor Changes
