@@ -8,5 +8,8 @@
     "@tw-classed/react": "1.6.1",
     "@tw-classed/solid": "1.6.0"
   },
-  "changesets": []
+  "changesets": [
+    "fair-chicken-boil",
+    "sour-apples-stare"
+  ]
 }
