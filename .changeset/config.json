@@ -7,10 +7,7 @@
 
   "commit": false,
   "fixed": [],
-  "linked": [
-    ["@tw-classed/core", "@tw-classed/react"],
-    ["@tw-classed/core", "@tw-classed/solid"]
-  ],
+  "linked": [["@tw-classed/core", "@tw-classed/react", "@tw-classed/solid"]],
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
