@@ -154,6 +154,19 @@ describe("Core functionality", () => {
 
     expect(button2()).toBe("bg-blue-100 text-lg");
   });
+
+  it("Should work with exactOptionalPropertyTypes", () => {
+    const button = classed("bg-blue-100", {
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+        },
+      },
+    });
+
+    expect(button({ size: undefined })).toBe("bg-blue-100");
+  });
 });
 
 describe("Composition", () => {

@@ -15,8 +15,9 @@
     "jsx": "react-jsx",
     "incremental": true,
     "downlevelIteration": true,
-    "types": ["react", "react-dom"]
+    "types": ["react", "react-dom"],
+    "exactOptionalPropertyTypes": true
   },
-  "include": ["./test/**/*.ts"],
+  "include": ["./test/**/*.tsx", "./env.d.ts"],
   "exclude": ["node_modules"]
 }
