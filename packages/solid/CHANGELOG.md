@@ -1,5 +1,11 @@
 # @tw-classed/solid
 
+## 1.7.0-canary.2
+
+### Patch Changes
+
+- [#137](https://github.com/sannajammeh/tw-classed/pull/137) [`86acac6`](https://github.com/sannajammeh/tw-classed/commit/86acac6abbb963d6a3af6888a3b18e26b834bf53) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Improve solidjs prop splitting
+
 ## 1.7.0-canary.1
 
 ### Patch Changes
