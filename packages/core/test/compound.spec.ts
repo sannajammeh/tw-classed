@@ -1,5 +1,5 @@
-import { expect, it } from "vitest";
-import { classed } from "../src/classed";
+import { describe, expect, it } from "vitest";
+import { classed, getVariantConfig } from "../src/classed";
 
 it("Should apply compound variants", () => {
   const button = classed("button", {
@@ -162,4 +162,66 @@ it("Should work with array compound variants with default variants", () => {
   });
 
   expect(button()).toContain("MATCH");
+});
+
+describe("getVariants()", () => {
+  it("Should return variants", () => {
+    const button = classed("button", {
+      base: "bg-blue-500",
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+          lg: "text-lg",
+        },
+        color: {
+          red: "text-red-500",
+          blue: "text-blue-500",
+          green: "text-green-500",
+        },
+      },
+      defaultVariants: {
+        size: "lg",
+        color: "red",
+      },
+      compoundVariants: [
+        {
+          size: "lg",
+          color: ["red", "blue"],
+          className: "MATCH",
+        },
+      ],
+    });
+
+    const variants = getVariantConfig(button);
+
+    expect(variants).toMatchObject({
+      className: "button bg-blue-500",
+      variants: {
+        size: {
+          sm: "text-sm",
+          md: "text-md",
+          lg: "text-lg",
+        },
+        color: {
+          red: "text-red-500",
+          blue: "text-blue-500",
+          green: "text-green-500",
+        },
+      },
+      defaultVariants: {
+        size: "lg",
+        color: "red",
+      },
+      compoundVariants: [
+        {
+          size: "lg",
+          color: ["red", "blue"],
+          className: "MATCH",
+        },
+      ],
+    });
+
+    expect(variants.variants.color.red).toBe("text-red-500");
+  });
 });
