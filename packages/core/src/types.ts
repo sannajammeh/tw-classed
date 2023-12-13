@@ -14,7 +14,7 @@ export type VariantConfig<V extends Variants> = {
   defaultVariants?: Partial<{
     [K in keyof V]: keyof V[K];
   }>;
-  compoundVariants: Record<string, any>[];
+  compoundVariants?: Record<string, any>[];
   dataAttributes?: string[];
   defaultProps?: Record<string, unknown>;
 };
