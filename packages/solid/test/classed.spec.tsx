@@ -350,4 +350,21 @@ describe("Composition", () => {
 
     expect(screen.getByTestId("btn")).toHaveClass("bg-blue-100");
   });
+
+  it("Should not render variant as prop in the DOM", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+    });
+
+    const Anchor = classed("a", Button);
+
+    render(() => <Anchor color="blue" data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).not.toHaveAttribute("color");
+  });
 });

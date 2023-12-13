@@ -24,23 +24,22 @@ export const internalClassed = <
   const { className, variants, defaultVariants, compoundVariants } =
     parseClassNames(classNames);
 
+  const variantKeys = Object.keys(variants);
+
   const Comp = (props: any) => {
     const [local, others] = splitProps(props, ["as", "class"]);
+    const [, final] = splitProps(others, variantKeys);
     const component = isClassedComponent(elementType)
       ? elementType
       : local.as || elementType;
 
     // Map props variant to className
     const variantClassNames = createMemo(() => {
-      const mappedProps: Partial<typeof props> = {};
-      for (const key in props) {
-        if (key in variants) {
-          mappedProps[key] = props[key];
-        }
-      }
+      // Register the variant props with solid so that it can be tracked
+      const [variantProps] = splitProps(props, variantKeys);
       return mapPropsToVariantClass(
         { variants, defaultVariants, compoundVariants },
-        mappedProps,
+        variantProps,
         true
       );
     });
@@ -53,7 +52,7 @@ export const internalClassed = <
       <Dynamic
         component={component}
         class={merged()}
-        {...others}
+        {...final}
         as={isClassedComponent(elementType) ? local.as : undefined}
       />
     );
