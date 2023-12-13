@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { classed } from "../src";
 import { render, screen } from "@solidjs/testing-library";
+import { expect, it } from "vitest";
 
 it("Should apply compound variants", () => {
   const Button = classed("button", {

@@ -1,7 +1,7 @@
 ---
 title: "Variants"
 description: "tw-classed supports a first class stitches.js inspired variant API"
-publishedAt: "04/07/2022"
+publishedAt: "13/12/2023"
 ---
 
 ## Adding Variants
@@ -122,4 +122,55 @@ const Button = classed("button", {
     Button
   </Button>
 );
+```
+
+## Extracting variants
+
+You can extract variants from a component using the `getVariantConfig()` function. This is useful if you want to manually compose comonents or show variants in docs/Storybook.
+
+```tsx
+import { classed, getVariantConfig } from "@tw-classed/react";
+
+const Button = classed.button({
+  variants: {
+    color: {
+      primary: "text-white bg-blue-500",
+      secondary: "text-white bg-gray-700",
+    },
+    size: {
+      small: "py-2 px-4",
+      medium: "py-3 px-6",
+      large: "py-4 px-8",
+    },
+  },
+});
+
+const buttonConfig = getVariantConfig(Button);
+
+assert.equals(buttonConfig.variants, {
+  color: {
+    primary: "text-white bg-blue-500",
+    secondary: "text-white bg-gray-700",
+  },
+  size: {
+    small: "py-2 px-4",
+    medium: "py-3 px-6",
+    large: "py-4 px-8",
+  },
+});
+```
+
+### Usage in Storybook
+
+Here we are assuming that you have a utility function to convert the variant config into a Storybook argTypes object.
+
+```tsx
+const meta = {
+  argTypes: {
+    ...variantArgTypes(getVariantConfig(Button)),
+  },
+  component: Button,
+} satisfies Meta<typeof Button>;
+
+export default meta;
 ```

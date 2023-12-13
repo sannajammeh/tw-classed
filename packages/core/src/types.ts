@@ -14,7 +14,7 @@ export type VariantConfig<V extends Variants> = {
   defaultVariants?: Partial<{
     [K in keyof V]: keyof V[K];
   }>;
-  compoundVariants: Record<string, any>[];
+  compoundVariants?: Record<string, any>[];
   dataAttributes?: string[];
   defaultProps?: Record<string, unknown>;
 };
@@ -38,7 +38,7 @@ export type InferVariantProps<
   V extends Variants | unknown | undefined = undefined
 > = V extends Variants
   ? Partial<{
-      [K in keyof V]: Util.Widen<keyof V[K]>;
+      [K in keyof V]: Util.Widen<keyof V[K]> | undefined;
     }>
   : {};
 

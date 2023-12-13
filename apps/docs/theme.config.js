@@ -35,7 +35,7 @@ export default {
       }
       return <>{title}</>;
     },
-    defaultMenuCollapseLevel: 0,
+    defaultMenuCollapseLevel: 1,
   },
   unstable_flexsearch: true,
   unstable_staticImage: true,

@@ -27,8 +27,8 @@
   "homepage": "https://github.com/sannajammeh/tw-classed#readme",
   "packageManager": "pnpm@8.3.1",
   "dependencies": {
-    "@changesets/cli": "^2.26.2",
-    "turbo": "^1.10.16"
+    "@changesets/cli": "^2.27.1",
+    "turbo": "^1.11.2"
   },
   "config": {
     "commitizen": {
@@ -36,9 +36,9 @@
     }
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/changelog-github": "^0.5.0",
     "cz-conventional-changelog": "^3.3.0",
-    "rimraf": "^5.0.1",
+    "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
   }
 }

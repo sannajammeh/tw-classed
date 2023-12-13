@@ -403,7 +403,7 @@ describe("Composition", () => {
       defaultVariants: { color: "blue" },
     });
 
-    const Button = _BasicButton as StrictComponentType<
+    const Button = _BasicButton as unknown as StrictComponentType<
       typeof _BasicButton,
       "loading" | "color"
     >;
@@ -415,7 +415,9 @@ describe("Composition", () => {
       </Button>
     );
 
-    const Button2 = _BasicButton as StrictComponentType<typeof _BasicButton>;
+    const Button2 = _BasicButton as unknown as StrictComponentType<
+      typeof _BasicButton
+    >;
 
     render(
       // @ts-expect-error missing props
@@ -521,5 +523,21 @@ describe("DisplayName", () => {
     });
 
     expect(Button.displayName).toBe("X");
+  });
+});
+
+describe("classed() - tsconfig: exactOptionalPropertyTypes:true", () => {
+  it("Should allow for undefined to be implicitly passed", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+        },
+      },
+    });
+
+    render(<Button color={undefined} data-testid="btn" />);
+
+    expect(screen.getByTestId("btn")).not.toHaveClass("bg-blue-100");
   });
 });

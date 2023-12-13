@@ -8,10 +8,8 @@ import pkg from "./package.json";
 export default defineConfig({
   plugins: [
     dts({
-      tsConfigFilePath: "./tsconfig.json",
+      tsconfigPath: "./tsconfig.json",
       insertTypesEntry: true,
-      noEmitOnError: true,
-      skipDiagnostics: false,
     }),
     solidPlugin(),
   ],
@@ -35,10 +33,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-
-    transformMode: {
-      web: [/\.[jt]sx?$/],
-    },
+    setupFiles: ["./test/setup.ts"],
   },
   resolve: {
     conditions: ["development", "browser"],

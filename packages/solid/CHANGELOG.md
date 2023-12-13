@@ -1,5 +1,24 @@
 # @tw-classed/solid
 
+## 1.7.0-canary.2
+
+### Patch Changes
+
+- [#137](https://github.com/sannajammeh/tw-classed/pull/137) [`86acac6`](https://github.com/sannajammeh/tw-classed/commit/86acac6abbb963d6a3af6888a3b18e26b834bf53) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Improve solidjs prop splitting
+
+## 1.7.0-canary.1
+
+### Patch Changes
+
+- [#135](https://github.com/sannajammeh/tw-classed/pull/135) [`f04cc69`](https://github.com/sannajammeh/tw-classed/commit/f04cc695ce2d5f643de3f346622cd9bab0b39091) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix solid types - Rename Polymorphic.d.ts to polymorphic.ts to ensure dts plugin emits in bundle
+
+## 1.7.0-canary.0
+
+### Patch Changes
+
+- Updated dependencies [[`97130ec`](https://github.com/sannajammeh/tw-classed/commit/97130ecf63128d0061f3a20a11ef9052b97476a9), [`6fd3d61`](https://github.com/sannajammeh/tw-classed/commit/6fd3d6106e052481d2364cc7fb732ed6acf3f2a1)]:
+  - @tw-classed/core@1.7.0-canary.0
+
 ## 1.6.0
 
 ### Patch Changes

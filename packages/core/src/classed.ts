@@ -1,4 +1,11 @@
-import { ClassedProducer, Variants, ClassedCoreFunctionType } from "./types";
+import {
+  ClassedProducer,
+  Variants,
+  ClassedCoreFunctionType,
+  ClassedType,
+  ClassedVariants,
+  $$ClassedVariants,
+} from "./types";
 import { mapPropsToVariantClass, parseClassNames } from "./parser";
 import { cn } from "./utility/classNames";
 import { TW_VARS } from "./constants";
@@ -54,3 +61,31 @@ export const createClassed = ((config?: ClassedCoreConfig) => {
 }) as unknown as CreateClassedCoreType;
 
 export const classed = createClassed().classed as ClassedCoreFunctionType;
+
+/**
+ * @param component - The component to get the variant configuration for.
+ * @returns The variant configuration for the given component.
+ * @example
+ * const button = classed("button", {
+ *  variants: {
+ *    size: {
+ *      sm: "text-sm",
+ *      md: "text-md",
+ *    },
+ *  },
+ * });
+ *
+ * const { variants } = getVariantConfig(button);
+ *
+ * expect(variants).toEqual({
+ *   size: {
+ *      sm: "text-sm",
+ *      md: "text-md",
+ *    },
+ * });
+ */
+export function getVariantConfig<T extends { [$$ClassedVariants]: {} }>(
+  component: T
+) {
+  return Reflect.get(component, TW_VARS) as T[$$ClassedVariants];
+}

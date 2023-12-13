@@ -4,10 +4,11 @@ import type {
   Variants,
   $$ClassedProps,
   $$ClassedVariants,
+  VariantConfig,
 } from "@tw-classed/core";
 import * as Util from "./util";
 
-export { InferVariantProps, Variants };
+export { InferVariantProps, Variants, VariantConfig };
 
 interface InferableClassedType {
   [$$ClassedVariants]: {
