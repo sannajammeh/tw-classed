@@ -38,7 +38,7 @@ export type InferVariantProps<
   V extends Variants | unknown | undefined = undefined
 > = V extends Variants
   ? Partial<{
-      [K in keyof V]: Util.Widen<keyof V[K]>;
+      [K in keyof V]: Util.Widen<keyof V[K]> | undefined;
     }>
   : {};
 
