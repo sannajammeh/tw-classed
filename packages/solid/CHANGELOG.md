@@ -1,5 +1,11 @@
 # @tw-classed/solid
 
+## 1.7.0-canary.1
+
+### Patch Changes
+
+- [#135](https://github.com/sannajammeh/tw-classed/pull/135) [`f04cc69`](https://github.com/sannajammeh/tw-classed/commit/f04cc695ce2d5f643de3f346622cd9bab0b39091) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix solid types - Rename Polymorphic.d.ts to polymorphic.ts to ensure dts plugin emits in bundle
+
 ## 1.7.0-canary.0
 
 ### Patch Changes
