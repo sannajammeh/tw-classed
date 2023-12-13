@@ -1,5 +1,29 @@
 # beta-docs
 
+## 2.0.22
+
+### Patch Changes
+
+- [#132](https://github.com/sannajammeh/tw-classed/pull/132) [`6fd3d61`](https://github.com/sannajammeh/tw-classed/commit/6fd3d6106e052481d2364cc7fb732ed6acf3f2a1) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Add `getVariantConfig()` utility to `core` & `react` api's. This extracts the entire parsed variant config from a classed component, also supports nested variants from component composition.
+
+  Usage:
+
+  ```tsx
+  const Button = classed("button", {
+    variants: {
+      color: {
+        blue: "bg-blue-500",
+      },
+    },
+  });
+
+  const { variants } = getVariantConfig(Button);
+  variants.color.blue; // "bg-blue-500"
+  ```
+
+- Updated dependencies [[`97130ec`](https://github.com/sannajammeh/tw-classed/commit/97130ecf63128d0061f3a20a11ef9052b97476a9), [`6fd3d61`](https://github.com/sannajammeh/tw-classed/commit/6fd3d6106e052481d2364cc7fb732ed6acf3f2a1)]:
+  - @tw-classed/react@1.7.0
+
 ## 2.0.22-canary.0
 
 ### Patch Changes
