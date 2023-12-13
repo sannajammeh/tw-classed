@@ -4,6 +4,7 @@ import { classed as core } from "@tw-classed/core";
 
 import { classed } from "../src";
 import { render, screen } from "@solidjs/testing-library";
+import { describe, expect, it } from "vitest";
 
 describe("Interop: Core -> React", () => {
   it("Should inherit classNames", () => {

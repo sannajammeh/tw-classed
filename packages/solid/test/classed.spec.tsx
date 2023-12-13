@@ -1,4 +1,4 @@
-import { expect, it } from "vitest";
+import { expect, it, describe } from "vitest";
 import { classed, VariantProps } from "../src";
 
 import { render, screen } from "@solidjs/testing-library";

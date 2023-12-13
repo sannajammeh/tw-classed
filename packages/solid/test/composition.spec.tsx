@@ -1,6 +1,7 @@
 import { cleanup, render, screen } from "@solidjs/testing-library";
 import { Component } from "solid-js";
 import { classed } from "../src";
+import { expect, it } from "vitest";
 
 it("Should inherit classNames from Classed Component in creator fn", () => {
   const A = classed(
