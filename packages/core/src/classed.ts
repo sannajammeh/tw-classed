@@ -23,12 +23,10 @@ const internalClassed = <V extends Variants = {}>(
   classes: Array<any>,
   { merger = cn }: ClassedCoreConfig = {}
 ) => {
-  // Parse classNames and variants
   const { className, variants, defaultVariants, compoundVariants } =
     parseClassNames(classes);
 
   const producer = ((variantProps: any) => {
-    // Map variant props to className
     const variantClassName = mapPropsToVariantClass(
       { variants, defaultVariants, compoundVariants },
       variantProps
@@ -41,7 +39,6 @@ const internalClassed = <V extends Variants = {}>(
     return merger(className, variantClassName, ...extra);
   }) as ClassedProducer<V>;
 
-  // Add variants to the classed producer
   Reflect.set(producer, TW_VARS, {
     className,
     variants,
