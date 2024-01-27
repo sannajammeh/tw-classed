@@ -23,6 +23,39 @@ test("It Should create a JSX Element", () => {
   expectTypeOf(button).toMatchTypeOf<JSX.Element>();
 });
 
+test("It should allow for typings of composed variants", () => {
+  const Button = classed("button", {
+    defaultVariants: {
+      size: "default",
+      variant: "default",
+    },
+    variants: {
+      size: {
+        default: "...",
+        sm: "...",
+      },
+      variant: {
+        default: "...",
+        ghost: "...",
+      },
+    },
+  });
+
+  const Toggle = classed("div", Button, {
+    defaultVariants: {
+      size: "sm", // <-- ERROR HERE, see below
+      variant: "ghost",
+    },
+    variants: {
+      variant: {
+        // additional Toggle styles to be merged with Button styles
+        default: "...",
+        ghost: "...",
+      },
+    },
+  });
+});
+
 test("DerivedComponentType -> Should successfully infer the type of the component", () => {
   const InnerButton = classed("button", {
     variants: {

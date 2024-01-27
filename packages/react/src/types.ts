@@ -127,8 +127,10 @@ export interface ClassedFunctionType {
                   [Name in keyof Composers[K]["variants"]]?: Util.Widen<
                     keyof Composers[K]["variants"][Name]
                   >;
-                }
-              : {};
+                } & { [key: string]: string }
+              : {
+                  [key: string]: string;
+                };
 
             compoundVariants?: (("variants" extends keyof Composers[K]
               ? {
@@ -187,8 +189,8 @@ export interface ClassedProxyFunctionType<
                   [Name in keyof Composers[K]["variants"]]?: Util.Widen<
                     keyof Composers[K]["variants"][Name]
                   >;
-                }
-              : {};
+                } & { [key: string]: string }
+              : { [key: string]: string };
 
             compoundVariants?: (("variants" extends keyof Composers[K]
               ? {
