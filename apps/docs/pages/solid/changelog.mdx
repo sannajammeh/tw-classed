@@ -1,5 +1,11 @@
 # @tw-classed/solid
 
+## 1.7.1
+
+### Patch Changes
+
+- [`a084f87`](https://github.com/sannajammeh/tw-classed/commit/a084f87e8f292771414e53cc13f475733320601b) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Ensure solid exports match dist output
+
 ## 1.7.0
 
 ### Patch Changes

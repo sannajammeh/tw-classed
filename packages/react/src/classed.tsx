@@ -20,7 +20,7 @@ export const cx = (...args: string[]): string =>
   args.filter((v) => !!v && typeof v === "string").join(" ");
 
 export const internalClassed = <
-  T extends keyof JSX.IntrinsicElements | AnyComponent,
+  T extends keyof React.JSX.IntrinsicElements | AnyComponent,
   V extends Variants = {}
 >(
   elementType: T,
