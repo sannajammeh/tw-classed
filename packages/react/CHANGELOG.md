@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.8.0
+
+### Minor Changes
+
+- [`f8a2721`](https://github.com/sannajammeh/tw-classed/commit/f8a272128d28d8390d27736898968a268a78593a) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Feat - ensure React 19 compatibility by using React.JSX, thanks [@justinadkins](https://github.com/justinadkins)
+
 ## 1.7.0
 
 ### Minor Changes

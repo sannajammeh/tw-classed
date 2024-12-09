@@ -1,5 +1,12 @@
 # beta-docs
 
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`f8a2721`](https://github.com/sannajammeh/tw-classed/commit/f8a272128d28d8390d27736898968a268a78593a)]:
+  - @tw-classed/react@1.8.0
+
 ## 2.0.22
 
 ### Patch Changes
