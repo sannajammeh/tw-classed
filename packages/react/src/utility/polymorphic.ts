@@ -40,12 +40,12 @@ export interface ForwardRefComponent<
    * from `as` element with the own props taking precendence.
    *
    * We explicitly avoid `React.ElementType` and manually narrow the prop types
-   * so that events are typed when using JSX.IntrinsicElements.
+   * so that events are typed when using React.JSX.IntrinsicElements.
    */
   <As = IntrinsicElementString>(
     props: As extends ""
       ? {
-          as: keyof JSX.IntrinsicElements;
+          as: keyof React.JSX.IntrinsicElements;
         }
       : As extends React.ComponentType<infer P>
       ? Merge<
@@ -54,9 +54,9 @@ export interface ForwardRefComponent<
             as: As;
           }
         >
-      : As extends keyof JSX.IntrinsicElements
+      : As extends keyof React.JSX.IntrinsicElements
       ? Merge<
-          JSX.IntrinsicElements[As],
+          React.JSX.IntrinsicElements[As],
           OwnProps & {
             as: As;
           }

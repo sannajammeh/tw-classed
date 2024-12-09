@@ -11,12 +11,12 @@ export interface DeriveClassedFunction {
   <
     Type extends ClassedComponentType<any>,
     Props extends {} = React.ComponentProps<Type>,
-    As extends keyof JSX.IntrinsicElements | unknown = unknown
+    As extends keyof React.JSX.IntrinsicElements | unknown = unknown
   >(
     callback: React.ForwardRefRenderFunction<
-      React.ComponentRef<As extends keyof JSX.IntrinsicElements ? As : Type>,
+      React.ComponentRef<As extends keyof React.JSX.IntrinsicElements ? As : Type>,
       React.PropsWithoutRef<
-        As extends keyof JSX.IntrinsicElements
+        As extends keyof React.JSX.IntrinsicElements
           ? Merge<Omit<Props, "as">, React.ComponentProps<As>>
           : Props
       >
@@ -24,7 +24,7 @@ export interface DeriveClassedFunction {
   ): DerivedComponentType<
     Type,
     React.PropsWithoutRef<
-      As extends keyof JSX.IntrinsicElements
+      As extends keyof React.JSX.IntrinsicElements
         ? Merge<Props, React.ComponentProps<As>>
         : Props
     >
