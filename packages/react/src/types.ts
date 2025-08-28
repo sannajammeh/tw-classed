@@ -104,6 +104,7 @@ export interface ClassedFunctionType {
     Type extends keyof React.JSX.IntrinsicElements | AnyComponent,
     Composers extends (
       | string
+      | undefined
       | Util.Function
       | {
           base?: string;
@@ -117,7 +118,7 @@ export interface ClassedFunctionType {
     ...composers: {
       [K in keyof Composers]: string extends Composers[K]
         ? Composers[K]
-        : Composers[K] extends string | Util.Function
+        : Composers[K] extends string | undefined | Util.Function
         ? Composers[K]
         : {
             base?: string;
@@ -165,6 +166,7 @@ export interface ClassedProxyFunctionType<
   <
     Composers extends (
       | string
+      | undefined
       | Util.Function
       | {
           base?: string;
@@ -177,7 +179,7 @@ export interface ClassedProxyFunctionType<
     ...composers: {
       [K in keyof Composers]: string extends Composers[K]
         ? Composers[K]
-        : Composers[K] extends string | Util.Function
+        : Composers[K] extends string | undefined | Util.Function
         ? Composers[K]
         : {
             base?: string;
