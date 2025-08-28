@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 1.8.1
+
+### Patch Changes
+
+- [#159](https://github.com/sannajammeh/tw-classed/pull/159) [`e50f63a`](https://github.com/sannajammeh/tw-classed/commit/e50f63af364557bcaf50cb2c78ae1619de990360) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Fix defaultProps type narrowing
+
 ## 1.8.0
 
 ### Minor Changes
