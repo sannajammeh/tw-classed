@@ -109,7 +109,7 @@ export interface ClassedFunctionType {
           base?: string;
           variants?: { [name: string]: unknown };
           defaultVariants?: { [name: string]: unknown };
-          defaultProps?: React.ComponentProps<Type>;
+          defaultProps?: {};
         }
     )[]
   >(
