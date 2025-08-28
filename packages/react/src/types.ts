@@ -170,7 +170,7 @@ export interface ClassedProxyFunctionType<
           base?: string;
           variants?: { [name: string]: unknown };
           defaultVariants?: { [name: string]: unknown };
-          defaultProps?: React.ComponentProps<Type>;
+          defaultProps?: {};
         }
     )[]
   >(
