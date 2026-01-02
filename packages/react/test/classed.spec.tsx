@@ -493,3 +493,164 @@ describe("classed() - tsconfig: exactOptionalPropertyTypes:true", () => {
     expect(screen.getByTestId("btn")).not.toHaveClass("bg-blue-100");
   });
 });
+
+describe("Render Prop", () => {
+  it("Should render as different element type when using render prop with element", () => {
+    const Button = classed("button", "bg-blue-500");
+
+    render(<Button render={<a href="/home">Link</a>} data-testid="btn" />);
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeInstanceOf(HTMLAnchorElement);
+    expect(element).toHaveAttribute("href", "/home");
+    expect(element).toHaveClass("bg-blue-500");
+  });
+
+  it("Should render as different element type when using render prop with function", () => {
+    const Button = classed("button", "bg-blue-500");
+
+    render(<Button render={(props) => <a {...props} href="/">Home</a>} data-testid="btn" />);
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeInstanceOf(HTMLAnchorElement);
+    expect(element).toHaveAttribute("href", "/");
+    expect(element).toHaveClass("bg-blue-500");
+  });
+
+  it("Should preserve render element props and merge className", () => {
+    const Button = classed("button", "bg-blue-500");
+
+    render(
+      <Button
+        render={<a href="/about" title="Link Title">Link</a>}
+        data-testid="btn"
+      />
+    );
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeInstanceOf(HTMLAnchorElement);
+    expect(element).toHaveAttribute("href", "/about");
+    expect(element).toHaveAttribute("title", "Link Title");
+    expect(element).toHaveClass("bg-blue-500");
+  });
+
+  it("Should preserve variant classes when using render prop", () => {
+    const Button = classed("button", {
+      base: "font-bold",
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+        size: {
+          sm: "text-sm",
+          lg: "text-lg",
+        },
+      },
+    });
+
+    render(
+      <Button
+        render={<span />}
+        color="blue"
+        size="lg"
+        data-testid="btn"
+      />
+    );
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeInstanceOf(HTMLSpanElement);
+    expect(element).toHaveClass("font-bold bg-blue-100 text-lg");
+  });
+
+  it("Should merge className from render prop with classed classes", () => {
+    const Button = classed("button", "bg-blue-500");
+
+    render(
+      <Button
+        render={<a href="/link" className="underline">Link</a>}
+        className="font-bold"
+        data-testid="btn"
+      />
+    );
+
+    const element = screen.getByTestId("btn");
+    expect(element).toHaveClass("bg-blue-500 underline font-bold");
+  });
+
+  it("Should work with render prop function receiving and spreading props", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+        },
+      },
+    });
+
+    render(
+      <Button
+        render={(props) => <div {...props} data-custom="test" />}
+        color="blue"
+        data-testid="btn"
+      />
+    );
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeInstanceOf(HTMLDivElement);
+    expect(element).toHaveClass("bg-blue-100");
+    expect(element).toHaveAttribute("data-custom", "test");
+  });
+
+  it("Should apply data-attributes when using render prop", () => {
+    const Button = classed("button", {
+      variants: {
+        color: {
+          blue: "bg-blue-100",
+          red: "bg-red-100",
+        },
+      },
+      dataAttributes: ["color"],
+    });
+
+    render(
+      <Button
+        render={<span />}
+        color="blue"
+        data-testid="btn"
+      />
+    );
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeInstanceOf(HTMLSpanElement);
+    expect(element).toHaveClass("bg-blue-100");
+    expect(element).toHaveAttribute("data-color", "blue");
+  });
+
+  it("Should work with defaultProps when using render prop", () => {
+    const Button = classed("button", {
+      defaultProps: {
+        type: "button" as const,
+        disabled: true,
+      },
+    });
+
+    render(<Button render={<button type="button">Click</button>} data-testid="btn" />);
+
+    const element = screen.getByTestId("btn");
+    expect(element).toBeDisabled();
+    expect(element).toHaveAttribute("type", "button");
+  });
+
+  it("Should allow overriding defaultProps with render element props", () => {
+    const Button = classed("button", {
+      defaultProps: {
+        type: "button" as const,
+      },
+    });
+
+    render(<Button render={<button type="submit">Submit</button>} data-testid="btn" />);
+
+    const element = screen.getByTestId("btn");
+    expect(element).toHaveAttribute("type", "submit");
+  });
+});
