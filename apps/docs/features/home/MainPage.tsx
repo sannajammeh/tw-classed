@@ -45,8 +45,7 @@ const Home: NextPage<{}> = ({}) => {
           <div className="flex justify-center gap-6 mb-12">
             <Button
               className="ios:border-2 ios:!outline-none ios:!border-radix-blue6 ios:hover:!border-radix-blue7 drop-shadow-[0_0px_12px_rgba(54,158,255,0.2)]"
-              as={Link}
-              href="/docs/installation"
+              render={<Link href="/docs/installation" />}
               size="md"
               radius="pill"
             >
@@ -55,11 +54,9 @@ const Home: NextPage<{}> = ({}) => {
             <Button
               color="ghostSlate"
               className="ios:border-2 ios:!outline-none ios:!border-radix-slate6 ios:hover:!border-radix-slate7"
-              as="a"
+              render={<a href="https://github.com/sannajammeh/tw-classed" target="_blank" />}
               radius="pill"
               size="md"
-              href="https://github.com/sannajammeh/tw-classed"
-              target="_blank"
             >
               Github <FiExternalLink />
             </Button>

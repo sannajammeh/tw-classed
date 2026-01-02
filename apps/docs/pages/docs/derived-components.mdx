@@ -1,26 +1,20 @@
 ---
-title: "Strict components"
-description: "TW-Classed provides dedicated API's to create derived components to extend a classed component with additional functionality, without losing the ability to use the 'as' prop."
+title: "Extending Components"
+description: "Learn how to extend classed components with additional React logic while preserving variant functionality."
 publishedAt: "11/01/2023"
 ---
 
-## Derived components
+## Extending Components
 
-Sometimes you might have to extend a component with React logic. You can do this by creating a derived component.
+Sometimes you need to extend a classed component with additional React logic. You can wrap a classed component in a regular React component while preserving all its functionality.
 
-A derived component might look like this:
+### Basic Pattern
 
 1. A base `classed` component that adds styles & variants
-2. A React component wrapping it that adds useful logic like icons, loading bars etc.
-
-### `deriveClassed`
-
-In order to create a wrapped component with a working `as` prop you must wrap it in `deriveClassed`. The function works similar to `React.forwardRef` and takes a callback that receives the props and a ref. The callback should **only** return the `classed` component you want to wrap.
-
-A simple example looks like this:
+2. A React component wrapping it that adds useful logic like icons, loading states, etc.
 
 ```tsx
-import { classed, deriveClassed, ComponentProps } from "@tw-classed/react";
+import { classed, ComponentProps } from "@tw-classed/react";
 
 const ButtonBase = classed.button({
   base: "px-2 py-4 flex items-center gap-2",
@@ -33,61 +27,100 @@ const ButtonBase = classed.button({
 });
 
 export type ButtonProps = ComponentProps<typeof ButtonBase> & {
-  icon?: React.ReactNode; // Add an icon
+  icon?: React.ReactNode;
 };
 
-export const Button = deriveClassed<typeof ButtonBase, ButtonProps>(
-  ({ children, icon, ...rest }, ref) => {
-    return (
-      <ButtonBase {...rest} ref={ref}>
-        {icon && <span>{icon}</span>}
-        <span>{children}</span>
-      </ButtonBase>
-    );
-  }
-);
+export function Button({ children, icon, ...rest }: ButtonProps) {
+  return (
+    <ButtonBase {...rest}>
+      {icon && <span>{icon}</span>}
+      <span>{children}</span>
+    </ButtonBase>
+  );
+}
 
-// In your App
+// Usage
 import { CheckIcon, LinkIcon } from "example-icons";
 
 () => <Button color="blue">Click me</Button>;
 () => <Button icon={<CheckIcon />}>Click me</Button>;
+```
 
-// Use the `as` prop to change the rendered ButtonBase element
+### Using the `render` prop for polymorphism
+
+If you need to change the underlying element type, use the `render` prop on the base classed component:
+
+```tsx
+import { classed, ComponentProps } from "@tw-classed/react";
+
+const ButtonBase = classed.button({
+  base: "px-2 py-4 flex items-center gap-2",
+  variants: {
+    color: {
+      blue: "bg-blue-500 text-white",
+      red: "bg-red-500 text-white",
+    },
+  },
+});
+
+type ButtonProps = ComponentProps<typeof ButtonBase> & {
+  icon?: React.ReactNode;
+  href?: string;
+};
+
+function Button({ children, icon, href, ...rest }: ButtonProps) {
+  return (
+    <ButtonBase
+      {...rest}
+      render={href ? <a href={href} /> : undefined}
+    >
+      {icon && <span>{icon}</span>}
+      <span>{children}</span>
+    </ButtonBase>
+  );
+}
+
+// Usage - renders as button
+() => <Button color="blue">Click me</Button>;
+
+// Usage - renders as anchor
 () => (
-  <Button as="a" href="/" icon={<LinkIcon />}>
-    Docs
+  <Button color="blue" href="/contact" icon={<LinkIcon />}>
+    Contact
   </Button>
 );
 ```
 
-In the example above we created a `Button` component that wraps the `ButtonBase` component. The `Button` component adds an icon and a span around the children. The `Button` component also accepts all props that the `ButtonBase` component accepts.
+### Composing extended components
 
-This is a very simple example, but you can use this pattern to add any kind of logic to your `classed` components.
-
-**NOTE** The `ref` must be forwarded in your derived function.
-
-### Experimental `As` manual prop support
-
-The `deriveClassed` function also accepts a third argument to support the `as` prop manually in its render function. This is an experimental feature and might be removed in the future.
-
-In order to use this feature you must pass the `as` prop type as the third generic argument to the `deriveClassed` function. This is to allow the compiler to infer the correct `as` prop type since its being manually set in the render function.
+Extended components can still be composed with other classed components:
 
 ```tsx
-export const Anchor = deriveClassed<typeof ButtonBase, ButtonProps, "a">( // Notice the third argument.
-  ({ children, icon, ...rest }, ref) => {
-    return (
-      <ButtonBase as="a" {...rest} ref={ref}>
-        {icon && <span>{icon}</span>}
-        <span>{children}</span>
-      </ButtonBase>
-    );
-  }
-);
+import { classed } from "@tw-classed/react";
+
+// Original classed component
+const BaseCard = classed.div({
+  base: "rounded-lg shadow-md p-4",
+  variants: {
+    variant: {
+      elevated: "shadow-xl",
+      flat: "shadow-none border",
+    },
+  },
+});
+
+// Extended component with additional logic
+function Card({ children, title, ...rest }: ComponentProps<typeof BaseCard> & { title: string }) {
+  return (
+    <BaseCard {...rest}>
+      <h2 className="text-xl font-bold">{title}</h2>
+      {children}
+    </BaseCard>
+  );
+}
+
+// Compose with another classed component
+const ProductCard = classed(BaseCard, {
+  base: "hover:shadow-xl transition-shadow",
+});
 ```
-
-### Using the TypeScript `casting` API
-
-A second option is to use the TypeScript `casting` API to cast the component to a strict component.
-
-See the [TypeScript `casting` API](/docs/typescript#derivedcomponenttype---creating-a-derived-component) for more information.

@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { describe, expectTypeOf } from "vitest";
-import { classed, makeStrict } from "../src/index";
+import { classed } from "../src/index";
 import { render, screen } from "./test.utils";
-import type { StrictComponentType } from "../src/types";
 import { $$ClassedVariants } from "@tw-classed/core";
 
 describe("Classed", () => {
@@ -395,53 +394,6 @@ describe("Composition", () => {
     );
     expect(screen.getByTestId("b1")).toHaveClass("animate-pulse");
     expect(screen.getByTestId("b2")).not.toHaveClass("invisible");
-  });
-
-  it("Should correctly support required variants", () => {
-    const _BasicButton = classed("button", {
-      variants: { loading: { true: "animate-pulse" }, color: { blue: "blue" } },
-      defaultVariants: { color: "blue" },
-    });
-
-    const Button = _BasicButton as unknown as StrictComponentType<
-      typeof _BasicButton,
-      "loading" | "color"
-    >;
-
-    render(
-      //@ts-expect-error missing props
-      <Button data-testid="b1" data-innertestid="b2">
-        Click me
-      </Button>
-    );
-
-    const Button2 = _BasicButton as unknown as StrictComponentType<
-      typeof _BasicButton
-    >;
-
-    render(
-      // @ts-expect-error missing props
-      <Button2 data-testid="b2" data-innertestid="b2">
-        Click me
-      </Button2>
-    );
-
-    const Button3 = makeStrict(_BasicButton);
-    const Button4 = makeStrict(_BasicButton, "loading", "color");
-
-    render(
-      //@ts-expect-error missing props
-      <Button3 data-testid="b3" data-innertestid="b3">
-        Click me
-      </Button3>
-    );
-
-    render(
-      //@ts-expect-error missing props
-      <Button4 data-testid="b4" data-innertestid="b4">
-        Click me
-      </Button4>
-    );
   });
 
   it("Should correctly render data-attributes when composed", () => {

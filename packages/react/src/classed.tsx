@@ -4,8 +4,6 @@ import type {
   AnyComponent,
   ClassedComponentType,
   ClassedFunctionProxy,
-  StrictComponentType,
-  VariantProps,
   Variants,
 } from "./types";
 import {
@@ -170,18 +168,5 @@ export const createClassed = ((config: any) => {
     classed: classedProxy,
   };
 }) as CreateClassedType;
-
-export type StrictClassedFunction = <
-  T extends ClassedComponentType<any, {}>,
-  Composers extends (keyof VariantProps<T>)[] | never[]
->(
-  comp: T,
-  ...composers: Composers
-) => Composers extends never[]
-  ? StrictComponentType<T>
-  : StrictComponentType<T, Composers[number]>;
-
-export const makeStrict = ((component: any) =>
-  component) as StrictClassedFunction;
 
 export const { classed } = createClassed();

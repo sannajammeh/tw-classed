@@ -7,7 +7,7 @@ import reactnewsletterImg from "public/reactnewsletter.svg";
 
 const FeaturedAt = () => {
   return (
-    <Container as="section">
+    <Container render={<section />}>
       <Text center variant="title">
         Featured on
       </Text>
