@@ -70,58 +70,67 @@ export type ClassedComponentVariants<T extends any[]> =
       ? ClassedComponentVariants<V>
       : {});
 
+export type Composer =
+  | undefined
+  | string
+  | Util.Function
+  | {
+      base?: string;
+      variants?: { [name: string]: unknown };
+      defaultVariants?: { [name: string]: unknown };
+      defaultProps?: {};
+    };
+
+export type ComposerMap<
+  Composers extends Composer[],
+  Type extends keyof React.JSX.IntrinsicElements | AnyComponent
+> = {
+  [K in keyof Composers]:
+    | (string extends Composers[K]
+        ? Composers[K]
+        : Composers[K] extends string | Util.Function
+        ? Composers[K]
+        : {
+            base?: string;
+            variants?: Variants;
+            defaultVariants?: "variants" extends keyof Composers[K]
+              ? {
+                  [Name in keyof Composers[K]["variants"]]?: Util.Widen<
+                    keyof Composers[K]["variants"][Name]
+                  >;
+                }
+              : {};
+
+            compoundVariants?: (("variants" extends keyof Composers[K]
+              ? {
+                  [Name in keyof Composers[K]["variants"]]?:
+                    | Util.Widen<keyof Composers[K]["variants"][Name]>
+                    | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
+                    | Util.String;
+                }
+              : never) & {
+              className?: Util.String;
+              class?: Util.String;
+            })[];
+
+            dataAttributes?: "variants" extends keyof Composers[K]
+              ? Array<keyof Composers[K]["variants"]>
+              : Array<string>;
+
+            defaultProps?: React.ComponentProps<Type>;
+          })
+    | undefined;
+};
+
 /**
  * Defines the classed function. Used to create classed components.
  */
 export type ClassedFunctionType = <
   Type extends keyof React.JSX.IntrinsicElements | AnyComponent,
-  Composers extends (
-    | string
-    | Util.Function
-    | {
-        base?: string;
-        variants?: { [name: string]: unknown };
-        defaultVariants?: { [name: string]: unknown };
-        defaultProps?: {};
-      }
-  )[]
+  Composers extends Composer[]
 >(
   type: Type,
-  ...composers: {
-    [K in keyof Composers]: string extends Composers[K]
-      ? Composers[K]
-      : Composers[K] extends string | Util.Function
-      ? Composers[K]
-      : {
-          base?: string;
-          variants?: Variants;
-          defaultVariants?: "variants" extends keyof Composers[K]
-            ? {
-                [Name in keyof Composers[K]["variants"]]?: Util.Widen<
-                  keyof Composers[K]["variants"][Name]
-                >;
-              }
-            : {};
-
-          compoundVariants?: (("variants" extends keyof Composers[K]
-            ? {
-                [Name in keyof Composers[K]["variants"]]?:
-                  | Util.Widen<keyof Composers[K]["variants"][Name]>
-                  | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
-                  | Util.String;
-              }
-            : never) & {
-            className?: Util.String;
-            class?: Util.String;
-          })[];
-
-          dataAttributes?: "variants" extends keyof Composers[K]
-            ? Array<keyof Composers[K]["variants"]>
-            : Array<string>;
-
-          defaultProps?: React.ComponentProps<Type>;
-        };
-  }
+  ...composers: ComposerMap<Composers, Type>
 ) => ClassedComponentType<
   Type,
   ClassedComponentProps<Composers>,
@@ -133,53 +142,8 @@ export type ClassedFunctionType = <
  */
 export type ClassedProxyFunctionType<
   Type extends keyof React.JSX.IntrinsicElements | AnyComponent
-> = <
-  Composers extends (
-    | string
-    | Util.Function
-    | {
-        base?: string;
-        variants?: { [name: string]: unknown };
-        defaultVariants?: { [name: string]: unknown };
-        defaultProps?: {};
-      }
-  )[]
->(
-  ...composers: {
-    [K in keyof Composers]: string extends Composers[K]
-      ? Composers[K]
-      : Composers[K] extends string | Util.Function
-      ? Composers[K]
-      : {
-          base?: string;
-          variants?: Variants;
-          defaultVariants?: "variants" extends keyof Composers[K]
-            ? {
-                [Name in keyof Composers[K]["variants"]]?: Util.Widen<
-                  keyof Composers[K]["variants"][Name]
-                >;
-              }
-            : {};
-
-          compoundVariants?: (("variants" extends keyof Composers[K]
-            ? {
-                [Name in keyof Composers[K]["variants"]]?:
-                  | Util.Widen<keyof Composers[K]["variants"][Name]>
-                  | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
-                  | Util.String;
-              }
-            : never) & {
-            className?: Util.String;
-            class?: Util.String;
-          })[];
-
-          dataAttributes?: "variants" extends keyof Composers[K]
-            ? Array<keyof Composers[K]["variants"]>
-            : Array<string>;
-
-          defaultProps?: React.ComponentProps<Type>;
-        };
-  }
+> = <Composers extends Composer[]>(
+  ...composers: ComposerMap<Composers, Type>
 ) => ClassedComponentType<
   Type,
   ClassedComponentProps<Composers>,

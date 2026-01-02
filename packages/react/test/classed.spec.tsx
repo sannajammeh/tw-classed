@@ -6,6 +6,13 @@ import { render, screen } from "./test.utils";
 import { $$ClassedVariants } from "@tw-classed/core";
 
 describe("Classed", () => {
+  it("Should allow undefined as value passed in to classed composers", () => {
+    const Button = classed("button", undefined);
+
+    render(<Button data-testid="btn" />);
+    expect(screen.getByTestId("btn")).toBeInTheDocument();
+  });
+
   it("Should render dom element", () => {
     const Button = classed("button");
 
@@ -509,7 +516,16 @@ describe("Render Prop", () => {
   it("Should render as different element type when using render prop with function", () => {
     const Button = classed("button", "bg-blue-500");
 
-    render(<Button render={(props) => <a {...props} href="/">Home</a>} data-testid="btn" />);
+    render(
+      <Button
+        render={(props) => (
+          <a {...props} href="/">
+            Home
+          </a>
+        )}
+        data-testid="btn"
+      />
+    );
 
     const element = screen.getByTestId("btn");
     expect(element).toBeInstanceOf(HTMLAnchorElement);
@@ -522,7 +538,11 @@ describe("Render Prop", () => {
 
     render(
       <Button
-        render={<a href="/about" title="Link Title">Link</a>}
+        render={
+          <a href="/about" title="Link Title">
+            Link
+          </a>
+        }
         data-testid="btn"
       />
     );
@@ -550,12 +570,7 @@ describe("Render Prop", () => {
     });
 
     render(
-      <Button
-        render={<span />}
-        color="blue"
-        size="lg"
-        data-testid="btn"
-      />
+      <Button render={<span />} color="blue" size="lg" data-testid="btn" />
     );
 
     const element = screen.getByTestId("btn");
@@ -568,7 +583,11 @@ describe("Render Prop", () => {
 
     render(
       <Button
-        render={<a href="/link" className="underline">Link</a>}
+        render={
+          <a href="/link" className="underline">
+            Link
+          </a>
+        }
         className="font-bold"
         data-testid="btn"
       />
@@ -612,13 +631,7 @@ describe("Render Prop", () => {
       dataAttributes: ["color"],
     });
 
-    render(
-      <Button
-        render={<span />}
-        color="blue"
-        data-testid="btn"
-      />
-    );
+    render(<Button render={<span />} color="blue" data-testid="btn" />);
 
     const element = screen.getByTestId("btn");
     expect(element).toBeInstanceOf(HTMLSpanElement);
@@ -634,7 +647,9 @@ describe("Render Prop", () => {
       },
     });
 
-    render(<Button render={<button type="button">Click</button>} data-testid="btn" />);
+    render(
+      <Button render={<button type="button">Click</button>} data-testid="btn" />
+    );
 
     const element = screen.getByTestId("btn");
     expect(element).toBeDisabled();
@@ -648,7 +663,12 @@ describe("Render Prop", () => {
       },
     });
 
-    render(<Button render={<button type="submit">Submit</button>} data-testid="btn" />);
+    render(
+      <Button
+        render={<button type="submit">Submit</button>}
+        data-testid="btn"
+      />
+    );
 
     const element = screen.getByTestId("btn");
     expect(element).toHaveAttribute("type", "submit");
