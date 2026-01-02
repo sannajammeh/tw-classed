@@ -1,23 +1,49 @@
-import {
-  ClassNamesAndVariant,
-  mapPropsToVariantClass,
-  getDataAttributes,
-  parseClassNames,
-  TW_VARS,
-  Variants,
-} from "@tw-classed/core";
-import { forwardRef, useMemo } from "react";
-import {
+/** biome-ignore-all lint/suspicious/noExplicitAny: <Allow any> */
+import { useMemo } from "react";
+import type {
   AnyComponent,
   ClassedComponentType,
   ClassedFunctionProxy,
   StrictComponentType,
   VariantProps,
+  Variants,
 } from "./types";
+import {
+  type ClassNamesAndVariant,
+  parseClassNames,
+  getDataAttributes,
+  mapPropsToVariantClass,
+  TW_VARS,
+} from "@tw-classed/core";
 import { isClassedComponent, COMPONENT_SYMBOL } from "./utility/unique";
+import { useRender } from "@base-ui/react/use-render";
+import { mergeProps } from "@base-ui/react/merge-props";
 
 export const cx = (...args: string[]): string =>
   args.filter((v) => !!v && typeof v === "string").join(" ");
+
+const getDisplayName = (elementType: AnyComponent | string) => {
+  if (!elementType) {
+    return "Unknown";
+  }
+
+  if (
+    typeof elementType !== "string" &&
+    "render" in elementType &&
+    typeof elementType.render === "function"
+  ) {
+    return elementType.render.name;
+  }
+
+  return typeof elementType !== "string"
+    ? elementType.displayName || elementType.name || "Component"
+    : `TwComponent(${elementType})`;
+};
+
+const isIntrinsicElement = (
+  elementType: any
+): elementType is keyof React.JSX.IntrinsicElements =>
+  typeof elementType === "string";
 
 export const internalClassed = <
   T extends keyof React.JSX.IntrinsicElements | AnyComponent,
@@ -25,8 +51,9 @@ export const internalClassed = <
 >(
   elementType: T,
   classNames: ClassNamesAndVariant<{}>[],
-  { merger = cx }: ClassedConfig = {}
+  config: ClassedConfig = {}
 ) => {
+  const { merger = cx } = config;
   const toParse = Array.from(classNames);
   const isClassed = isClassedComponent(elementType);
   if (isClassed) {
@@ -41,58 +68,69 @@ export const internalClassed = <
     defaultProps,
   } = parseClassNames(toParse);
 
-  const Comp = forwardRef(
-    ({ as, className: cName, ...props }: any, forwardedRef: any) => {
-      const Component = isClassed
-        ? elementType
-        : typeof elementType === "object"
-        ? elementType
-        : as || elementType;
+  const Comp = (({
+    className: cName,
+    render,
+    ...props
+  }: useRender.ComponentProps<any>) => {
+    const Component = elementType;
 
-      // Map props variant to className
-      const [variantClassNames, dataAttributeProps] = useMemo(() => {
-        const dataAttributeProps = getDataAttributes({
+    // Map props variant to className
+    const [variantClassNames, dataAttributeProps] = useMemo(() => {
+      const dataAttributeProps = getDataAttributes({
+        props,
+        dataAttributes,
+        variants,
+        defaultVariants,
+      });
+
+      return [
+        mapPropsToVariantClass(
+          { variants, defaultVariants, compoundVariants },
           props,
-          dataAttributes,
-          variants,
-          defaultVariants,
-        });
+          true
+        ),
+        dataAttributeProps,
+      ] as const;
+      // biome-ignore lint/correctness/useExhaustiveDependencies: <Its ok>
+    }, [props]);
 
-        return [
-          mapPropsToVariantClass(
-            { variants, defaultVariants, compoundVariants },
-            props,
-            true
-          ),
-          dataAttributeProps,
-        ] as const;
-      }, [props]);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <Its ok>
+    const merged: string = useMemo(
+      () => merger(className, variantClassNames, cName),
+      [className, cName, variantClassNames, merger]
+    );
 
-      const merged = useMemo(
-        () => merger(className, variantClassNames, cName),
-        [className, cName, variantClassNames]
-      );
+    const mergedProps = mergeProps(
+      {
+        className: merged,
+        ...(isClassed && Object.keys(defaultVariants).length
+          ? defaultVariants
+          : {}),
+        ...defaultProps,
+        ...dataAttributeProps,
+      },
+      props
+      // biome-ignore lint/complexity/noBannedTypes: <Using empty object to satisfy type system.>
+    ) as unknown as {};
 
-      return (
-        <Component
-          className={merged}
-          {...props}
-          {...(isClassed && Object.keys(defaultVariants).length
-            ? defaultVariants
-            : {})}
-          {...dataAttributeProps}
-          {...defaultProps}
-          as={isClassed ? as : undefined}
-          ref={forwardedRef}
-        />
-      );
+    if (isIntrinsicElement(Component)) {
+      // biome-ignore lint/correctness/useHookAtTopLevel: <This hook is not being called conditionally, it is determined by elementType which is static at reference time.>
+      return useRender({
+        defaultTagName: Component,
+        render: render,
+        props: mergedProps,
+      });
     }
-  ) as unknown as ClassedComponentType<T, V>;
 
-  Comp.displayName =
-    typeof elementType !== "string"
-      ? elementType.displayName || elementType.name || "Compoonent"
-      : `TwComponent(${elementType})`;
+    // Preserve the typed component for proper JSX inference.
+    // We've already established that Component is not intrinsic, so it's safe to cast.
+    const TypedComponent = Component as AnyComponent;
+
+    return <TypedComponent className={merged} {...mergedProps} />;
+  }) as unknown as ClassedComponentType<T, V>;
+
+  Comp.displayName = getDisplayName(elementType);
 
   Reflect.set(Comp, TW_VARS, {
     className,
@@ -111,11 +149,9 @@ export interface ClassedConfig {
   merger?: (...args: string[]) => any;
 }
 
-export interface CreateClassedType {
-  (config?: ClassedConfig): {
-    classed: ClassedFunctionProxy;
-  };
-}
+export type CreateClassedType = (config?: ClassedConfig) => {
+  classed: ClassedFunctionProxy;
+};
 
 export const createClassed = ((config: any) => {
   const classedWithConfig = (elementType: any, ...args: any[]) => {
@@ -147,3 +183,5 @@ export type StrictClassedFunction = <
 
 export const makeStrict = ((component: any) =>
   component) as StrictClassedFunction;
+
+export const { classed } = createClassed();

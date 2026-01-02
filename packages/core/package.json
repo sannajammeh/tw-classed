@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@vitest/ui": "^0.34.4",
-    "bunchee": "^3.8.0",
+    "bunchee": "^6.9.3",
     "c8": "^8.0.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
