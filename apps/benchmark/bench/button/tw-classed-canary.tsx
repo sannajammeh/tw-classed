@@ -10,9 +10,13 @@ const Test = ({ testIndex }: TestComponentProps) => {
   const Button = classed(
     "button",
     "inline-flex items-center justify-center text-black bg-white rounded-lg h-6 px-3"
-  ) as any;
+  );
 
-  return <Button style={{ "--test-index": testIndex }}>testing</Button>;
+  return (
+    <Button style={{ "--test-index": testIndex } as React.CSSProperties}>
+      testing
+    </Button>
+  );
 };
 
 const StitchesTest = () => {
