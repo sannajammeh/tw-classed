@@ -1,0 +1,22 @@
+{
+  "title": "React",
+  "pages": [
+    "---Overview---",
+    "index",
+    "guide",
+    "faq",
+    "api",
+    "---Getting Started---",
+    "installation",
+    "variants",
+    "composing-components",
+    "vscode-setup",
+    "---Advanced---",
+    "typescript",
+    "data-variants",
+    "derived-components",
+    "---More---",
+    "changelog",
+    "about"
+  ]
+}

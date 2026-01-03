@@ -1,0 +1,87 @@
+---
+title: "Radix UI"
+description: "Using TW-Classed with Radix UI"
+---
+
+# Usage with Radix UI
+
+Style Radix UI primitives with Tailwind classes and add variant support.
+
+## Installation
+
+```bash
+npm install @radix-ui/react-progress @tw-classed/react
+```
+
+## Basic Example
+
+```tsx
+import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { classed } from "@tw-classed/react";
+
+const ProgressRoot = classed(
+  ProgressPrimitive.Root,
+  "relative overflow-hidden bg-gray-200 rounded-full h-6"
+);
+
+const ProgressIndicator = classed(
+  ProgressPrimitive.Indicator,
+  "w-full h-full bg-blue-500 transition-transform duration-700"
+);
+
+export const Progress = ({ value = 0 }: { value?: number }) => (
+  <ProgressRoot value={value}>
+    <ProgressIndicator style={{ transform: `translateX(-${100 - value}%)` }} />
+  </ProgressRoot>
+);
+```
+
+## With Variants
+
+```tsx
+import { classed, VariantProps } from "@tw-classed/react";
+
+const ProgressRoot = classed(ProgressPrimitive.Root, "relative overflow-hidden rounded-full", {
+  variants: {
+    size: {
+      sm: "h-2",
+      md: "h-4",
+      lg: "h-6",
+    },
+  },
+  defaultVariants: { size: "md" },
+});
+
+const ProgressIndicator = classed(
+  ProgressPrimitive.Indicator,
+  "w-full h-full transition-transform duration-700",
+  {
+    variants: {
+      color: {
+        blue: "bg-blue-500",
+        purple: "bg-purple-500",
+        gradient: "bg-gradient-to-r from-blue-500 to-purple-500",
+      },
+    },
+    defaultVariants: { color: "blue" },
+  }
+);
+
+type ProgressProps = {
+  value?: number;
+} & VariantProps<typeof ProgressRoot> & VariantProps<typeof ProgressIndicator>;
+
+export const Progress = ({ value = 0, size, color }: ProgressProps) => (
+  <ProgressRoot value={value} size={size}>
+    <ProgressIndicator color={color} style={{ transform: `translateX(-${100 - value}%)` }} />
+  </ProgressRoot>
+);
+```
+
+Usage:
+
+```tsx
+<Progress value={50} />
+<Progress value={75} color="purple" size="lg" />
+<Progress value={90} color="gradient" />
+```

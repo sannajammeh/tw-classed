@@ -1,0 +1,94 @@
+---
+title: "Base UI"
+description: "Using TW-Classed with Base UI and the render prop pattern"
+---
+
+# Usage with Base UI
+
+`tw-classed` forwards the `render` prop to Base UI components, allowing you to use variants and custom rendering together.
+
+## Installation
+
+```bash
+npm install @base-ui-components/react @tw-classed/react
+```
+
+## Basic Example
+
+```tsx
+import * as BaseSwitch from "@base-ui-components/react/switch";
+import { classed } from "@tw-classed/react";
+
+const SwitchThumb = classed(
+  BaseSwitch.Thumb,
+  "flex h-6 w-11 items-center rounded-full border-2 transition-colors",
+  "bg-gray-200 data-[state=checked]:bg-blue-500"
+);
+
+export const Switch = () => (
+  <BaseSwitch.Root>
+    <SwitchThumb>
+      <span className="block h-5 w-5 rounded-full bg-white shadow-lg transition-transform translate-x-0 data-[state=checked]:translate-x-5" />
+    </SwitchThumb>
+  </BaseSwitch.Root>
+);
+```
+
+## Render Prop Forwarding
+
+The `render` prop is forwarded to Base UI - use it with variants:
+
+```tsx
+const SwitchThumb = classed(BaseSwitch.Thumb, "flex items-center rounded-full transition-colors", {
+  variants: {
+    size: {
+      sm: "h-5 w-9",
+      md: "h-6 w-11",
+      lg: "h-7 w-14",
+    },
+    color: {
+      blue: "bg-gray-200 data-[state=checked]:bg-blue-500",
+      green: "bg-gray-200 data-[state=checked]:bg-green-500",
+    },
+  },
+  defaultVariants: { size: "md", color: "blue" },
+});
+
+export const Switch = ({ size, color }) => (
+  <BaseSwitch.Root>
+    <SwitchThumb
+      size={size}
+      color={color}
+      render={<button type="button" />}  // Forwarded to Base UI
+    >
+      <span className="block h-5 w-5 rounded-full bg-white shadow-lg transition-transform" />
+    </SwitchThumb>
+  </BaseSwitch.Root>
+);
+```
+
+Usage:
+
+```tsx
+<Switch size="sm" color="green" />
+<Switch size="lg" color="blue" />
+```
+
+## Key Point
+
+Variants apply styling, `render` controls the DOM element - use both together:
+
+```tsx
+const Button = classed(BaseButton.Root, "px-4 py-2 rounded", {
+  variants: {
+    variant: {
+      primary: "bg-blue-500 text-white",
+      secondary: "bg-gray-200 text-gray-800",
+    },
+  },
+});
+
+<Button variant="primary" render={<a href="/docs" />}>
+  Go to docs
+</Button>
+```

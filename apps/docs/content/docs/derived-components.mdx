@@ -1,0 +1,125 @@
+---
+title: "Extending Components"
+description: "Learn how to extend classed components with additional React logic while preserving variant functionality."
+---
+
+## Extending Components
+
+Sometimes you need to extend a classed component with additional React logic. You can wrap a classed component in a regular React component while preserving all its functionality.
+
+### Basic Pattern
+
+1. A base `classed` component that adds styles & variants
+2. A React component wrapping it that adds useful logic like icons, loading states, etc.
+
+```tsx
+import { classed, ComponentProps } from "@tw-classed/react";
+
+const ButtonBase = classed.button({
+  base: "px-2 py-4 flex items-center gap-2",
+  variants: {
+    color: {
+      blue: "bg-blue-500 text-white",
+      red: "bg-red-500 text-white",
+    },
+  },
+});
+
+export type ButtonProps = ComponentProps<typeof ButtonBase> & {
+  icon?: React.ReactNode;
+};
+
+export function Button({ children, icon, ...rest }: ButtonProps) {
+  return (
+    <ButtonBase {...rest}>
+      {icon && <span>{icon}</span>}
+      <span>{children}</span>
+    </ButtonBase>
+  );
+}
+
+// Usage
+import { CheckIcon, LinkIcon } from "example-icons";
+
+() => <Button color="blue">Click me</Button>;
+() => <Button icon={<CheckIcon />}>Click me</Button>;
+```
+
+### Using the `render` prop for polymorphism
+
+If you need to change the underlying element type, use the `render` prop on the base classed component:
+
+```tsx
+import { classed, ComponentProps } from "@tw-classed/react";
+
+const ButtonBase = classed.button({
+  base: "px-2 py-4 flex items-center gap-2",
+  variants: {
+    color: {
+      blue: "bg-blue-500 text-white",
+      red: "bg-red-500 text-white",
+    },
+  },
+});
+
+type ButtonProps = ComponentProps<typeof ButtonBase> & {
+  icon?: React.ReactNode;
+  href?: string;
+};
+
+function Button({ children, icon, href, ...rest }: ButtonProps) {
+  return (
+    <ButtonBase
+      {...rest}
+      render={href ? <a href={href} /> : undefined}
+    >
+      {icon && <span>{icon}</span>}
+      <span>{children}</span>
+    </ButtonBase>
+  );
+}
+
+// Usage - renders as button
+() => <Button color="blue">Click me</Button>;
+
+// Usage - renders as anchor
+() => (
+  <Button color="blue" href="/contact" icon={<LinkIcon />}>
+    Contact
+  </Button>
+);
+```
+
+### Composing extended components
+
+Extended components can still be composed with other classed components:
+
+```tsx
+import { classed } from "@tw-classed/react";
+
+// Original classed component
+const BaseCard = classed.div({
+  base: "rounded-lg shadow-md p-4",
+  variants: {
+    variant: {
+      elevated: "shadow-xl",
+      flat: "shadow-none border",
+    },
+  },
+});
+
+// Extended component with additional logic
+function Card({ children, title, ...rest }: ComponentProps<typeof BaseCard> & { title: string }) {
+  return (
+    <BaseCard {...rest}>
+      <h2 className="text-xl font-bold">{title}</h2>
+      {children}
+    </BaseCard>
+  );
+}
+
+// Compose with another classed component
+const ProductCard = classed(BaseCard, {
+  base: "hover:shadow-xl transition-shadow",
+});
+```

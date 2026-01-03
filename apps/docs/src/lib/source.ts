@@ -1,4 +1,4 @@
-import { docs } from 'fumadocs-mdx:collections/server';
+import { docs, coreDocs } from 'fumadocs-mdx:collections/server';
 import { type InferPageType, loader } from 'fumadocs-core/source';
 import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
 
@@ -9,7 +9,13 @@ export const source = loader({
   plugins: [lucideIconsPlugin()],
 });
 
-export function getPageImage(page: InferPageType<typeof source>) {
+export const coreSource = loader({
+  baseUrl: '/core',
+  source: coreDocs.toFumadocsSource(),
+  plugins: [lucideIconsPlugin()],
+});
+
+export function getPageImage(page: InferPageType<typeof source> | InferPageType<typeof coreSource>) {
   const segments = [...page.slugs, 'image.png'];
 
   return {
@@ -18,7 +24,7 @@ export function getPageImage(page: InferPageType<typeof source>) {
   };
 }
 
-export async function getLLMText(page: InferPageType<typeof source>) {
+export async function getLLMText(page: InferPageType<typeof source> | InferPageType<typeof coreSource>) {
   const processed = await page.data.getText('processed');
 
   return `# ${page.data.title}

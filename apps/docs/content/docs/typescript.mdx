@@ -1,0 +1,106 @@
+---
+title: "Typescript"
+description: "Tw-classed provides typings out of the box. Here you will find more advanced techniques and tips."
+---
+
+import Link from "next/link";
+
+## Importing types
+
+You can import all types at once:
+
+```typescript
+import type * as Classed from "@tw-classed/react";
+```
+
+These include:
+
+- `Classed.ClassedComponentType` - the type of a classed component
+- `Classed.InferVariantProps` Infers the variant props of a set of variants (internal but exported for convenience)
+- `Classed.VariantProps` Infers the variant props of a component
+- `Classed.Variants` The legal variants of a component (use to type an external variant object)
+- `Classed.ComponentProps` The props of a component (use to type an external component)
+
+## `VariantProps` - Extract variants from a component
+
+```typescript
+import type * as Classed from "@tw-classed/react";
+
+const Button = classed("button", "px-2 py-1", {
+  variants: {
+    color: {
+      blue: "bg-blue-500",
+      red: "bg-red-500",
+    },
+  },
+});
+
+type ButtonVariants = Classed.VariantProps<typeof Button>;
+// {
+//     color: "blue" | "red";
+// }
+
+export type ButtonProps = Classed.ComponentProps<typeof Button>; // All props of the component
+export type ButtonProps = React.ComponentProps<typeof Button>; // Also works
+```
+
+## Extending Components
+
+When you need to wrap a classed component with additional React logic, simply create a wrapper component:
+
+```tsx
+import { classed, ComponentProps } from "@tw-classed/react";
+
+const BaseButton = classed("button", "px-2 py-4", {
+  variants: {
+    color: {
+      blue: "bg-blue-500",
+      red: "bg-red-500",
+    },
+  },
+});
+
+type ButtonProps = ComponentProps<typeof BaseButton> & {
+  icon?: React.ReactNode;
+};
+
+function Button({ icon, children, ...props }: ButtonProps) {
+  return (
+    <BaseButton {...props}>
+      {icon && <span className="mr-2">{icon}</span>}
+      {children}
+    </BaseButton>
+  );
+}
+
+// Use the render prop to change the element type
+() => (
+  <Button color="blue" render={<a href="/" />}>
+    Click me
+  </Button>
+);
+```
+
+See [Extending Components](/docs/derived-components) for more details.
+
+## Typescript 4.9 and above (satisfies api)
+
+On Typescript 4.9 and above you can use the satisfies keyword to define a variant object outside of the `classed` function. This is useful when creating shared variants.
+
+```typescript
+import { Variants, classed } from "@tw-classed/react";
+
+const colorVariants = {
+  color: {
+    blue: "bg-blue-500",
+    red: "bg-red-500",
+  },
+} satisfies Variants;
+
+// In Button.tsx
+const Button = classed("button", "px-2 py-1", {
+  variants: colorVariants,
+});
+
+type ButtonVariants = Classed.VariantProps<typeof Button>; // Variants are persisted.
+```

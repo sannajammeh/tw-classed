@@ -15,6 +15,19 @@ export const docs = defineDocs({
   },
 });
 
+export const coreDocs = defineDocs({
+  dir: 'content/core',
+  docs: {
+    schema: frontmatterSchema,
+    postprocess: {
+      includeProcessedMarkdown: true,
+    },
+  },
+  meta: {
+    schema: metaSchema,
+  },
+});
+
 export default defineConfig({
   mdxOptions: {
     // MDX options
