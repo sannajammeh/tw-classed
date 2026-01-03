@@ -1,7 +1,8 @@
 "use client";
 
 import { classed } from "@tw-classed/react";
-import React, {
+import type React from "react";
+import {
   Children,
   cloneElement,
   isValidElement,
@@ -43,9 +44,12 @@ export function useSnippetSwitcher(
     if (!fadeIn) return child;
 
     const childClone = cloneElement(child, {
-      ...child.props,
-      className: `${child.props.className || ""} fadeIn`,
-    });
+      ...(child.props as { className?: string }),
+      className: `${
+        // biome-ignore lint/suspicious/noExplicitAny: <Ignoring types here>
+        (child.props as any).className || ""
+      } fadeIn`,
+    } as React.HTMLAttributes<HTMLElement>);
     return childClone;
   }, [index, childs, fadeIn]);
 
