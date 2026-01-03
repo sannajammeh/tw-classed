@@ -1,44 +1,45 @@
 {
-  "name": "@tw-classed/core",
-  "version": "1.7.0",
-  "description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
-  "sideEffects": false,
-  "main": "dist/index.cjs",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.mjs",
-    "module": "./dist/index.esm.js",
-    "require": "./dist/index.cjs"
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "dev": "pnpm run build --watch",
-    "build": "bunchee ./src/index.ts --target es2018",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage",
-    "prepublishOnly": "cd ../../ && turbo run build test --filter=@tw-classed/core"
-  },
-  "keywords": [],
-  "author": "Sanna Jammeh",
-  "license": "MIT",
-  "homepage": "https://github.com/sannajammeh/tw-classed",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sannajammeh/tw-classed"
-  },
-  "devDependencies": {
-    "@vitest/ui": "^0.34.4",
-    "bunchee": "^3.8.0",
-    "c8": "^8.0.1",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.5.3",
-    "vitest": "^0.34.4"
-  }
+	"name": "@tw-classed/core",
+	"version": "1.7.0",
+	"description": "A Stitches & Styled-Components inspired library to create reusable Tailwind react components",
+	"sideEffects": false,
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "pnpm run build --watch",
+		"build": "bunchee ./src/index.ts --target es2018",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:ui": "vitest --ui",
+		"test:coverage": "vitest run --coverage",
+		"prepublishOnly": "cd ../../ && turbo run build test --filter=@tw-classed/core"
+	},
+	"keywords": [],
+	"author": "Sanna Jammeh",
+	"license": "MIT",
+	"homepage": "https://github.com/sannajammeh/tw-classed",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sannajammeh/tw-classed"
+	},
+	"devDependencies": {
+		"@vitest/ui": "^0.34.4",
+		"bunchee": "^6.9.3",
+		"c8": "^8.0.1",
+		"typescript": "^5.9.3",
+		"vite": "^4.4.9",
+		"vite-plugin-dts": "^3.5.3",
+		"vitest": "^0.34.4"
+	}
 }

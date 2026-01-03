@@ -1,6 +1,12 @@
-# REF: https://pnpm.io/pnpm-workspace_yaml
 packages:
-  - "apps/*"
-  - "packages/**"
+  - apps/*
+  - packages/**
 
-link-workspace-packages: "deep"
+link-workspace-packages: deep
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@swc/core'
+  - esbuild
+  - sharp
+  - unrs-resolver

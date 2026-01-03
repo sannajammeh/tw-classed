@@ -7,9 +7,9 @@
 
   "commit": false,
   "fixed": [],
-  "linked": [["@tw-classed/core", "@tw-classed/react", "@tw-classed/solid"]],
+  "linked": [["@tw-classed/core", "@tw-classed/react"]],
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["benchmark"]
+  "ignore": ["benchmark", "docs"]
 }

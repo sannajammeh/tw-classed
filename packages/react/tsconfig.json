@@ -1,21 +1,21 @@
 {
-  "compilerOptions": {
-    "target": "es2018",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "incremental": true,
-    "downlevelIteration": true
-  },
-  "include": ["src", "test", "env.d.ts"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"target": "es2018",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"incremental": true,
+		"downlevelIteration": true
+	},
+	"include": ["src", "test", "env.d.ts"],
+	"exclude": ["node_modules"]
 }

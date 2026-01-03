@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
+import type React from "react";
 import { classed } from "../src/index";
-import { render, screen, cleanup } from "./test.utils";
+import { cleanup, render, screen } from "./test.utils";
 
 it("Should inherit classNames from Classed Component in creator fn", () => {
   const A = classed(
@@ -76,7 +76,7 @@ it("Should inherit Variants from main arg", () => {
   expect(screen.getByTestId("anchor")).toHaveClass("text-lg");
 });
 
-it("Should respect the as prop", () => {
+it("Should respect the render prop", () => {
   const A = classed("a", {
     variants: {
       color: {
@@ -94,7 +94,7 @@ it("Should respect the as prop", () => {
     },
   });
 
-  render(<B color="blue" size="lg" as="div" data-testid="anchor" />);
+  render(<B color="blue" size="lg" render={<div />} data-testid="anchor" />);
 
   expect(screen.getByTestId("anchor")).toHaveClass("bg-blue-100");
 
@@ -143,14 +143,14 @@ it("Should handle complex composition", () => {
 
   cleanup();
 
-  render(<B as={C} data-testid="c" />);
+  render(<B render={<C />} data-testid="c" />);
+  expect(screen.getByTestId("c").tagName).toBe("BUTTON");
   expect(screen.getByTestId("c")).toHaveClass("text-red-500");
   expect(screen.getByTestId("c")).toHaveClass("rounded-sm");
-  expect(screen.getByTestId("c").tagName).toBe("BUTTON");
 
   cleanup();
 
-  render(<B as={C} color="blue" data-testid="d" />);
+  render(<B render={<C />} color="blue" data-testid="d" />);
   expect(screen.getByTestId("d")).toHaveClass("text-blue-500");
   expect(screen.getByTestId("d")).toHaveClass("rounded-sm");
   expect(screen.getByTestId("d").tagName).toBe("BUTTON");
@@ -187,7 +187,11 @@ it("Should work with regular react component", () => {
   expect(screen.getByTestId("hello-button")).toHaveClass("text-sm");
 
   render(
-    <Button as={Hello} color="red" size="sm" data-testid="hello-button1" />
+    <Button
+      render={<Hello color="red" />}
+      size="sm"
+      data-testid="hello-button1"
+    />
   );
 
   expect(screen.getByTestId("hello-button1")).toHaveClass("bg-red-500");
@@ -242,7 +246,14 @@ it("Should handle composition with compoundVariants on base", () => {
   render(<InheritorButton color="blue" size="md" data-testid="b2" />);
   expect(screen.getByTestId("b2")).toHaveClass("BLUE-MD");
 
-  render(<Base as={Inheritor} color="red" size="sm" data-testid="b3" />);
+  render(
+    <Base
+      render={<Inheritor color="red" />}
+      color="red"
+      size="sm"
+      data-testid="b3"
+    />
+  );
   expect(screen.getByTestId("b3")).toHaveClass("RED-SM");
 
   const Defaulted = classed(Inheritor, Base, {
@@ -252,7 +263,7 @@ it("Should handle composition with compoundVariants on base", () => {
     },
   });
 
-  render(<Defaulted data-testid="b4" />);
+  render(<Defaulted color="red" data-testid="b4" />);
   expect(screen.getByTestId("b4")).toHaveClass("RED-SM");
 
   render(<Defaulted color="blue" data-testid="b5" />);
