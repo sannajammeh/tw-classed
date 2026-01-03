@@ -1,7 +1,10 @@
 "use client";
 
 import { classed } from "@tw-classed/react";
+import type React from "react";
+import { useRef } from "react";
 import { Snippet, useSnippetSwitcher } from "@/components/SnippetSwitcher";
+import { Text } from "@/components/ui";
 import {
   ScrollArea,
   ScrollAreaCorner,
@@ -9,8 +12,6 @@ import {
   ScrollAreaThumb,
   ScrollAreaViewport,
 } from "@/components/ui/ScrollArea";
-import React, { useRef } from "react";
-import { Text } from "@/components/ui";
 
 type Props = {
   children: React.ReactNode;
@@ -31,18 +32,18 @@ export const Feature = classed(
   }
 );
 
-export const FeatureTitle = classed(Text);
+export const FeatureTitle = classed(Text, {
+  defaultProps: {
+    size: "large",
+    weight: "medium",
+  },
+});
 
-FeatureTitle.defaultProps = {
-  size: "large",
-  weight: "medium",
-};
-
-export const FeatureDescription = classed(Text);
-FeatureDescription.defaultProps = {
-  color: "secondary",
-};
-
+export const FeatureDescription = classed(Text, {
+  defaultProps: {
+    color: "secondary",
+  },
+});
 const searchArray = ["variants:", "compoundVariants:", "defaultVariants:"];
 
 const VariantShowcase = ({ children }: Props) => {

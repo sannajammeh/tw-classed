@@ -3,10 +3,10 @@
 import { classed } from "@tw-classed/react";
 import React from "react";
 import useSWR from "swr";
-import { BundleSizes } from "types/BundleSizes";
 
 export const useBundleSize = () => {
-  return useSWR<BundleSizes>("/api/bundlesize", (url: string) =>
+  // biome-ignore lint/suspicious/noExplicitAny: <d>
+  return useSWR<any>("/api/bundlesize", (url: string) =>
     fetch(url).then((r) => r.json())
   );
 };
