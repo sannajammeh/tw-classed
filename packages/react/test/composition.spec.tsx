@@ -103,7 +103,7 @@ it("Should respect the render prop", () => {
   expect(screen.getByTestId("anchor").tagName).toBe("DIV");
 });
 
-it.only("Should handle complex composition", () => {
+it("Should handle complex composition", () => {
   const A = classed("span", "text-red-500", {
     variants: {
       size: {
