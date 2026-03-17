@@ -2,6 +2,7 @@ export { classedProxy as classed } from "./proxy";
 export { createClassed, cx } from "./classed";
 export { getVariantConfig } from "@tw-classed/core";
 export type { ClassedConfig } from "./classed";
+export { $$ClassedProps, $$ClassedVariants } from "./types";
 export type {
 	InferVariantProps,
 	ClassedComponentType,

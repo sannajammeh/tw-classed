@@ -2,15 +2,14 @@ import type { useRender } from "@base-ui/react/use-render";
 import type {
   InferVariantProps,
   Variants,
-  $$ClassedProps,
-  $$ClassedVariants,
   VariantConfig,
 } from "@tw-classed/core";
+import { $$ClassedProps, $$ClassedVariants } from "@tw-classed/core";
 import * as Util from "./util";
 
 export type { InferVariantProps, Variants, VariantConfig };
 
-export type { $$ClassedProps, $$ClassedVariants };
+export { $$ClassedProps, $$ClassedVariants };
 
 interface InferableClassedType {
   [$$ClassedVariants]: {

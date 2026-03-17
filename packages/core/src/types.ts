@@ -59,10 +59,10 @@ export interface ClassedType<
 }
 
 /** Unique symbol used to reference the props of a Classed Component. */
-export declare const $$ClassedProps: unique symbol;
+export const $$ClassedProps = Symbol("tw-classed.props");
 export type $$ClassedProps = typeof $$ClassedProps;
 /** Unique symbol used to reference the variants of a Classed Component. */
-export declare const $$ClassedVariants: unique symbol;
+export const $$ClassedVariants = Symbol("tw-classed.variants");
 export type $$ClassedVariants = typeof $$ClassedVariants;
 
 /** Returns the cumulative props from the given array of compositions. */
