@@ -2,13 +2,14 @@ import type { useRender } from "@base-ui/react/use-render";
 import type {
   InferVariantProps,
   Variants,
-  $$ClassedProps,
-  $$ClassedVariants,
   VariantConfig,
 } from "@tw-classed/core";
+import { $$ClassedProps, $$ClassedVariants } from "@tw-classed/core";
 import * as Util from "./util";
 
-export { InferVariantProps, Variants, VariantConfig };
+export type { InferVariantProps, Variants, VariantConfig };
+
+export { $$ClassedProps, $$ClassedVariants };
 
 interface InferableClassedType {
   [$$ClassedVariants]: {
@@ -39,7 +40,7 @@ export type VariantProps<T extends InferableClassedType> = InferVariantProps<
 export type ClassedComponentType<
   Type extends keyof React.JSX.IntrinsicElements | AnyComponent,
   Props extends {} = {},
-  TComposedVariants extends {} = {}
+  TComposedVariants extends {} = {},
 > = Type extends keyof React.JSX.IntrinsicElements
   ? React.FC<useRender.ComponentProps<Type> & Props> & {
       [$$ClassedProps]: Props;
@@ -55,8 +56,8 @@ export type ClassedComponentProps<T extends any[]> =
   ($$ClassedProps extends keyof T[0]
     ? T[0][$$ClassedProps]
     : T[0] extends { variants: { [name: string]: unknown } }
-    ? InferVariantProps<T[0]["variants"]>
-    : {}) &
+      ? InferVariantProps<T[0]["variants"]>
+      : {}) &
     (T extends [lead: any, ...tail: infer V] ? ClassedComponentProps<V> : {});
 
 /** Returns the cumulative variants from the given array of compositions. */
@@ -64,8 +65,8 @@ export type ClassedComponentVariants<T extends any[]> =
   ($$ClassedVariants extends keyof T[0]
     ? T[0][$$ClassedVariants]
     : T[0] extends { variants: { [name: string]: unknown } }
-    ? Pick<T[0], "variants" | "defaultVariants" | "dataAttributes">
-    : {}) &
+      ? Pick<T[0], "variants" | "defaultVariants" | "dataAttributes">
+      : {}) &
     (T extends [lead: any, ...tail: infer V]
       ? ClassedComponentVariants<V>
       : {});
@@ -83,42 +84,42 @@ export type Composer =
 
 export type ComposerMap<
   Composers extends Composer[],
-  Type extends keyof React.JSX.IntrinsicElements | AnyComponent
+  Type extends keyof React.JSX.IntrinsicElements | AnyComponent,
 > = {
   [K in keyof Composers]:
     | (string extends Composers[K]
         ? Composers[K]
         : Composers[K] extends string | Util.Function
-        ? Composers[K]
-        : {
-            base?: string;
-            variants?: Variants;
-            defaultVariants?: "variants" extends keyof Composers[K]
-              ? {
-                  [Name in keyof Composers[K]["variants"]]?: Util.Widen<
-                    keyof Composers[K]["variants"][Name]
-                  >;
-                }
-              : {};
+          ? Composers[K]
+          : {
+              base?: string;
+              variants?: Variants;
+              defaultVariants?: "variants" extends keyof Composers[K]
+                ? {
+                    [Name in keyof Composers[K]["variants"]]?: Util.Widen<
+                      keyof Composers[K]["variants"][Name]
+                    >;
+                  }
+                : {};
 
-            compoundVariants?: (("variants" extends keyof Composers[K]
-              ? {
-                  [Name in keyof Composers[K]["variants"]]?:
-                    | Util.Widen<keyof Composers[K]["variants"][Name]>
-                    | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
-                    | Util.String;
-                }
-              : never) & {
-              className?: Util.String;
-              class?: Util.String;
-            })[];
+              compoundVariants?: (("variants" extends keyof Composers[K]
+                ? {
+                    [Name in keyof Composers[K]["variants"]]?:
+                      | Util.Widen<keyof Composers[K]["variants"][Name]>
+                      | Array<Util.Widen<keyof Composers[K]["variants"][Name]>>
+                      | Util.String;
+                  }
+                : never) & {
+                className?: Util.String;
+                class?: Util.String;
+              })[];
 
-            dataAttributes?: "variants" extends keyof Composers[K]
-              ? Array<keyof Composers[K]["variants"]>
-              : Array<string>;
+              dataAttributes?: "variants" extends keyof Composers[K]
+                ? Array<keyof Composers[K]["variants"]>
+                : Array<string>;
 
-            defaultProps?: React.ComponentProps<Type>;
-          })
+              defaultProps?: React.ComponentProps<Type>;
+            })
     | undefined;
 };
 
@@ -127,7 +128,7 @@ export type ComposerMap<
  */
 export type ClassedFunctionType = <
   Type extends keyof React.JSX.IntrinsicElements | AnyComponent,
-  Composers extends Composer[]
+  Composers extends Composer[],
 >(
   type: Type,
   ...composers: ComposerMap<Composers, Type>
@@ -141,7 +142,7 @@ export type ClassedFunctionType = <
  * Defines the classed proxy function. Used to create classed components.
  */
 export type ClassedProxyFunctionType<
-  Type extends keyof React.JSX.IntrinsicElements | AnyComponent
+  Type extends keyof React.JSX.IntrinsicElements | AnyComponent,
 > = <Composers extends Composer[]>(
   ...composers: ComposerMap<Composers, Type>
 ) => ClassedComponentType<
