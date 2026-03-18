@@ -1,5 +1,11 @@
 # @tw-classed/react
 
+## 2.0.1
+
+### Patch Changes
+
+- [#165](https://github.com/sannajammeh/tw-classed/pull/165) [`2500668`](https://github.com/sannajammeh/tw-classed/commit/2500668651d0c7254f8fd0783c012ed26939fa0e) Thanks [@sannajammeh](https://github.com/sannajammeh)! - Export $$ClassedProps and $$ClassedVariants to allow for "declaration" in tsconfig - fixes #164
+
 ## 2.0.0
 
 ### Major Changes
